@@ -18,7 +18,7 @@ public class RegistrationService {
     public boolean checkReg(String name, String email) throws SQLException{
         List<String> names = db.getAllUsersName();
         List<String> emails = db.getAllUsersEmail();
-        return !names.contains(name) || !emails.contains(email);
+        return names.contains(name) || emails.contains(email);
     }
 
     public void createReg(String name, String fname, String lname, String pass, String email) throws SQLException, NameNotFoundException{

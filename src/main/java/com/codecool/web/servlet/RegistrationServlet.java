@@ -28,11 +28,11 @@ public class RegistrationServlet extends AbstractServlet {
             String email = req.getParameter("email");
 
             if (service.checkReg(name, email)) {
-                service.createReg(name, fname, lname, pass, email);
-                req.setAttribute("message", "Registration successful");
+                req.setAttribute("message", "This name or email already registered");
             }
             else {
-                req.setAttribute("message", "This name or email already registered");
+                service.createReg(name, fname, lname, pass, email);
+                req.setAttribute("message", "Registration successful");
             }
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
         }
