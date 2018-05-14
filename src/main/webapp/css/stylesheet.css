@@ -76,20 +76,19 @@ body {
 }
 .login .form {
 	float: right;
-	margin-top: 10px;
-	height: 70px;
+	margin-top: 20px;
+	height: 50px;
 	font-size: 1.5em;
-	line-height: 70px;
+	line-height: 50px;
 	text-align: right;
 }
 .login .error {
-	float: right;
-	margin-top: 10px;
-	width: 260px;
+    margin-top: -5px;
+	width: 100%;
 	height: 20px;
-	font-size: 1.0em;
+	font-size: 0.85em;
 	font-weight: bold;
-	line-height: 70px;
+	line-height: 20px;
 	text-align: center;
 	color: #ff0000;
 }
@@ -126,5 +125,10 @@ body {
 }
 .registration_frame .submit {
 	font-size: 1.0em;
+}
+.registration_frame p.message {
+	font-size: 1.0em;
+	font-weight: bold;
+	color: #ff0000;
 }
 /* ********** LOGIN & REG END ********** */
