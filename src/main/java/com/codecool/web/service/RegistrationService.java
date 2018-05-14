@@ -15,10 +15,18 @@ public class RegistrationService {
         this.db = db;
     }
 
+    public boolean checkEmail(String email) throws SQLException{
+        List<String> emails = db.getAllUsersEmail();
+        for(String e: emails){
+            if(e.toLowerCase().equals(email.toLowerCase())){
+                return true;
+            }
+        }return false;
+    }
+
     public boolean checkReg(String name, String email) throws SQLException{
         List<String> names = db.getAllUsersName();
-        List<String> emails = db.getAllUsersEmail();
-        return names.contains(name) || emails.contains(email);
+        return names.contains(name) || checkEmail(email);
     }
 
     public void createReg(String name, String fname, String lname, String pass, String email) throws SQLException, NameNotFoundException{
