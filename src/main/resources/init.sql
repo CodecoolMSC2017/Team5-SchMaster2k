@@ -1,71 +1,158 @@
-/*
-    Database initialization script that runs on every web-application redeployment.
-*/
-DROP TABLE IF EXISTS coupons_shops;
-DROP TABLE IF EXISTS coupons;
-DROP TABLE IF EXISTS shops;
+DROP TABLE IF EXISTS task_day_sch;
+DROP TABLE IF EXISTS hours;
+DROP TABLE IF EXISTS days;
+DROP TABLE IF EXISTS schedules;
+DROP TABLE IF EXISTS tasks;
 DROP TABLE IF EXISTS users;
+
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    email TEXT UNIQUE NOT NULL,
+    name TEXT NULL,
     password TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    rank TEXT NOT NULL,
 	CONSTRAINT email_not_empty CHECK (email <> ''),
 	CONSTRAINT password_not_empty CHECK (password <> '')
 );
 
-CREATE TABLE shops (
+INSERT INTO users (name, password, email, rank) VALUES
+	('Robi', 'a', 'robert.kohanyi@codecool.com', 'Admin'),
+	('Pako', 'a', 'pal.monoczki@codecool.com', 'Admin'),
+	('Ben', 'a', 'o.g.bence@totalcar.hu', 'User'),
+	('Tib', 'a', 'domokos.tibor.82@gmail.com', 'User'),
+	('Krisz', 'a', 'kollarkr@gmail.com', 'User')
+;
+
+
+/* ***** SCHEDULE ***** */
+
+CREATE TABLE schedules (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-	CONSTRAINT name_not_empty CHECK (name <> '')
+    content TEXT NULL,
+    user_id INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE coupons (
+INSERT INTO schedules (name, content, user_id) VALUES
+	('Test SCH', null, 3),
+	('Test SCH 2', 'Test content', 3),
+	('Weekly shit', 'Something useful', 5)
+;
+
+
+/* ***** DAYS ***** */
+
+CREATE TABLE days (
+    id SERIAL PRIMARY KEY,
+    name TEXT NULL,
+    schedule_id INTEGER NOT NULL,
+    FOREIGN KEY (schedule_id) REFERENCES schedules(id)
+);
+
+INSERT INTO days (name, schedule_id) VALUES
+	('Day 1', 1),
+	('Day 2', 1),
+	('Friday', 2),
+	('Saturday', 2),
+	('Sunday', 2),
+	('Csütörtök', 3),
+	('Péntek', 3)
+;
+
+/* ***** TASK ***** */
+
+CREATE TABLE tasks (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    percentage INTEGER NOT NULL,
-    CONSTRAINT name_not_empty CHECK (name <> ''),
-	CONSTRAINT percentage_between_bounds CHECK (percentage >= 0 AND percentage <= 100)
+    user_id INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE coupons_shops (
-    coupon_id INTEGER,
-    shop_id INTEGER,
-    PRIMARY KEY (coupon_id, shop_id),
-    FOREIGN KEY (coupon_id) REFERENCES coupons(id),
-    FOREIGN KEY (shop_id) REFERENCES shops(id)
+INSERT INTO tasks (name, user_id) VALUES
+	('Task 1', 3),
+	('Task 2', 3),
+	('Task 3', 3),
+	('Task 4', 3),
+	('Task 5', 3),
+	('Task A', 5),
+	('Task B', 5),
+	('Task C', 5),
+	('Task D', 5),
+	('Task E', 5)
+;
+
+
+/* ***** HOURS ***** */
+
+CREATE TABLE hours (
+    id SERIAL PRIMARY KEY,
+    name INTEGER NOT NULL,
+    task_id INTEGER NULL,
+    day_id INTEGER NOT NULL,
+    FOREIGN KEY (task_id) REFERENCES tasks(id),
+    FOREIGN KEY (day_id) REFERENCES days(id)
 );
 
-INSERT INTO users (email, password) VALUES
-	('user1@user1', 'user1'), -- 1
-	('user2@user2', 'user2'), -- 2
-	('user2@user3', 'user3'); -- 3
+INSERT INTO hours (name, task_id, day_id) VALUES
+	(9, 1, 1),
+	(10, 1, 1),
+	(11, 1, 1),
+	(13, 2, 1),
+	(14, 2, 1),
+	(10, 3, 2),
+	(11, 3, 2),
+	(12, 3, 2),
+	(13, 4, 2),
+	(14, 5, 2),
+	(15, 5, 2),
 
-INSERT INTO shops (name) VALUES
-	('SPAR'),   -- 1
-	('Tesco'),  -- 2
-	('Auchan'), -- 3
-	('LIDL'),   -- 4
-	('ALDI');   -- 5
+	(9, 1, 3),
+	(11, 2, 3),
+	(15, 3, 3),
+	(8, 4, 4),
+	(9, 5, 5),
 
-INSERT INTO coupons (name, percentage) VALUES
-	('Sausage discount', 10),           -- 1
-	('Bread super-sale', 50),           -- 2
-	('Bread super-sale', 40),           -- 3
-	('20% off from EVERYTHING!', 20),   -- 4
-	('1 product for FREE!', 100);       -- 5
+	(10, 6, 6),
+	(11, 7, 6),
+	(13, 8, 6),
+	(9, 9, 7),
+	(10, 10, 7)
+;
 
-INSERT INTO coupons_shops (coupon_id, shop_id) VALUES
-    (1, 1), -- 1
-    (1, 2),
-    (1, 3),
-    (2, 1), -- 2
-    (2, 2),
-    (2, 3),
-    (2, 5),
-    (3, 1), -- 3
-    (3, 2),
-    (3, 5),
-    (4, 3), -- 4
-    (5, 2), -- 5
-    (5, 5);
+
+/* ***** TASK-DAY-SCHEDULE CONNECTION ***** */
+
+CREATE TABLE task_day_sch (
+    id SERIAL PRIMARY KEY,
+    hour_id INTEGER NOT NULL,
+    task_id INTEGER NOT NULL,
+    schedule_id INTEGER NOT NULL,
+    FOREIGN KEY (hour_id) REFERENCES hours(id),
+    FOREIGN KEY (task_id) REFERENCES tasks(id),
+    FOREIGN KEY (schedule_id) REFERENCES schedules(id)
+);
+
+INSERT INTO task_day_sch (hour_id, task_id, schedule_id) VALUES
+	(1,1,1),
+	(2,1,1),
+	(3,1,1),
+	(4,2,1),
+	(5,2,1),
+	(6,3,1),
+	(7,3,1),
+	(8,3,1),
+	(9,4,1),
+	(10,5,1),
+	(11,5,1),
+	(12,1,2),
+	(13,2,2),
+	(14,3,2),
+	(15,4,2),
+	(16,5,2),
+	(17,6,3),
+	(18,7,3),
+	(19,8,3),
+	(20,9,3),
+	(21,10,3);
