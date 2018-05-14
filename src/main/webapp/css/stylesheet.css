@@ -1,0 +1,130 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+.submit {
+    display: inline-block;
+    margin: 4px 2px;
+	padding: 10px 12px;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    border: 0px;
+    font-size: 1.2em;
+	font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.submit:hover {
+    background-color: #3E8E41;
+}
+.submit a {
+	text-decoration: none;
+	color: white;
+}
+
+/* ********** LOGIN & REG START ********** */
+.login {
+	height: 90px;
+	background-color: #CCC;
+	line-height: 70px;
+	color: #373737;
+}
+.login_frame {
+	margin: 0 auto;
+	width: 800px;
+	height: 90px;
+}
+.login .logo {
+	float: left;
+	margin-top: 10px;
+	width: 70px;
+	height: 70px;
+	background: url(../images/logo.png);
+    background-repeat: no-repeat;
+    background-size: 70px 70px;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    -webkit-animation-name: rotation;
+    animation-name: rotation;
+    -webkit-animation-duration: 10s;
+    animation-duration: 10s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease;
+    animation-timing-function: ease;
+}
+@-webkit-keyframes rotation {
+    0% {-webkit-transform: rotate(0deg);}
+    20% {-webkit-transform: rotate(359deg);}
+    100% {-webkit-transform: rotate(359deg);}
+}
+.login .title {
+	float: left;
+	margin-top: 10px;
+	height: 70px;
+	padding-left: 20px;
+	font-size: 3.0em;
+	font-weight: bold;
+	line-height: 35px;
+}
+.login .form {
+	float: right;
+	margin-top: 10px;
+	height: 70px;
+	font-size: 1.5em;
+	line-height: 70px;
+	text-align: right;
+}
+.login .error {
+	float: right;
+	margin-top: 10px;
+	width: 260px;
+	height: 20px;
+	font-size: 1.0em;
+	font-weight: bold;
+	line-height: 70px;
+	text-align: center;
+	color: #ff0000;
+}
+.login .submit {
+	padding: 5px 6px;
+	font-size: 1.0em;
+}
+.registration {
+	margin: 0 auto;
+	margin-top: 10px;
+	width: 800px;
+	height: auto;
+}
+.registration_frame {
+	float: right;
+	width: 420px;
+	color: #373737;
+	font-size: 1.25em;
+}
+.registration_frame h1 {
+	margin: 15px 20px;
+	margin-bottom: -10px;
+	font-size: 1.8em;
+}
+.registration .registration_frame p {
+	margin: 10px 20px;
+	font-size: 1.3em;
+}
+.registration_frame .field {
+	padding: 5px;
+	height: 30px;
+	border: 1px solid grey;
+	border-radius: 3px;
+}
+.registration_frame .submit {
+	font-size: 1.0em;
+}
+/* ********** LOGIN & REG END ********** */
