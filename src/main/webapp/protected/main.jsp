@@ -17,6 +17,9 @@
             <p id="userFName"></p>
             <p id="userLName"></p>
             <p id="userEmail"></p>
+            <form action="loginServlet" method="GET">
+                <input type="submit" value="Logout">
+            </form>
         </div>
 
         <div id="mainInfo" class="content">
@@ -27,10 +30,5 @@
             <button id="mainTaskButton">Task</button>
         </div>
 
-
-
-        <form action="loginServlet" method="GET">
-            <input type="submit" value="logout">
-        </form>
 	</body>
 </html>
