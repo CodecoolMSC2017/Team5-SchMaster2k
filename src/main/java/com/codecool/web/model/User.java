@@ -1,16 +1,22 @@
 package com.codecool.web.model;
 
-import java.util.Objects;
+public class User extends AbstractModel {
 
-public final class User extends AbstractModel {
+    private String name;
+    private String email;
+    private String password;
+    private String rank;
 
-    private final String email;
-    private final String password;
-
-    public User(int id, String email, String password) {
+    public User(int id,String name,String password,String email,String rank){
         super(id);
-        this.email = email;
-        this.password = password;
+        this.name=name;
+        this.email=email;
+        this.password=password;
+        this.rank=rank;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getEmail() {
@@ -21,18 +27,7 @@ public final class User extends AbstractModel {
         return password;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        User user = (User) o;
-        return Objects.equals(email, user.email) &&
-            Objects.equals(password, user.password);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), email, password);
+    public String getRank() {
+        return rank;
     }
 }
