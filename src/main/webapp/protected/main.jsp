@@ -3,11 +3,15 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<script type="text/javascript" src=""></script>
+		<script type="text/javascript" src="../js/main.js"></script>
+		<script type="text/javascript" src="../js/"></script>
+		<script type="text/javascript" src="../js/"></script>
+		<script type="text/javascript" src="../js/"></script>
 		<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 		<title>Schedule Master 2000</title>
 	</head>
 	<body style="background: url(images/background.jpg);">
+
         <div id="userInfo" class="content">
             <p id="userName"></p>
             <p id="userFName"></p>
