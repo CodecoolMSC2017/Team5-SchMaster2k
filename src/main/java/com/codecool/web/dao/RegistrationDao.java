@@ -11,7 +11,7 @@ public class RegistrationDao extends AbstractDao {
         super(connection);
     }
 
-    public void insertReg(String name, String fname, String lname, String pass, String email) throws SQLException{
+    public void insertReg(String name, String fname, String lname, String password, String email) throws SQLException{
 
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
@@ -20,12 +20,11 @@ public class RegistrationDao extends AbstractDao {
             statement.setString(1, name);
             statement.setString(2, fname);
             statement.setString(3, lname);
-            statement.setString(4, pass);
+            statement.setString(4, password);
             statement.setString(5, email);
             executeInsert(statement);
             int id = fetchGeneratedId(statement);
             connection.commit();
-
         } catch (SQLException ex) {
             connection.rollback();
             throw ex;
