@@ -28,6 +28,31 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
         return allUser;
     }
 
+    @Override
+    public List<String> getAllUsersName() throws SQLException {
+        List<String> allUserName = new ArrayList<>();
+        String sql = "SELECT name FROM users;";
+        try(Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql)){
+            while(resultSet.next()){
+                allUserName.add(resultSet.getString("name"));
+            }
+        }
+        return allUserName;
+    }
+
+    public List<String> getAllUsersEmail() throws SQLException{
+        List<String> allUserEmail = new ArrayList<>();
+        String sql = "SELECT email FROM users;";
+        try(Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql)){
+            while(resultSet.next()){
+                allUserEmail.add(resultSet.getString("email"));
+            }
+        }
+        return allUserEmail;
+    }
+
     private User createUser(ResultSet resultSet) throws SQLException{
         int id=resultSet.getInt("id");
         String name = resultSet.getString("name");
@@ -92,5 +117,28 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
     @Override
     public void removeUser(User user) throws SQLException {
 
+    }
+
+    @Override
+    public void insertReg(String name, String fname, String lname, String pass, String email) throws SQLException{
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+        String sql = "INSERT INTO users (name, first_name, last_name, password, email, rank) VALUES (?, ?, ?, ?, ?, 'User')";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+            statement.setString(1, name);
+            statement.setString(2, fname);
+            statement.setString(3, lname);
+            statement.setString(4, pass);
+            statement.setString(5, email);
+            executeInsert(statement);
+            int id = fetchGeneratedId(statement);
+            connection.commit();
+
+        } catch (SQLException ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
     }
 }

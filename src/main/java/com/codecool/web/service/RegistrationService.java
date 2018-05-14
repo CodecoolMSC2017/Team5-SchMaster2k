@@ -1,15 +1,24 @@
 package com.codecool.web.service;
 
-import com.codecool.web.dao.RegistrationDao;
+import com.codecool.web.dao.UserDao;
+import com.codecool.web.model.User;
+
 import javax.naming.NameNotFoundException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class RegistrationService {
 
-    private RegistrationDao db;
+    private UserDao db;
 
-    public RegistrationService(RegistrationDao db) {
+    public RegistrationService(UserDao db) {
         this.db = db;
+    }
+
+    public boolean checkReg(String name, String email) throws SQLException{
+        List<String> names = db.getAllUsersName();
+        List<String> emails = db.getAllUsersEmail();
+        return !names.contains(name) || !emails.contains(email);
     }
 
     public void createReg(String name, String fname, String lname, String pass, String email) throws SQLException, NameNotFoundException{
