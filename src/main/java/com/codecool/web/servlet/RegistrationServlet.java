@@ -3,6 +3,7 @@ package com.codecool.web.servlet;
 import com.codecool.web.dao.RegistrationDao;
 import com.codecool.web.service.RegistrationService;
 
+import javax.naming.NameNotFoundException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +16,8 @@ import java.sql.SQLException;
 public class RegistrationServlet extends AbstractServlet{
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try(Connection connection = (Connection) req.getServletContext()) {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try(Connection connection = getConnection(req.getServletContext())) {
             RegistrationDao db = new RegistrationDao(connection);
             RegistrationService service = new RegistrationService(db);
 
@@ -28,7 +29,7 @@ public class RegistrationServlet extends AbstractServlet{
 
             service.createReg(name, fname, lname, pass, email);
 
-        } catch (SQLException e) {
+        } catch (SQLException|NameNotFoundException e) {
             e.printStackTrace();
         }
     }
