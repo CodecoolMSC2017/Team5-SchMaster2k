@@ -17,10 +17,13 @@
 						<input type="text" name="name_or_email" placeholder="User name or E-mail" value="">
 						<input type="password" name="password" placeholder="Password" value="">
 						<input type="submit" class="submit" value="Login">
-					</form>
+						<br>
+				    </form>
+
+					<div class="error">${error}</div>
 				</div>
 			</div>
-		    <div class="errormsg">"${error}"</div>
+
 		</div>
 		<div class="registration">
 			<div class="registration_frame">

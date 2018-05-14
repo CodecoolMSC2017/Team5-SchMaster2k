@@ -8,7 +8,10 @@
 		<title>Schedule Master 2000</title>
 	</head>
 	<body style="background: url(images/background.jpg);">
-
+    <h1>asdas</h1>
+    <form action="loginServlet" method="GET">
+        <input type="submit" value="logout">
+    </form>
 
 
 
