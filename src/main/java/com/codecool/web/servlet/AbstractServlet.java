@@ -19,10 +19,6 @@ abstract class AbstractServlet extends HttpServlet {
         return dataSource.getConnection();
     }
 
-    void sendMessage(HttpServletResponse resp, int status, String message) throws IOException {
-        sendMessage(resp, status, new MessageDto(message));
-    }
-
     void sendMessage(HttpServletResponse resp, int status, Object object) throws IOException {
         resp.setStatus(status);
         om.writeValue(resp.getOutputStream(), object);
