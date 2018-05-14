@@ -20,7 +20,7 @@
 					</form>
 				</div>
 			</div>
-		    <div class="error">${login.message}</div>
+		    <div class="errormsg">"${error}"</div>
 		</div>
 		<div class="registration">
 			<div class="registration_frame">

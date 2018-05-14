@@ -2,11 +2,10 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.dao.DatabaseUserDao;
 import com.codecool.web.dao.UserDao;
-import com.codecool.web.model.SubPage;
+import com.codecool.web.exception.InvalidUserException;
+
 import com.codecool.web.model.User;
 import com.codecool.web.service.*;
-import com.codecool.web.service.UserNotRegisteredException;
-import com.codecool.web.service.exceptions.NoUserRegisteredException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +14,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
+
 
 @WebServlet("/loginServlet")
 public class LoginServlet extends AbstractServlet {
@@ -33,25 +32,19 @@ public class LoginServlet extends AbstractServlet {
 
         try (Connection connection = dataSource.getConnection()) {
             UserDao userDao = new DatabaseUserDao(connection);
-            String userName = req.getParameter("username");
+            LoginService loginService = new LoginService(userDao);
+
+            String userName = req.getParameter("name_or_email");
             String passw = req.getParameter("password");
 
-            LoginService loginService = new LoginService(userName, passw, userDao);
+
             try {
-                User user = loginService.fetchUser();
+                User user = loginService.getUserByName(userName,passw);
                 req.getSession().setAttribute("user", user);
-                AvailablePages ap = new AvailablePages();
-                List<SubPage> availables = ap.selectPages(connection, user);
+                req.getRequestDispatcher("main.jsp").forward(req, resp);
 
-                req.setAttribute("pageList", availables);
-                req.getRequestDispatcher("protected/curriculum.jsp").forward(req, resp);
-
-
-            } catch (UserNotRegisteredException e) {
+            }catch (InvalidUserException e){
                 req.setAttribute("error", "Wrong password or user name!");
-                req.getRequestDispatcher("index.jsp").forward(req, resp);
-            } catch (NoUserRegisteredException e) {
-                req.setAttribute("error", "No user registered yet!");
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
             }
 
