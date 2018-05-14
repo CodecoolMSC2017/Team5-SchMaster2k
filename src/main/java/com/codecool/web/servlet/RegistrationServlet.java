@@ -1,6 +1,5 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.dao.RegistrationDao;
 import com.codecool.web.service.RegistrationService;
 import javax.naming.NameNotFoundException;
 import javax.servlet.ServletException;
@@ -26,10 +25,18 @@ public class RegistrationServlet extends AbstractServlet {
             String pass = req.getParameter("password");
             String email = req.getParameter("email");
 
-            service.createReg(name, fname, lname, pass, email);
-
-        } catch (SQLException|NameNotFoundException e) {
+            if (service.checkReg(name, email)) {
+                service.createReg(name, fname, lname, pass, email);
+                req.setAttribute("message", "Registration successful");
+            }
+            else {
+                req.setAttribute("message", "This name or email already registered");
+            }
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        }
+        catch (SQLException|NameNotFoundException e) {
             e.printStackTrace();
         }
     }
+
 }
