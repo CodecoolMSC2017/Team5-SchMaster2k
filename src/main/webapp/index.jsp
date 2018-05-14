@@ -19,11 +19,9 @@
 						<input type="submit" class="submit" value="Login">
 						<br>
 				    </form>
-
-					<div class="error">${error}</div>
+				    <div class="error">${error}</div>
 				</div>
 			</div>
-
 		</div>
 		<div class="registration">
 			<div class="registration_frame">
@@ -38,7 +36,7 @@
 					<p>Birthday:<br>
 					<input class="field" type="date" name="birthday"></p>
 					<p style="font-size: 0.85em">By clicking Create Account, you agree to our Terms and that you have read our Data Policy, including our Cookie Use.</p>
-					<p style="font-size: 0.85em; color: #ff0000">${message}</p>
+					<p class="message">${message}</p>
 					<p><input type="submit" class="submit" value="Create Account"></p>
 				</form>
 			</div>
