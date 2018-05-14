@@ -4,7 +4,7 @@
 <html lang="en">
 	<head>
 		<script type="text/javascript" src=""></script>
-		<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="css/login.css">
 		<title>Schedule Master 2000 - LOGIN</title>
 	</head>
 	<body style="background: url(images/background_bw.jpg);">

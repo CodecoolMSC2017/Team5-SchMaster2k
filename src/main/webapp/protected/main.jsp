@@ -7,7 +7,8 @@
 		<script type="text/javascript" src="../js/"></script>
 		<script type="text/javascript" src="../js/"></script>
 		<script type="text/javascript" src="../js/"></script>
-		<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="../css/main.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<title>Schedule Master 2000</title>
 	</head>
 	<body style="background: url(images/background.jpg);">
