@@ -8,12 +8,25 @@
 		<title>Schedule Master 2000</title>
 	</head>
 	<body style="background: url(images/background.jpg);">
-    <h1>asdas</h1>
-    <form action="loginServlet" method="GET">
-        <input type="submit" value="logout">
-    </form>
+        <div id="userInfo" class="content">
+            <p id="userName"></p>
+            <p id="userFName"></p>
+            <p id="userLName"></p>
+            <p id="userEmail"></p>
+        </div>
+
+        <div id="mainInfo" class="content">
+            <p>Introduction</p>
+            <p id="schNumber"></p>
+            <p id="taskNumber"></p>
+            <button id="mainSchButton">Schedule</button>
+            <button id="mainTaskButton">Task</button>
+        </div>
 
 
 
+        <form action="loginServlet" method="GET">
+            <input type="submit" value="logout">
+        </form>
 	</body>
 </html>
