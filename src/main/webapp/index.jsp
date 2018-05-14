@@ -26,7 +26,7 @@
 			<div class="registration_frame">
 				<h1>Sign Up</h1>
 				<p style="margin-bottom: 20px">It's free and always will be.</p>
-				<form action="registrationServlet" method="post">
+				<form action="RegistrationServlet" method="post">
 					<p><input class="field" type="text" size="45" name="name" placeholder="User name" value="" required></p>
 					<p><input class="field" type="text" size="19" name="first_name" placeholder="First name" value="">
 					<input class="field" type="text" size="19" name="last_name" placeholder="Last name" value=""></p>
