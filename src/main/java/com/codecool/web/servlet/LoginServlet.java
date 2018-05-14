@@ -21,8 +21,8 @@ public class LoginServlet extends AbstractServlet {
     //logout
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession().removeAttribute("user");
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        req.getSession().invalidate();
+        resp.sendRedirect("index.jsp");
     }
 
 
