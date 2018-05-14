@@ -8,20 +8,23 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    name TEXT NULL,
-    password TEXT NOT NULL,
+    name TEXT UNIQUE NOT NULL,
+    first_name TEXT NULL,
+    last_name TEXT NULL,
+    password TEXT NOT NOT NULL,
     email TEXT UNIQUE NOT NULL,
     rank TEXT NOT NULL,
 	CONSTRAINT email_not_empty CHECK (email <> ''),
 	CONSTRAINT password_not_empty CHECK (password <> '')
 );
 
-INSERT INTO users (name, password, email, rank) VALUES
-	('Robi', 'a', 'robert.kohanyi@codecool.com', 'Admin'),
-	('Pako', 'a', 'pal.monoczki@codecool.com', 'Admin'),
-	('Ben', 'a', 'o.g.bence@totalcar.hu', 'User'),
-	('Tib', 'a', 'domokos.tibor.82@gmail.com', 'User'),
-	('Krisz', 'a', 'kollarkr@gmail.com', 'User')
+INSERT INTO users (name, first_name, last_name, password, email, rank) VALUES
+	('Robi', 'Robert', 'Kohanyi', 'a', 'robert.kohanyi@codecool.com', 'Admin'),
+	('Pako', 'Pal', 'Monoczki', 'a', 'pal.monoczki@codecool.com', 'Admin'),
+	('Ben', null, null, 'a', 'o.g.bence@totalcar.hu', 'User'),
+	('Tib', null, null, 'a', 'domokos.tibor.82@gmail.com', 'User'),
+	('Krisz', null, null, 'a', 'kollarkr@gmail.com', 'User'),
+	('Norb', null, null, 'a', 'norberthresko@gmail.com', 'User')
 ;
 
 
