@@ -28,7 +28,7 @@
 
 
 
-        <div id="mainInfo" class="main-content content">
+        <div id="mainInfo" class="content">
             <p>Introduction</p>
             <p id="schNumber"></p>
             <p id="taskNumber"></p>
@@ -41,7 +41,7 @@
         </div>
 
 
-        <div id="tasks" class="hidden content task-content">
+        <div id="tasks" class="hidden content">
             <table id="taskTable" border='1'>
                 <tr>
                     <td>Task Name</td><td></td>

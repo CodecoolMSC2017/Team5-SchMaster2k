@@ -1,7 +1,7 @@
 let taskTable;
 
 function mainTaskButton() {
-    showContents(["main-content", "task-content"]);
+    showContents(["userInfo", "tasks"]);
     const params = new URLSearchParams();
     const taskTableEl = document.getElementById("taskTable");
     taskTable = taskTableEl;
@@ -24,7 +24,7 @@ function showTasks(){
         const buttonEl = document.createElement("button");
         buttonEl.value="Edit";
         tdNameEl.innerHTML = currentElement.name;
-        alert("asd");
+
 
         tdEditEl.appendChild(buttonEl);
 
