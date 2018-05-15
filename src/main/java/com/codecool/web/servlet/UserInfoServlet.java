@@ -21,7 +21,6 @@ public final class UserInfoServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
-            ObjectMapper objectMapper = new ObjectMapper();
             UserDao uDao = new DatabaseUserDao(connection);
             String username = req.getParameter("username");
             User user = uDao.getUserByName(username);
