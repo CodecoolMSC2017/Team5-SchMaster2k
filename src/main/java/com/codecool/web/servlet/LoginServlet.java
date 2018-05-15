@@ -42,7 +42,7 @@ public class LoginServlet extends AbstractServlet {
             try {
                 User user = loginService.getUserByName(userName,passw);
                 req.getSession().setAttribute("user", user);
-                req.getRequestDispatcher("main.jsp").forward(req, resp);
+                req.getRequestDispatcher("protected/main.jsp").forward(req, resp);
 
             }catch (InvalidUserException e){
                 req.setAttribute("error", "Wrong password or user name!");
