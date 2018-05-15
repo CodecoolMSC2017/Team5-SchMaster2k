@@ -14,8 +14,7 @@ public class SchDao extends AbstractDao{
     }
 
     public List<Schedule> getAllSchByUserId(int id) throws SQLException{
-        String sql = "SELECT schedules.name, schedules.content FROM schedules" +
-            " WHERE user_id = 3;";
+        String sql = "SELECT * FROM schedules WHERE user_id = ?";
         List<Schedule> schedules = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setInt(1,id);

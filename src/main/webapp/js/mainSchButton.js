@@ -1,29 +1,32 @@
-function scheduleList(schedules)
+function scheduleList(schedules) {
     const ulEl = document.createElement('ul');
 
     for (let i = 0; i < schedules.length; i++) {
         const sch = schedules[i];
 
-        // creating title
         const pNameEl = document.createElement('p');
-        pNameEl.textContent = sch.name;
+        pNameEl.textContent = "Sch name: " + sch.name;
+        const pIdEl = document.createElement('p');
+        pIdEl.textContent = "Sch id: " + sch.id;
+        const pConEl = document.createElement('p');
+        pConEl.textContent = "Sch content: " + sch.content;
 
-        // creating list item
         const liEl = document.createElement('li');
         liEl.appendChild(pNameEl);
+        liEl.appendChild(pIdEl);
+        liEl.appendChild(pConEl);
 
         ulEl.appendChild(liEl);
     }
     return ulEl;
-
+}
 
 function loadSchedules() {
-    //photosDivEl.style.display = 'block';
+    showContents(["schedulesInfo"]);
 
-    const text = this.responseText;
-    const schedules = JSON.parse(text);
+    const schedules = JSON.parse(this.responseText);
 
-    const divEl = document.getElementById('schedulesInfo')
+    const divEl = document.getElementById('schedulesInfo');
     while(divEl.firstChild) {
         divEl.removeChild(divEl.firstChild);
     }
@@ -34,11 +37,10 @@ function loadSchedules() {
 
 function mainSchButton() {
     const params = new URLSearchParams();
-    const id = userId;
-    params.append('id', id);
+    params.append('id', userId);
 
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', loadSchedules);
-    xhr.open('GET', 'schServlet');
+    xhr.open('POST', 'schServlet');
     xhr.send(params);
 }

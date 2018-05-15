@@ -17,9 +17,11 @@ import java.util.List;
 public class SchServlet extends AbstractServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection c = getConnection(req.getServletContext())){
-            int id = Integer.parseInt(req.getParameter("id"));
+            String id = req.getParameter("id");
+            System.out.println(id);
+            System.out.println("BAZDMEG");
             SchDao db = new SchDao(c);
             SchService service = new SchService(db);
 
@@ -29,7 +31,7 @@ public class SchServlet extends AbstractServlet {
             sendMessage(resp, HttpServletResponse.SC_OK, schedules);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            handleSqlError(resp, e);
         }
     }
 }

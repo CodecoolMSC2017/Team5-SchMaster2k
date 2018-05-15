@@ -10,4 +10,12 @@ public class Schedule extends AbstractModel{
         this.name = name;
         this.content = content;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getContent() {
+        return content;
+    }
 }

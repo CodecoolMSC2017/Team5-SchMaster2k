@@ -14,7 +14,7 @@ public class SchService{
         this.db = db;
     }
 
-    public List<Schedule> getSchedulesByID(int id) throws SQLException{
-        return db.getAllSchByUserId(id);
+    public List<Schedule> getSchedulesByID(String id) throws SQLException{
+        return db.getAllSchByUserId(Integer.parseInt(id));
     }
 }
