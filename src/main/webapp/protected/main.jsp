@@ -14,7 +14,7 @@
 	<body>
 
         <div id="userInfo" class="content">
-            <input type="hidden" id="actualUser" value="${sessionScope.user}">
+            <input type="hidden" id="actualUsername" value="${sessionScope.user.getName()}">
             <p id="userName"></p>
             <p id="userFName"></p>
             <p id="userLName"></p>

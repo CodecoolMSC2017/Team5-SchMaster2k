@@ -34,5 +34,13 @@ public class User extends AbstractModel {
     public String getRank() {
         return rank;
     }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
 }
 

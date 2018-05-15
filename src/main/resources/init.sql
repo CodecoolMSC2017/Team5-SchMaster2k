@@ -24,7 +24,7 @@ INSERT INTO users (name, first_name, last_name, password, email, rank) VALUES
 	('Ben', null, null, 'a', 'o.g.bence@totalcar.hu', 'User'),
 	('Tib', null, null, 'a', 'domokos.tibor.82@gmail.com', 'User'),
 	('Krisz', null, null, 'a', 'kollarkr@gmail.com', 'User'),
-	('Norb', null, null, 'a', 'norberthresko@gmail.com', 'User')
+	('Norb', 'Norbert','Hreskó', 'a', 'norberthresko@gmail.com', 'User')
 ;
 
 
