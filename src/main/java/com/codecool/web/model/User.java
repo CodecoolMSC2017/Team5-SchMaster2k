@@ -35,3 +35,4 @@ public class User extends AbstractModel {
         return rank;
     }
 }
+
