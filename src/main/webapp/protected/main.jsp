@@ -34,5 +34,8 @@
             <button id="mainTaskButton">Task</button>
         </div>
 
+        <div id="schedulesInfo" class="hidden content">
+        </div>
+
 	</body>
 </html>
