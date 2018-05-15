@@ -1,5 +1,25 @@
-function onLoadSchedule() {
+function loadSchedule() {
+    showContents(['scheduleInfo']);
 
+    const schedule = JSON.parse(this.responseText);
+
+    const divEl = document.getElementById('scheduleInfo');
+    while(divEl.firstChild) {
+        divEl.removeChild(divEl.firstChild);
+    }
+}
+
+function onLoadSchedule() {
+    const el = this;
+    const schId = el.getAttribute('sch-id-info');
+
+    const params = new URLSearchParams();
+    params.append('id', schId);
+
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', loadSchedule);
+    xhr.open('GET', 'schServlet?' + params);
+    xhr.send();
 }
 
 function scheduleList(schedules) {
@@ -55,6 +75,6 @@ function mainSchButton() {
 
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', loadSchedules);
-    xhr.open('POST', 'schServlet');
+    xhr.open('POST', 'schServlets');
     xhr.send(params);
 }

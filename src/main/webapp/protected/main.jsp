@@ -43,6 +43,12 @@
         <h2>Schedules</h2>
         </div>
 
+        <div id="scheduleInfo" class="hidden content">
+        <h3>schedule</h3>
+        </div>
+
+
+        scheduleInfo
 
         <div id="tasks" class="hidden content">
             <table id="taskTable" border='1'>
