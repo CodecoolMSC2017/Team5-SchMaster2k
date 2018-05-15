@@ -1,19 +1,27 @@
+function onLoadSchedule() {
+
+}
+
 function scheduleList(schedules) {
     const ulEl = document.createElement('ul');
 
     for (let i = 0; i < schedules.length; i++) {
         const sch = schedules[i];
 
-        const pNameEl = document.createElement('p');
-        pNameEl.textContent = "Sch name: " + sch.name;
-        const pIdEl = document.createElement('p');
-        pIdEl.textContent = "Sch id: " + sch.id;
+        //sch button to view the sch
+        const schIdAttr = document.createAttribute('sch-id-info');
+        schIdAttr.value = sch.id;
+        const buttonNameEl = document.createElement('button');
+        buttonNameEl.textContent = sch.name;
+        buttonNameEl.setAttributeNode(schIdAttr);
+        buttonNameEl.addEventListener('click', onLoadSchedule);
+
+        //sch content
         const pConEl = document.createElement('p');
         pConEl.textContent = "Sch content: " + sch.content;
 
         const liEl = document.createElement('li');
-        liEl.appendChild(pNameEl);
-        liEl.appendChild(pIdEl);
+        liEl.appendChild(buttonNameEl);
         liEl.appendChild(pConEl);
 
         ulEl.appendChild(liEl);
@@ -30,7 +38,13 @@ function loadSchedules() {
     while(divEl.firstChild) {
         divEl.removeChild(divEl.firstChild);
     }
+    //sch button to ADd sch
+    const buttonAddSchEl = document.createElement('button');
+    buttonAddSchEl.textContent = "Add Sch";
+    buttonAddSchEl.addEventListener('click', onLoadSchedule);
+
     divEl.appendChild(scheduleList(schedules));
+    divEl.appendChild(buttonAddSchEl);
 }
 
 
