@@ -15,14 +15,18 @@ function mainTaskButton() {
 
 function showTasks(){
     const tasks = JSON.parse(this.responseText);
-
+    const table = document.getElementById("taskTable");
+    while(table.firstChild) {
+           table.removeChild(table.firstChild);
+        }
     for(let i=0;i<tasks.length;i++){
         const currentElement = tasks[i];
         const trEl = document.createElement("tr");
         const tdNameEl = document.createElement("td");
         const tdEditEl = document.createElement("td");
         const buttonEl = document.createElement("button");
-        buttonEl.value="Edit";
+        buttonEl.innerHTML = "edit";
+        buttonEl.id=currentElement.id;
         tdNameEl.innerHTML = currentElement.name;
 
 
@@ -34,6 +38,10 @@ function showTasks(){
         document.getElementById("taskTable").appendChild(trEl);
 
     }
+}
+
+function showEdit(){
+
 }
 
 
