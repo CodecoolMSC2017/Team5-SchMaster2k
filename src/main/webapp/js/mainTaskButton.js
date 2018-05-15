@@ -1,7 +1,7 @@
 let taskTable;
 
 function mainTaskButton() {
-    showContents(["userInfo", "tasks"]);
+    showContents(["userInfo", "tasks", "goBackToMain"]);
     const params = new URLSearchParams();
     const taskTableEl = document.getElementById("taskTable");
     taskTable = taskTableEl;

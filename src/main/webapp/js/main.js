@@ -1,7 +1,4 @@
-function onLoad() {
-    userInfo();
-    mainInfo();
-}
+let backButtonEl;
 
 function showContents(ids) {
     const contentEls = document.getElementsByClassName('content');
@@ -13,6 +10,18 @@ function showContents(ids) {
             contentEl.classList.add('hidden');
         }
     }
+}
+
+function backToMain(){
+    showContents(['mainInfo']);
+}
+
+
+function onLoad() {
+    userInfo();
+    mainInfo();
+    backButtonEl = document.getElementById('goBackToMainButton');
+    backButtonEl.addEventListener('click', backToMain);
 }
 
 window.onload = onLoad;
