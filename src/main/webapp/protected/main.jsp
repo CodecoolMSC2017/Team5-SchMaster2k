@@ -36,6 +36,10 @@
             <button id="mainTaskButton">Task</button>
         </div>
 
+        <div id="schedulesInfo" class="content">
+        <h2>Schedules</h2>
+        </div>
+
 
         <div id="tasks" class="hidden content task-content">
             <table id="taskTable" border='1'>
@@ -44,7 +48,6 @@
                 </tr>
             <table>
         </div>
-
 
 
 
