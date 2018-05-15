@@ -48,6 +48,10 @@
                 <h2>Schedules</h2>
             </div>
 
+            <div id="scheduleInfo" class="hidden content">
+                <h3>Schedule</h3>
+            </div>
+
             <div id="tasks" class="hidden content">
                 <table id="taskTable" border='1'>
                     <tr>
