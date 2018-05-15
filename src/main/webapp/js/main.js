@@ -13,7 +13,7 @@ function showContents(ids) {
 }
 
 function backToMain(){
-    showContents(['mainInfo']);
+    showContents(['mainInfo','userInfo']);
 }
 
 

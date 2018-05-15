@@ -41,7 +41,8 @@ CREATE TABLE schedules (
 INSERT INTO schedules (name, content, user_id) VALUES
 	('Test SCH', null, 3),
 	('Test SCH 2', 'Test content', 3),
-	('Weekly shit', 'Something useful', 5)
+	('Weekly shit', 'Something useful', 5),
+	('Weekly shat', 'Something useful', 6)
 ;
 
 
