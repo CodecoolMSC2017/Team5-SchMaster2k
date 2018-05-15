@@ -81,9 +81,9 @@ INSERT INTO tasks (name, user_id) VALUES
 	('Task 5', 3),
 	('Task A', 5),
 	('Task B', 5),
-	('Task C', 5),
-	('Task D', 5),
-	('Task E', 5)
+	('Task C', 6),
+	('Task D', 6),
+	('Task E', 6)
 ;
 
 

@@ -38,7 +38,7 @@
 
 
         <div id="tasks" class="hidden content task-content">
-            <table id="taskTable">
+            <table id="taskTable" border='1'>
                 <tr>
                     <td>Task Name</td><td></td>
                 </tr>
