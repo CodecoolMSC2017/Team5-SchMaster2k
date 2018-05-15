@@ -1,3 +1,11 @@
+function scheduleView(schedule){
+    const pNameEl = document.createElement('p');
+    pNameEl.textContent = "Sch name: " + schedule.name;
+    pNameEl.appendChild(document.createTextNode(`: ${schedule.content}, ${schedule.id} `));
+
+    return pNameEl;
+}
+
 function loadSchedule() {
     showContents(['scheduleInfo']);
 
@@ -7,6 +15,7 @@ function loadSchedule() {
     while(divEl.firstChild) {
         divEl.removeChild(divEl.firstChild);
     }
+    divEl.appendChild(scheduleView(schedule));
 }
 
 function onLoadSchedule() {

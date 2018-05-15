@@ -48,8 +48,6 @@
         </div>
 
 
-        scheduleInfo
-
         <div id="tasks" class="hidden content">
             <table id="taskTable" border='1'>
                 <tr>
@@ -57,10 +55,6 @@
                 </tr>
             <table>
         </div>
-
-
-
-
 
 	</body>
 </html>
