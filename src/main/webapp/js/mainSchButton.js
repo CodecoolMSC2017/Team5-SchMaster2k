@@ -22,7 +22,7 @@ function scheduleList(schedules) {
 }
 
 function loadSchedules() {
-    showContents(["schedulesInfo"]);
+    showContents(["schedulesInfo", "goBackToMain"]);
 
     const schedules = JSON.parse(this.responseText);
 

@@ -26,6 +26,9 @@
             </form>
         </div>
 
+        <div id="goBackToMain" class="hidden content">
+            <button id="goBackToMainButton">Go Back</button>
+        </div>
 
 
         <div id="mainInfo" class="content">
@@ -36,7 +39,7 @@
             <button id="mainTaskButton">Task</button>
         </div>
 
-        <div id="schedulesInfo" class="content">
+        <div id="schedulesInfo" class="hidden content">
         <h2>Schedules</h2>
         </div>
 
@@ -48,6 +51,7 @@
                 </tr>
             <table>
         </div>
+
 
 
 
