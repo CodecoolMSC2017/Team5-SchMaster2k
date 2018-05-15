@@ -3,16 +3,24 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<script type="text/javascript" src=""></script>
-		<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 		<title>Schedule Master 2000</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script type="text/javascript" src="js/user_info.js"></script>
+		<script type="text/javascript" src="js/main_info.js"></script>
+
+		<script type="text/javascript" src="js/main.js"></script>
 	</head>
-	<body style="background: url(images/background.jpg);">
+	<body>
+
         <div id="userInfo" class="content">
             <p id="userName"></p>
             <p id="userFName"></p>
             <p id="userLName"></p>
             <p id="userEmail"></p>
+            <form action="loginServlet" method="GET">
+                <input type="submit" value="Logout">
+            </form>
         </div>
 
         <div id="mainInfo" class="content">
@@ -23,10 +31,5 @@
             <button id="mainTaskButton">Task</button>
         </div>
 
-
-
-        <form action="loginServlet" method="GET">
-            <input type="submit" value="logout">
-        </form>
 	</body>
 </html>

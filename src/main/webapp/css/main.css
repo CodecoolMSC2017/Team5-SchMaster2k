@@ -1,0 +1,31 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	background: url(../images/background.jpg);
+	font-size: 12px;
+}
+.submit {
+    display: inline-block;
+    margin: 4px 2px;
+	padding: 10px 12px;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    border: 0px;
+    font-size: 1.2em;
+	font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.submit:hover {
+    background-color: #3E8E41;
+}
+.submit a {
+	text-decoration: none;
+	color: white;
+}
