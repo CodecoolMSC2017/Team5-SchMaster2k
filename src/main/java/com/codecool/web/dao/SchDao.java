@@ -26,7 +26,19 @@ public class SchDao extends AbstractDao{
         return schedules;
     }
 
-    public Schedule createSch(ResultSet resultSet) throws SQLException{
+    public Schedule getScheduleById(int id) throws SQLException{
+        String sql = "SELECT * FROM schedules WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                return createSch(resultSet);
+            }
+        }
+        return null;
+    }
+
+    private Schedule createSch(ResultSet resultSet) throws SQLException{
         int id = resultSet.getInt("id");
         String name = resultSet.getString("name");
         String content = resultSet.getString("content");
