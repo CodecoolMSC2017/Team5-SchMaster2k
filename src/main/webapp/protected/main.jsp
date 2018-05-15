@@ -15,7 +15,7 @@
 	</head>
 	<body>
 
-        <div id="userInfo" class="content">
+        <div id="userInfo" class="profile">
             <input type="hidden" id="actualUsername" value="${sessionScope.user.getName()}">
             <p id="userName"></p>
             <p id="userFName"></p>
@@ -26,7 +26,9 @@
             </form>
         </div>
 
-        <div id="mainInfo" class="content">
+
+
+        <div id="mainInfo" class="main-content content">
             <p>Introduction</p>
             <p id="schNumber"></p>
             <p id="taskNumber"></p>
@@ -36,6 +38,18 @@
 
         <div id="schedulesInfo" class="hidden content">
         </div>
+
+
+        <div id="tasks" class="hidden content task-content">
+            <table id="taskTable">
+                <tr>
+                    <td>Task Name</td><td></td>
+                </tr>
+            <table>
+        </div>
+
+
+
 
 	</body>
 </html>

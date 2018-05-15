@@ -1,3 +1,5 @@
 function mainTaskButton() {
-    alert("Tasks...");
+    showContents(["main-content"]);
 }
+
+
