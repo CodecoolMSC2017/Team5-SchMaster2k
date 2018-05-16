@@ -95,7 +95,7 @@ CREATE TABLE hours (
     name INTEGER NOT NULL,
     task_id INTEGER NULL,
     day_id INTEGER NOT NULL,
-    FOREIGN KEY (task_id) REFERENCES tasks(id),
+    FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE,
     FOREIGN KEY (day_id) REFERENCES days(id)
 );
 
@@ -134,7 +134,7 @@ CREATE TABLE task_day_sch (
     task_id INTEGER NOT NULL,
     schedule_id INTEGER NOT NULL,
     FOREIGN KEY (hour_id) REFERENCES hours(id),
-    FOREIGN KEY (task_id) REFERENCES tasks(id),
+    FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE,
     FOREIGN KEY (schedule_id) REFERENCES schedules(id)
 );
 

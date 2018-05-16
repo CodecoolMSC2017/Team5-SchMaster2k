@@ -10,6 +10,7 @@ import com.codecool.web.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,15 +30,27 @@ public final class TaskServlet extends AbstractServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
             TaskDao tDao = new DatabaseTaskDao(connection);
-            ObjectMapper om = new ObjectMapper();
+            if(req.getParameter("taskAddingField")!=null){
+                String taskName=req.getParameter("taskAddingField");
+                User user=(User)req.getSession().getAttribute("user");
+                int userId=user.getId();
+                tDao.addTask(taskName,userId);
+            }
+
+            if(req.getParameter("taskIdToDelete")!=null){
+                int taskId=Integer.parseInt(req.getParameter("taskIdToDelete"));
+                tDao.deleteTask(taskId);
+            }
             String username = req.getParameter("username");
             List<Task> tasks = tDao.getTasksByUsername(username);
-            System.out.println(tasks.size());
+
             resp.setContentType("application/json");
             sendMessage(resp, HttpServletResponse.SC_OK, tasks);
+
 
         } catch (SQLException ex) {
             handleSqlError(resp, ex);
         }
+
     }
 }
