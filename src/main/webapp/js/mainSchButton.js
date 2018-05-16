@@ -79,11 +79,13 @@ function loadSchedules() {
 
 
 function mainSchButton() {
+    const Id = userId;
+
     const params = new URLSearchParams();
     params.append('id', userId);
 
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', loadSchedules);
-    xhr.open('POST', 'schServlets');
-    xhr.send(params);
+    xhr.open('GET', 'schServlets?' + params);
+    xhr.send();
 }

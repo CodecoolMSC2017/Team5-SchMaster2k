@@ -17,7 +17,7 @@ import java.util.List;
 public class SchServlets extends AbstractServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection c = getConnection(req.getServletContext())){
             String id = req.getParameter("id");
             SchDao db = new SchDao(c);
