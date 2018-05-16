@@ -52,15 +52,7 @@
                 <h3>Schedule</h3>
             </div>
 
-            <div id="tasks" class="hidden content">
-                <table id="taskTable" border='1'>
-                    <tr>
-                        <td>Task Name</td><td></td>
-                    </tr>
-                <table>
-            </div>
 
-        </div>
 
         <div id="tasks" class="hidden content">
             <table id="taskTable" >
@@ -68,6 +60,11 @@
                     <td>Task Name</td><td></td>
                 </tr>
             <table>
+
+
+                <input id = "newTaskName" type="text">
+                <button id="addTaskButton">Add Task</button>
+
         </div>
 
 	</body>

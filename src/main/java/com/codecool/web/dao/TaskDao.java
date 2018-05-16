@@ -9,7 +9,7 @@ public interface TaskDao {
 
     List<Task> getTasksByUsername(String username)throws SQLException;
 
-    void addTask()throws SQLException;
+    void addTask(String taskName,int userId)throws SQLException;
 
     void editTask(String s,int id)throws SQLException;
 

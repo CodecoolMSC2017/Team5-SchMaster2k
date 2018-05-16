@@ -6,6 +6,8 @@ function mainTaskButton() {
     const params = new URLSearchParams();
     const taskTableEl = document.getElementById("taskTable");
     taskTable = taskTableEl;
+    const addTaskButton = document.getElementById("addTaskButton");
+    addTaskButton.addEventListener("click",addTask);
     const username = document.getElementById("actualUsername").value;
     params.append('username', username);
     const xhr = new XMLHttpRequest();
@@ -14,12 +16,31 @@ function mainTaskButton() {
     xhr.send(params);
 }
 
+function addTask(){
+    const newTaskName=document.getElementById("newTaskName").value;
+    const username = document.getElementById("actualUsername").value;
+    const params = new URLSearchParams();
+    params.append('taskAddingField', newTaskName);
+    params.append('username', username);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', showTasks);
+    xhr.open('POST', 'taskServlet');
+    xhr.send(params);
+
+}
+
 function showTasks(){
     const tasks = JSON.parse(this.responseText);
     const table = document.getElementById("taskTable");
     while(table.firstChild) {
            table.removeChild(table.firstChild);
         }
+    const tableHeaderRow = document.createElement("tr");
+    const tdNameHeader = document.createElement("td");
+    tdNameHeader.innerHTML="Name";
+    tableHeaderRow.appendChild(tdNameHeader);
+    table.appendChild(tableHeaderRow);
+
     for(let i=0;i<tasks.length;i++){
         const currentElement = tasks[i];
         const trEl = document.createElement("tr");
