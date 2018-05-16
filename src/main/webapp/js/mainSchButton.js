@@ -1,5 +1,20 @@
-function scheduleView(schedule){
+function scheduleDays(info){
+    const schTableEl = document.createElement('table');
+    const schTableTrEl = document.createElement('tr');
+    const days = info.days;
+    for (let i=0 ; i<days.length ; i++) {
+        const schTableThEl = document.createElement('th');
+        const day = days[i];
+        schTableThEl.textContent = day.name;
+        schTableTrEl.appendChild(schTableThEl);
+    }
+    schTableEl.appendChild(schTableTrEl);
+    return schTableEl;
+}
+
+function scheduleView(info){
     const pNameEl = document.createElement('p');
+    const schedule = info.schedule;
     pNameEl.textContent = "Sch name: " + schedule.name;
     pNameEl.appendChild(document.createTextNode(`: ${schedule.content}, ${schedule.id} `));
 
@@ -9,13 +24,14 @@ function scheduleView(schedule){
 function loadSchedule() {
     showContents(['scheduleInfo']);
 
-    const schedule = JSON.parse(this.responseText);
+    const scheduleInfo = JSON.parse(this.responseText);
 
     const divEl = document.getElementById('scheduleInfo');
     while(divEl.firstChild) {
         divEl.removeChild(divEl.firstChild);
     }
-    divEl.appendChild(scheduleView(schedule));
+    divEl.appendChild(scheduleView(scheduleInfo));
+    divEl.appendChild(scheduleDays(scheduleInfo));
 }
 
 function onLoadSchedule() {
