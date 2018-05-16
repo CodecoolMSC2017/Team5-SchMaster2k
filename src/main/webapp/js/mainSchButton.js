@@ -43,21 +43,30 @@ function loadSchedule() {
     while(divEl.firstChild) {
         divEl.removeChild(divEl.firstChild);
     }
-    divEl.appendChild(scheduleView(scheduleInfo));
-    divEl.appendChild(scheduleDays(scheduleInfo));
+    for (let i = 0; i<scheduleInfo.length; i++){
+        const title = document.createElement("h4");
+        const content = document.createElement("p");
+        title.innerHTML = scheduleInfo[i].name;
+        content.innerHTML = scheduleInfo[i].content;
+        divEl.appendChild(title);
+        divEl.appendChild(content);
+    }
+
 }
 
 function onLoadSchedule() {
     const el = this;
-    const schId = el.getAttribute('sch-id-info');
-
+    const schTitle = document.getElementById('schTitle').value;
+    const schContent = document.getElementById('schContent').value;
+    const userId = document.getElementById('actualUserId').value;
     const params = new URLSearchParams();
-    params.append('id', schId);
-
+    params.append('schTitle', schTitle);
+    params.append('schContent', schContent);
+    params.append('userId', userId);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', loadSchedule);
-    xhr.open('GET', 'schServlet?' + params);
-    xhr.send();
+    xhr.open('POST', 'schServlet');
+    xhr.send(params);
 }
 
 function scheduleList(schedules) {
@@ -98,11 +107,19 @@ function loadSchedules() {
     }
     //sch button to ADd sch
     const buttonAddSchEl = document.createElement('button');
+    const schTitleEl = document.createElement('input');
+    schTitleEl.id = "schTitle";
+    schTitleEl.placeholder = "Schedule Title";
+    const schContentEl = document.createElement('input');
+    schContentEl.id = "schContent";
+    schContentEl.placeholder = "Schedule Content";
     buttonAddSchEl.textContent = "Add Sch";
     buttonAddSchEl.addEventListener('click', onLoadSchedule);
 
     divEl.appendChild(scheduleList(schedules));
     divEl.appendChild(buttonAddSchEl);
+    divEl.appendChild(schTitleEl);
+    divEl.appendChild(schContentEl);
 }
 
 

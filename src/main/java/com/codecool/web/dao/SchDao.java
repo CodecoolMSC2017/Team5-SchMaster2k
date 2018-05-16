@@ -67,7 +67,7 @@ public class SchDao extends AbstractDao{
         day.setTasks(getTasksByDayID(id));
         return day;
     }
-
+    
     private List<Task> getTasksByDayID(int id) throws SQLException {
         String sql = "SELECT task_id, day_id, tasks.name, tasks.user_id from hours " +
             "JOIN tasks ON hours.task_id = tasks.id " +
@@ -91,4 +91,13 @@ public class SchDao extends AbstractDao{
         return new Task(id,name,userId);
     }
 
+    public void addSchedule(String title, String content, int userId) throws SQLException {
+        String sql = "INSERT INTO schedules (name, content, user_id) VALUES (?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, title);
+            statement.setString(2, content);
+            statement.setInt(3, userId);
+            executeInsert(statement);
+        }
+    }
 }

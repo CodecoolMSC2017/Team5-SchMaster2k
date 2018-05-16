@@ -21,7 +21,7 @@ public class SchServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try (Connection c = getConnection(req.getServletContext())){
+        try (Connection c = getConnection(req.getServletContext())) {
             int id = Integer.parseInt(req.getParameter("id"));
             SchDao db = new SchDao(c);
             SchService service = new SchService(db);
@@ -33,6 +33,28 @@ public class SchServlet extends AbstractServlet {
 
             resp.setContentType("application/json");
             sendMessage(resp, HttpServletResponse.SC_OK, schInf);
+
+        } catch (SQLException e) {
+            handleSqlError(resp, e);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try (Connection c = getConnection(req.getServletContext())) {
+            int id = Integer.parseInt(req.getParameter("userId"));
+            SchDao db = new SchDao(c);
+            SchService service = new SchService(db);
+
+            int userId = Integer.parseInt(req.getParameter("userId"));
+            if (req.getParameter("schTitle") != null) {
+                String schTitle = req.getParameter("schTitle");
+                String schContent = req.getParameter("schContent");
+                db.addSchedule(schTitle, schContent, userId);
+            }
+            List<Schedule> schedules = db.getAllSchByUserId(userId);
+            resp.setContentType("application/json");
+            sendMessage(resp, HttpServletResponse.SC_OK, schedules);
 
         } catch (SQLException e) {
             handleSqlError(resp, e);
