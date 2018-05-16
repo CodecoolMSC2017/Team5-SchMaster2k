@@ -64,4 +64,14 @@ public class SchDao extends AbstractDao{
         String name = resultSet.getString("name");
         return new Day(id, name);
     }
+
+    public void addSchedule(String title, String content, int userId) throws SQLException {
+        String sql = "INSERT INTO schedules (name, content, user_id) VALUES (?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, title);
+            statement.setString(2, content);
+            statement.setInt(3, userId);
+            executeInsert(statement);
+        }
+    }
 }
