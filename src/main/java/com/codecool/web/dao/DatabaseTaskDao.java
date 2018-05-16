@@ -63,8 +63,15 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
     }
 
     @Override
-    public void deleteTask(Task task) throws SQLException {
+    public void deleteTask(int taskId) throws SQLException {
+        String sql = "DELETE FROM tasks WHERE id = ?;" +
+                     "DELETE FROM hours WHERE task_id = ?;";
 
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, taskId);
+            statement.setInt(2, taskId);
+            statement.executeUpdate();
+        }
     }
 
     @Override

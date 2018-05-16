@@ -13,7 +13,7 @@ public interface TaskDao {
 
     void editTask(String s,int id)throws SQLException;
 
-    void deleteTask(Task task)throws SQLException;
+    void deleteTask(int taskId)throws SQLException;
 
     Task getTaskById(int id)throws SQLException;
 

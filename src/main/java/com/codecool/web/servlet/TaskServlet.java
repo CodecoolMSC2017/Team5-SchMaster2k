@@ -36,6 +36,11 @@ public final class TaskServlet extends AbstractServlet {
                 int userId=user.getId();
                 tDao.addTask(taskName,userId);
             }
+
+            if(req.getParameter("taskIdToDelete")!=null){
+                int taskId=Integer.parseInt(req.getParameter("taskIdToDelete"));
+                tDao.deleteTask(taskId);
+            }
             String username = req.getParameter("username");
             List<Task> tasks = tDao.getTasksByUsername(username);
 
