@@ -4,6 +4,7 @@ import com.codecool.web.dao.SchDao;
 import com.codecool.web.dto.ScheduleInformationDto;
 import com.codecool.web.model.Day;
 import com.codecool.web.model.Schedule;
+import com.codecool.web.model.Task;
 import com.codecool.web.service.SchService;
 
 import javax.servlet.ServletException;
@@ -27,6 +28,7 @@ public class SchServlet extends AbstractServlet {
 
             Schedule schedule = service.getScheduleByID(id);
             List<Day> days = service.getScheduleDays(id);
+
             ScheduleInformationDto schInf = new ScheduleInformationDto(schedule, days);
 
             resp.setContentType("application/json");

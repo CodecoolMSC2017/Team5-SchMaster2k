@@ -2,6 +2,7 @@ package com.codecool.web.dao;
 
 import com.codecool.web.model.Day;
 import com.codecool.web.model.Schedule;
+import com.codecool.web.model.Task;
 import com.codecool.web.model.User;
 
 import java.sql.*;
@@ -62,6 +63,32 @@ public class SchDao extends AbstractDao{
     private Day createDay(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         String name = resultSet.getString("name");
-        return new Day(id, name);
+        Day day = new Day(id, name);
+        day.setTasks(getTasksByDayID(id));
+        return day;
     }
+
+    private List<Task> getTasksByDayID(int id) throws SQLException {
+        String sql = "SELECT task_id, day_id, tasks.name, tasks.user_id from hours " +
+            "JOIN tasks ON hours.task_id = tasks.id " +
+            "WHERE day_id = ? " +
+            "GROUP BY task_id, day_id, tasks.name, tasks.user_id;";
+        List<Task> tasks = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1,id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                tasks.add(fetchTask(resultSet));
+            }
+        }
+        return tasks;
+    }
+
+    private Task fetchTask(ResultSet rSet) throws SQLException {
+        int id=rSet.getInt("task_id");
+        String name = rSet.getString("name");
+        int userId = rSet.getInt("user_id");
+        return new Task(id,name,userId);
+    }
+
 }

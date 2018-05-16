@@ -1,14 +1,27 @@
 function scheduleDays(info){
     const schTableEl = document.createElement('table');
-    const schTableTrEl = document.createElement('tr');
+    const schTableTr1El = document.createElement('tr');
+    const schTableTr2El = document.createElement('tr');
+
     const days = info.days;
     for (let i=0 ; i<days.length ; i++) {
         const schTableThEl = document.createElement('th');
         const day = days[i];
         schTableThEl.textContent = day.name;
-        schTableTrEl.appendChild(schTableThEl);
+        schTableTr1El.appendChild(schTableThEl);
+
+        const schTableTdEl = document.createElement('td');
+        const tasks = day.tasks;
+        for (let j=0 ; j<tasks.length ; j++) {
+            const task = tasks[j];
+            const schTableDivEl = document.createElement('div');
+            schTableDivEl.textContent = task.name;
+            schTableTdEl.appendChild(schTableDivEl);
+        }
+        schTableTr2El.appendChild(schTableTdEl);
     }
-    schTableEl.appendChild(schTableTrEl);
+    schTableEl.appendChild(schTableTr1El);
+    schTableEl.appendChild(schTableTr2El);
     return schTableEl;
 }
 
