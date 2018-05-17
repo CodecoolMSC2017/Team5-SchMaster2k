@@ -35,16 +35,24 @@ function scheduleView(info){
 }
 
 function loadSchedule() {
+    const scheduleInfo = JSON.parse(this.responseText);
+    const divEl = document.createElement("div");
+    const liEl = document.getElementById('liEl'+scheduleInfo.schedule.id);
+    if(liEl.firstChild.nextSibling.nextSibling){
+        liEl.removeChild(liEl.firstChild.nextSibling.nextSibling);
+    }else{
     showContents(["schedulesInfo", "goBackToMain", "scheduleInfo"]);
 
-    const scheduleInfo = JSON.parse(this.responseText);
 
-    const divEl = document.getElementById('scheduleInfo');
-    while(divEl.firstChild) {
-        divEl.removeChild(divEl.firstChild);
+    const divEl = document.createElement("div");
+    const liEl = document.getElementById('liEl'+scheduleInfo.schedule.id);
+    while(liEl.firstChild.nextSibling.nextSibling) {
+        liEl.removeChild(liEl.firstChild.nextSibling.nextSibling);
     }
+    liEl.appendChild(divEl);
     divEl.appendChild(scheduleView(scheduleInfo));
     divEl.appendChild(scheduleDays(scheduleInfo));
+    }
 }
 
 function onLoadSchedule() {
@@ -82,6 +90,7 @@ function scheduleList(schedules) {
         const liEl = document.createElement('li');
         liEl.appendChild(buttonNameEl);
         liEl.appendChild(pConEl);
+        liEl.id="liEl"+sch.id;
 
         ulEl.appendChild(liEl);
     }
