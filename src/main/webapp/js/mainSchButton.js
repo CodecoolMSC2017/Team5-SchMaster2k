@@ -99,11 +99,38 @@ function loadSchedules() {
     //sch button to ADd sch
     const buttonAddSchEl = document.createElement('button');
     buttonAddSchEl.textContent = "Add Sch";
-    buttonAddSchEl.addEventListener('click', onLoadSchedule);
-
+    buttonAddSchEl.addEventListener('click', addSchedule);
+    const schTitleEl = document.createElement("input");
+    schTitleEl.id="schTitle";
+    schTitleEl.placeholder="Schedule Title";
+    const schContentEl = document.createElement("input");
+    schContentEl.id="schContent";
+    schContentEl.placeholder="Schedule Content";
     divEl.appendChild(scheduleList(schedules));
     divEl.appendChild(buttonAddSchEl);
+    divEl.appendChild(schTitleEl);
+    divEl.appendChild(schContentEl);
 }
+
+function addSchedule() {
+    if(document.getElementById('schTitle').value!=""){
+    const el = this;
+    const schTitle = document.getElementById('schTitle').value;
+    const schContent = document.getElementById('schContent').value;
+    const userId = document.getElementById('actualUserId').value;
+    const params = new URLSearchParams();
+    params.append('schTitle', schTitle);
+    params.append('schContent', schContent);
+    params.append('userId', userId);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', mainSchButton);
+    xhr.open('POST', 'schServlet');
+    xhr.send(params);
+    }else{
+        alert("Title can't be empty");
+    }
+}
+
 
 
 

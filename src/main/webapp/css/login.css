@@ -4,15 +4,15 @@ body {
 	background: url(../images/background_bw.jpg);
 	font-size: 12px;
 }
-.submit {
+.button {
     display: inline-block;
     margin: 4px 2px;
-	padding: 10px 12px;
+	padding: 5px 6px;
     text-decoration: none;
     background-color: #4CAF50;
     color: white;
     border: 0px;
-    font-size: 1.2em;
+    font-size: 1.0em;
 	font-weight: bold;
     text-align: center;
     cursor: pointer;
@@ -22,10 +22,10 @@ body {
     -o-transition: all 0.5s;
     transition: all 0.5s;
 }
-.submit:hover {
+.button:hover {
     background-color: #3E8E41;
 }
-.submit a {
+.button a {
 	text-decoration: none;
 	color: white;
 }
@@ -79,7 +79,7 @@ body {
 	float: right;
 	margin-top: 20px;
 	height: 50px;
-	font-size: 1.5em;
+	font-size: 1.0em;
 	line-height: 50px;
 	text-align: right;
 }
@@ -93,9 +93,8 @@ body {
 	text-align: center;
 	color: #ff0000;
 }
-.login .submit {
-	padding: 5px 6px;
-	font-size: 1.0em;
+.login .button {
+	font-size: 1.2em;
 }
 .registration {
 	margin: 0 auto;
@@ -124,12 +123,13 @@ body {
 	border: 1px solid grey;
 	border-radius: 3px;
 }
-.registration_frame .submit {
-	font-size: 1.0em;
-}
 .registration_frame p.message {
 	font-size: 1.0em;
 	font-weight: bold;
 	color: #ff0000;
 }
+.registration_frame .button {
+	padding: 10px 12px;
+}
+
 /* ********** LOGIN & REG END ********** */

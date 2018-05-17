@@ -15,7 +15,7 @@
 					<form action="loginServlet" method="post">
 						<input type="text" name="name_or_email" placeholder="User name or E-mail" value="">
 						<input type="password" name="password" placeholder="Password" value="">
-						<input type="submit" class="submit" value="Login">
+						<input type="submit" class="button" value="Login">
 						<br>
 				    </form>
 				    <div class="error">${error}</div>
@@ -36,7 +36,7 @@
 					<input class="field" type="date" name="birthday"></p>
 					<p style="font-size: 0.85em">By clicking Create Account, you agree to our Terms and that you have read our Data Policy, including our Cookie Use.</p>
 					<p class="message">${message}</p>
-					<p><input type="submit" class="submit" value="Create Account"></p>
+					<p><input type="submit" class="button" value="Create Account"></p>
 				</form>
 			</div>
 		</div>
