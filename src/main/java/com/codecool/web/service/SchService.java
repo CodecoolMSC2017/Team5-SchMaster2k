@@ -1,18 +1,17 @@
 package com.codecool.web.service;
 
-import com.codecool.web.dao.SchDao;
+import com.codecool.web.dao.DatabaseSchDao;
 import com.codecool.web.model.Day;
 import com.codecool.web.model.Schedule;
-import com.codecool.web.model.Task;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class SchService{
 
-    private SchDao db;
+    private DatabaseSchDao db;
 
-    public SchService(SchDao db) {
+    public SchService(DatabaseSchDao db) {
         this.db = db;
     }
 

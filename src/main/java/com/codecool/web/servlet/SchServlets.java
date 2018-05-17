@@ -1,6 +1,6 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.dao.SchDao;
+import com.codecool.web.dao.DatabaseSchDao;
 import com.codecool.web.model.Schedule;
 import com.codecool.web.service.SchService;
 
@@ -20,7 +20,7 @@ public class SchServlets extends AbstractServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection c = getConnection(req.getServletContext())){
             String id = req.getParameter("id");
-            SchDao db = new SchDao(c);
+            DatabaseSchDao db = new DatabaseSchDao(c);
             SchService service = new SchService(db);
 
             List<Schedule> schedules = service.getSchedulesByID(id);

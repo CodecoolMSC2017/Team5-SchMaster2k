@@ -7,11 +7,13 @@ import com.codecool.web.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class SchDao extends AbstractDao{
+public class DatabaseSchDao extends AbstractDao{
 
-    public SchDao(Connection connection) {
+    public DatabaseSchDao(Connection connection) {
         super(connection);
     }
 
@@ -67,7 +69,7 @@ public class SchDao extends AbstractDao{
         day.setTasks(getTasksByDayID(id));
         return day;
     }
-    
+
     private List<Task> getTasksByDayID(int id) throws SQLException {
         String sql = "SELECT task_id, day_id, tasks.name, tasks.user_id from hours " +
             "JOIN tasks ON hours.task_id = tasks.id " +
@@ -99,5 +101,56 @@ public class SchDao extends AbstractDao{
             statement.setInt(3, userId);
             executeInsert(statement);
         }
+    }
+
+    public Map<Integer, String> getDaysByUserIDandSchID(int userId, int schId) throws SQLException{
+        String sql = "SELECT days.id, name_id FROM days " +
+            "JOIN schedules ON days.schedule_id = schedules.id " +
+            "WHERE user_id = ? AND schedule_id = ?";
+        Map<Integer, String> days = new HashMap<>();
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1,userId);
+            statement.setInt(2,schId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                days.put(resultSet.getInt("id"), resultSet.getString("name_id"));
+            }
+        }
+        return days;
+
+    }
+
+    public List<Integer> getTasksId(int userId, int schId, int day_id) throws SQLException{
+        String sql = "SELECT task_day_sch.task_id FROM schedules " +
+            "JOIN days ON schedules.id = days.schedule_id " +
+            "JOIN task_day_sch ON days.id = task_day_sch.day_id " +
+            "WHERE user_id = ? AND schedules.id = ? AND day_id = ?";
+        List<Integer> tasks = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1,userId);
+            statement.setInt(2,schId);
+            statement.setInt(3,day_id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                tasks.add(resultSet.getInt("task_id"));
+            }
+        }
+        return tasks;
+
+    }
+
+    public List<Integer> getTask(int dayId, int taskId) throws SQLException{
+        String sql = "SELECT * FROM hours " +
+                    "WHERE day_id = ? And task_id = ?";
+        List<Integer> taskHours = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1,dayId);
+            statement.setInt(2,taskId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                taskHours.add(resultSet.getInt("name"));
+            }
+        }
+        return taskHours;
     }
 }

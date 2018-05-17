@@ -50,19 +50,20 @@ INSERT INTO schedules (name, content, user_id) VALUES
 
 CREATE TABLE days (
     id SERIAL PRIMARY KEY,
-    name TEXT NULL,
+    name TEXT NOT NULL,
+    name_id TEXT NOT NULL,
     schedule_id INTEGER NOT NULL,
     FOREIGN KEY (schedule_id) REFERENCES schedules(id)
 );
 
-INSERT INTO days (name, schedule_id) VALUES
-	('Day 1', 1),
-	('Day 2', 1),
-	('Friday', 2),
-	('Saturday', 2),
-	('Sunday', 2),
-	('Csütörtök', 3),
-	('Péntek', 3)
+INSERT INTO days (name, name_id, schedule_id) VALUES
+	('Day 1', 'mo', 1),
+	('Day 2', 'tu', 1),
+	('Friday', 'fr', 2),
+	('Saturday', 'sa', 2),
+	('Sunday', 'su', 2),
+	('Csütörtök', 'th', 3),
+	('Péntek', 'fr', 3)
 ;
 
 /* ***** TASK ***** */
@@ -130,33 +131,18 @@ INSERT INTO hours (name, task_id, day_id) VALUES
 
 CREATE TABLE task_day_sch (
     id SERIAL PRIMARY KEY,
-    hour_id INTEGER NOT NULL,
+    day_id INTEGER NOT NULL,
     task_id INTEGER NOT NULL,
     schedule_id INTEGER NOT NULL,
-    FOREIGN KEY (hour_id) REFERENCES hours(id),
+    FOREIGN KEY (day_id) REFERENCES days(id),
     FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE,
     FOREIGN KEY (schedule_id) REFERENCES schedules(id)
 );
 
-INSERT INTO task_day_sch (hour_id, task_id, schedule_id) VALUES
+INSERT INTO task_day_sch (day_id, task_id, schedule_id) VALUES
 	(1,1,1),
-	(2,1,1),
-	(3,1,1),
-	(4,2,1),
-	(5,2,1),
-	(6,3,1),
-	(7,3,1),
-	(8,3,1),
-	(9,4,1),
-	(10,5,1),
-	(11,5,1),
-	(12,1,2),
-	(13,2,2),
-	(14,3,2),
-	(15,4,2),
-	(16,5,2),
-	(17,6,3),
-	(18,7,3),
-	(19,8,3),
-	(20,9,3),
-	(21,10,3);
+	(1,2,1),
+	(2,3,1),
+	(2,4,1),
+	(2,5,1)
+;
