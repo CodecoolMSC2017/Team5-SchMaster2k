@@ -21,6 +21,7 @@ function onLoad() {
     userInfo();
     mainInfo();
     backButtonEl = document.getElementById('goBackToMainButton');
+    backButtonEl.classList.add("button");
     backButtonEl.addEventListener('click', backToMain);
 }
 

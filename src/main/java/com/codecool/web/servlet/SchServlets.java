@@ -13,7 +13,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/schServlets")
+@WebServlet("/protected/schServlets")
 public class SchServlets extends AbstractServlet {
 
     @Override

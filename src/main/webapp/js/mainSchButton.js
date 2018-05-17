@@ -70,6 +70,7 @@ function scheduleList(schedules) {
         const schIdAttr = document.createAttribute('sch-id-info');
         schIdAttr.value = sch.id;
         const buttonNameEl = document.createElement('button');
+        buttonNameEl.classList.add("button");
         buttonNameEl.textContent = sch.name;
         buttonNameEl.setAttributeNode(schIdAttr);
         buttonNameEl.addEventListener('click', onLoadSchedule);
@@ -98,6 +99,7 @@ function loadSchedules() {
     }
     //sch button to ADd sch
     const buttonAddSchEl = document.createElement('button');
+    buttonAddSchEl.classList.add("button");
     buttonAddSchEl.textContent = "Add Sch";
     buttonAddSchEl.addEventListener('click', addSchedule);
     const schTitleEl = document.createElement("input");
@@ -142,6 +144,6 @@ function mainSchButton() {
 
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', loadSchedules);
-    xhr.open('GET', 'schServlets?' + params);
+    xhr.open('GET', 'protected/schServlets?' + params);
     xhr.send();
 }

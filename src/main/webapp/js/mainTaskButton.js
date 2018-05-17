@@ -50,9 +50,11 @@ function showTasks(){
         const buttonEl = document.createElement("button");
         const deleteButtonEl = document.createElement("button");
         buttonEl.addEventListener("click",showEdit);
+        buttonEl.classList.add("button");
         buttonEl.innerHTML = "edit";
         buttonEl.id=currentElement.id;
         deleteButtonEl.addEventListener("click",deleteTask);
+        deleteButtonEl.classList.add("button");
         deleteButtonEl.innerHTML = "delete";
         deleteButtonEl.id=currentElement.id;
 
