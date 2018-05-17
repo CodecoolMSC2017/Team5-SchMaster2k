@@ -50,7 +50,7 @@ function loadSchedule() {
 
     const viewButton = document.createElement("button");
     viewButton.innerHTML="View";
-    viewButton.addEventListener("click", showDetailedSch);
+    viewButton.addEventListener("click", getDetailedSch);
     viewButton.id=scheduleInfo.schedule.id;
 
     liEl.appendChild(divEl);
@@ -75,6 +75,7 @@ function getDetailedSch(){
 }
 
 function showDetailedSch(){
+    const hm = JSON.parse(this.responseText);
     const days=["zero","mo","tu","we","th","fr","sa","su"];
     const fullDays=["zero","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
     const table = document.createElement("table"); //<table></table>
@@ -98,13 +99,19 @@ function showDetailedSch(){
                 td.innerHTML = r;
                 tr.appendChild(td);
             }else{
-                td.innerHTML = day+r;
+
                 //td.id=day+r;
                 tr.appendChild(td);
 
             }
         }
         table.appendChild(tr);
+    }
+
+    for (let i = 0, keys = Object.keys(hm), ii = keys.length; i < ii; i++) {
+
+      const tdAppend = document.getElementById(keys[i]);
+      tdAppend.innerHTML = hm[keys[i]];
     }
 
     const div = document.getElementById("testDivForTable");
