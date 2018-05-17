@@ -47,10 +47,13 @@
 
             <div id="schedulesInfo" class="hidden content">
                 <h2>Schedules</h2>
+
             </div>
 
             <div id="scheduleInfo" class="hidden content">
                 <h3>Schedule</h3>
+                <div id="testDivForTable">
+                                </div>
             </div>
 
             <div id="tasks" class="hidden content">

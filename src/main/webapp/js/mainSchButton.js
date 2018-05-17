@@ -50,7 +50,7 @@ function loadSchedule() {
 
     const viewButton = document.createElement("button");
     viewButton.innerHTML="View";
-    viewButton.addEventListener("click", getDetailedSch);
+    viewButton.addEventListener("click", showDetailedSch);
     viewButton.id=scheduleInfo.schedule.id;
 
     liEl.appendChild(divEl);
@@ -69,9 +69,47 @@ function getDetailedSch(){
     params.append("schId", this.id);
     params.append("userId", document.getElementById("actualUserId").value);
     const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', loadSchedule);
+    xhr.addEventListener('load', showDetailedSch);
     xhr.open('GET', 'protected/schAllInformation?' + params);
     xhr.send();
+}
+
+function showDetailedSch(){
+    const days=["zero","mo","tu","we","th","fr","sa","su"];
+    const fullDays=["zero","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+    const table = document.createElement("table"); //<table></table>
+    table.border="1";
+    const trHeader = document.createElement("tr");
+    for(let i=0;i<8;i++){
+        const tdEl=document.createElement("td");
+        if(i!=0){
+            tdEl.innerHTML=fullDays[i];
+        }
+        trHeader.appendChild(tdEl);
+    }
+    table.appendChild(trHeader);
+    for(let r = 0;r<24;r++){
+        const tr = document.createElement("tr");
+
+        for(let c = 0;c<8;c++){
+            const day=days[c]
+            const td = document.createElement("td");
+            if(c==0){
+                td.innerHTML = r;
+                tr.appendChild(td);
+            }else{
+                td.innerHTML = day+r;
+                //td.id=day+r;
+                tr.appendChild(td);
+
+            }
+        }
+        table.appendChild(tr);
+    }
+
+    const div = document.getElementById("testDivForTable");
+
+    div.appendChild(table);
 }
 
 function onLoadSchedule() {
