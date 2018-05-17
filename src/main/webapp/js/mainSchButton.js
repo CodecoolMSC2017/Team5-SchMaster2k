@@ -40,19 +40,38 @@ function loadSchedule() {
     const liEl = document.getElementById('liEl'+scheduleInfo.schedule.id);
     if(liEl.firstChild.nextSibling.nextSibling){
         liEl.removeChild(liEl.firstChild.nextSibling.nextSibling);
+        liEl.removeChild(liEl.firstChild.nextSibling.nextSibling);
     }else{
     showContents(["schedulesInfo", "goBackToMain", "scheduleInfo"]);
 
 
-    const divEl = document.createElement("div");
-    const liEl = document.getElementById('liEl'+scheduleInfo.schedule.id);
-    while(liEl.firstChild.nextSibling.nextSibling) {
-        liEl.removeChild(liEl.firstChild.nextSibling.nextSibling);
-    }
+
+
+
+    const viewButton = document.createElement("button");
+    viewButton.innerHTML="View";
+    viewButton.addEventListener("click", getDetailedSch);
+    viewButton.id=scheduleInfo.schedule.id;
+
     liEl.appendChild(divEl);
+    liEl.appendChild(viewButton);
     divEl.appendChild(scheduleView(scheduleInfo));
     divEl.appendChild(scheduleDays(scheduleInfo));
+
+
     }
+}
+
+
+
+function getDetailedSch(){
+    const params = new URLSearchParams();
+    params.append("schId", this.id);
+    params.append("userId", document.getElementById("actualUserId").value);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', loadSchedule);
+    xhr.open('GET', 'protected/schAllInformation?' + params);
+    xhr.send();
 }
 
 function onLoadSchedule() {
