@@ -75,6 +75,9 @@ function getDetailedSch(){
 }
 
 function showDetailedSch(){
+    if(document.getElementById("testDivForTable").firstChild){
+        document.getElementById("testDivForTable").removeChild(document.getElementById("testDivForTable").firstChild);
+    }else{
     const hm = JSON.parse(this.responseText);
     const days=["zero","mo","tu","we","th","fr","sa","su"];
     const fullDays=["zero","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
@@ -118,6 +121,7 @@ function showDetailedSch(){
       p.innerHTML = keys[i];
       //console.log(keys[i]);
       tdAppend.innerHTML = hm[keys[i]];
+    }
     }
 
 
