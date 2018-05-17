@@ -35,16 +35,81 @@ function scheduleView(info){
 }
 
 function loadSchedule() {
+    const scheduleInfo = JSON.parse(this.responseText);
+    const divEl = document.createElement("div");
+    const liEl = document.getElementById('liEl'+scheduleInfo.schedule.id);
+    if(liEl.firstChild.nextSibling.nextSibling){
+        liEl.removeChild(liEl.firstChild.nextSibling.nextSibling);
+        liEl.removeChild(liEl.firstChild.nextSibling.nextSibling);
+    }else{
     showContents(["schedulesInfo", "goBackToMain", "scheduleInfo"]);
 
-    const scheduleInfo = JSON.parse(this.responseText);
 
-    const divEl = document.getElementById('scheduleInfo');
-    while(divEl.firstChild) {
-        divEl.removeChild(divEl.firstChild);
-    }
+
+
+
+    const viewButton = document.createElement("button");
+    viewButton.innerHTML="View";
+    viewButton.addEventListener("click", showDetailedSch);
+    viewButton.id=scheduleInfo.schedule.id;
+
+    liEl.appendChild(divEl);
+    liEl.appendChild(viewButton);
     divEl.appendChild(scheduleView(scheduleInfo));
     divEl.appendChild(scheduleDays(scheduleInfo));
+
+
+    }
+}
+
+
+
+function getDetailedSch(){
+    const params = new URLSearchParams();
+    params.append("schId", this.id);
+    params.append("userId", document.getElementById("actualUserId").value);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', showDetailedSch);
+    xhr.open('GET', 'protected/schAllInformation?' + params);
+    xhr.send();
+}
+
+function showDetailedSch(){
+    const days=["zero","mo","tu","we","th","fr","sa","su"];
+    const fullDays=["zero","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+    const table = document.createElement("table"); //<table></table>
+    table.border="1";
+    const trHeader = document.createElement("tr");
+    for(let i=0;i<8;i++){
+        const tdEl=document.createElement("td");
+        if(i!=0){
+            tdEl.innerHTML=fullDays[i];
+        }
+        trHeader.appendChild(tdEl);
+    }
+    table.appendChild(trHeader);
+    for(let r = 0;r<24;r++){
+        const tr = document.createElement("tr");
+
+        for(let c = 0;c<8;c++){
+            const day=days[c]
+            const td = document.createElement("td");
+            if(c==0){
+                td.innerHTML = r;
+                tr.appendChild(td);
+            }else{
+                td.innerHTML = day+r;
+                //td.id=day+r;
+                tr.appendChild(td);
+
+            }
+        }
+        table.appendChild(tr);
+    }
+
+    const div = document.getElementById("testDivForTable");
+
+    div.appendChild(table);
 }
 
 function onLoadSchedule() {
@@ -82,6 +147,7 @@ function scheduleList(schedules) {
         const liEl = document.createElement('li');
         liEl.appendChild(buttonNameEl);
         liEl.appendChild(pConEl);
+        liEl.id="liEl"+sch.id;
 
         ulEl.appendChild(liEl);
     }
