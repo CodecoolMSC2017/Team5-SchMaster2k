@@ -63,7 +63,9 @@ INSERT INTO days (name, name_id, schedule_id) VALUES
 	('Saturday', 'sa', 2),
 	('Sunday', 'su', 2),
 	('Csütörtök', 'th', 3),
-	('Péntek', 'fr', 3)
+	('Péntek', 'fr', 3),
+	('Die 1', 'tu', 4),
+	('Die Too', 'we', 4)
 ;
 
 /* ***** TASK ***** */
@@ -81,11 +83,13 @@ INSERT INTO tasks (name, user_id) VALUES
 	('Task 3', 3),
 	('Task 4', 3),
 	('Task 5', 3),
-	('Task A', 5),
-	('Task B', 5),
-	('Task C', 6),
-	('Task D', 6),
-	('Task E', 6)
+
+	('ROBI 1', 5),
+	('ROBI 2', 5),
+
+	('Task A', 6),
+	('Task B', 6),
+	('Task C', 6)
 ;
 
 
@@ -113,17 +117,14 @@ INSERT INTO hours (name, task_id, day_id) VALUES
 	(14, 5, 2),
 	(15, 5, 2),
 
-	(9, 1, 3),
-	(11, 2, 3),
-	(15, 3, 3),
-	(8, 4, 4),
-	(9, 5, 5),
+	(8, 6, 6),
+	(9, 7, 7),
 
-	(10, 6, 6),
-	(11, 7, 6),
-	(13, 8, 6),
-	(9, 9, 7),
-	(10, 10, 7)
+	(10, 8, 8),
+	(11, 8, 8),
+	(13, 9, 8),
+	(9, 10, 9),
+	(10, 10, 9)
 ;
 
 
@@ -144,5 +145,20 @@ INSERT INTO task_day_sch (day_id, task_id, schedule_id) VALUES
 	(1,2,1),
 	(2,3,1),
 	(2,4,1),
-	(2,5,1)
+	(2,5,1),
+
+	(3,1,2),
+	(3,2,2),
+	(3,3,2),
+	(4,4,2),
+	(5,5,2),
+
+
+	(6,6,3),
+	(7,7,3),
+
+
+	(8,8,4),
+	(8,9,4),
+    (9,10,4)
 ;
