@@ -4,15 +4,15 @@ body {
 	background: url(../images/background.jpg);
 	font-size: 12px;
 }
-.submit {
+.button {
     display: inline-block;
     margin: 4px 2px;
-	padding: 10px 12px;
+	padding: 5px 6px;
     text-decoration: none;
     background-color: #4CAF50;
     color: white;
     border: 0px;
-    font-size: 1.2em;
+    font-size: 1.0em;
 	font-weight: bold;
     text-align: center;
     cursor: pointer;
@@ -22,10 +22,10 @@ body {
     -o-transition: all 0.5s;
     transition: all 0.5s;
 }
-.submit:hover {
+.button:hover {
     background-color: #3E8E41;
 }
-.submit a {
+.button a {
 	text-decoration: none;
 	color: white;
 }
