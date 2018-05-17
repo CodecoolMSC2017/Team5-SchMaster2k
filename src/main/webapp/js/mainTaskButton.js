@@ -17,6 +17,7 @@ function mainTaskButton() {
 }
 
 function addTask(){
+    if(document.getElementById("newTaskName").value!=""){
     const newTaskName=document.getElementById("newTaskName").value;
     const username = document.getElementById("actualUsername").value;
     const params = new URLSearchParams();
@@ -26,6 +27,9 @@ function addTask(){
     xhr.addEventListener('load', showTasks);
     xhr.open('POST', 'taskServlet');
     xhr.send(params);
+    }else{
+        alert("task must have a title");
+    }
 
 }
 

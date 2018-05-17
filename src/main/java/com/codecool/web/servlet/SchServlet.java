@@ -1,10 +1,9 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.dao.SchDao;
+import com.codecool.web.dao.DatabaseSchDao;
 import com.codecool.web.dto.ScheduleInformationDto;
 import com.codecool.web.model.Day;
 import com.codecool.web.model.Schedule;
-import com.codecool.web.model.Task;
 import com.codecool.web.service.SchService;
 
 import javax.servlet.ServletException;
@@ -23,7 +22,7 @@ public class SchServlet extends AbstractServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection c = getConnection(req.getServletContext())) {
             int id = Integer.parseInt(req.getParameter("id"));
-            SchDao db = new SchDao(c);
+            DatabaseSchDao db = new DatabaseSchDao(c);
             SchService service = new SchService(db);
 
             Schedule schedule = service.getScheduleByID(id);
@@ -43,7 +42,7 @@ public class SchServlet extends AbstractServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection c = getConnection(req.getServletContext())) {
             int id = Integer.parseInt(req.getParameter("userId"));
-            SchDao db = new SchDao(c);
+            DatabaseSchDao db = new DatabaseSchDao(c);
             SchService service = new SchService(db);
 
             int userId = Integer.parseInt(req.getParameter("userId"));
