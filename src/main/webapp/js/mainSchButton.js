@@ -75,6 +75,9 @@ function getDetailedSch(){
 }
 
 function showDetailedSch(){
+    if(document.getElementById("testDivForTable").firstChild){
+        document.getElementById("testDivForTable").removeChild(document.getElementById("testDivForTable").firstChild);
+    }else{
     const hm = JSON.parse(this.responseText);
     const days=["zero","mo","tu","we","th","fr","sa","su"];
     const fullDays=["zero","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
@@ -100,23 +103,28 @@ function showDetailedSch(){
                 tr.appendChild(td);
             }else{
 
-                //td.id=day+r;
+                td.id=days[c]+r;
                 tr.appendChild(td);
 
             }
         }
         table.appendChild(tr);
     }
+    const div = document.getElementById("testDivForTable");
+
+        div.appendChild(table);
 
     for (let i = 0, keys = Object.keys(hm), ii = keys.length; i < ii; i++) {
 
       const tdAppend = document.getElementById(keys[i]);
+      const p = document.createElement("p");
+      p.innerHTML = keys[i];
+      //console.log(keys[i]);
       tdAppend.innerHTML = hm[keys[i]];
     }
+    }
 
-    const div = document.getElementById("testDivForTable");
 
-    div.appendChild(table);
 }
 
 function onLoadSchedule() {
