@@ -35,7 +35,7 @@ function scheduleView(info){
 }
 
 function loadSchedule() {
-    showContents(['scheduleInfo']);
+    showContents(["schedulesInfo", "goBackToMain", "scheduleInfo"]);
 
     const scheduleInfo = JSON.parse(this.responseText);
 
