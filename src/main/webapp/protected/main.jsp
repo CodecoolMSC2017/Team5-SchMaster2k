@@ -26,7 +26,7 @@
                     <span id="userLName" style="display: none"></span>
                     <span id="userEmail"></span>
                     <form action="loginServlet" method="GET">
-                        <input type="submit" value="Logout">
+                        <input type="submit" class="button" value="Logout">
                     </form>
 				</div>
 			</div>
@@ -41,8 +41,8 @@
                 <p>Introduction</p>
                 <p id="schNumber"></p>
                 <p id="taskNumber"></p>
-                <button id="mainSchButton">Schedule</button>
-                <button id="mainTaskButton">Task</button>
+                <button id="mainSchButton"  class="button">Schedule</button>
+                <button id="mainTaskButton"  class="button">Task</button>
             </div>
 
             <div id="schedulesInfo" class="hidden content">
@@ -53,20 +53,15 @@
                 <h3>Schedule</h3>
             </div>
 
-
-
-        <div id="tasks" class="hidden content">
-            <table id="taskTable" >
-                <tr>
-                    <td>Task Name</td><td></td>
-                </tr>
-            <table>
-
-
+            <div id="tasks" class="hidden content">
+                <table id="taskTable" >
+                    <tr>
+                        <td>Task Name</td><td></td>
+                    </tr>
+                <table>
                 <input id = "newTaskName" type="text">
-                <button id="addTaskButton">Add Task</button>
-
-        </div>
+                <button id="addTaskButton" class="button">Add Task</button>
+            </div>
 
 	</body>
 </html>
