@@ -9,6 +9,9 @@
 .hidden {
     display: none;
 }
+table{
+    border-collapse:collapse;
+}
 
 #testDivForTable table{
     width:100%;

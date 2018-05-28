@@ -88,6 +88,9 @@ function showDetailedSch(){
         const tdEl=document.createElement("td");
         if(i!=0){
             tdEl.innerHTML=fullDays[i];
+            tdEl.style.backgroundColor = "#4CAF50";
+            tdEl.style.color = "white";
+            tdEl.style.fontWeight = "bold";
         }
         trHeader.appendChild(tdEl);
     }
@@ -100,6 +103,9 @@ function showDetailedSch(){
             const td = document.createElement("td");
             if(c==0){
                 td.innerHTML = r;
+                td.style.backgroundColor = "#4CAF50";
+                td.style.color = "white";
+                td.style.fontWeight = "bold";
                 tr.appendChild(td);
             }else{
 
