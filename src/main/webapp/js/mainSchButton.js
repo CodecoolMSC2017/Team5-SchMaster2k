@@ -1,3 +1,6 @@
+let currentSchId;
+let currentDayHourId;
+
 function scheduleDays(info){
     const schTableEl = document.createElement('table');
     const schTableTr1El = document.createElement('tr');
@@ -65,6 +68,7 @@ function loadSchedule() {
 function getDetailedSch(){
     const params = new URLSearchParams();
     params.append("schId", this.id);
+    currentSchId = this.id;
     params.append("userId", document.getElementById("actualUserId").value);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', showDetailedSch);
@@ -73,13 +77,16 @@ function getDetailedSch(){
 }
 
 function showDetailedSch(){
+
     showContents(["scheduleInfo", "goBackToSchMenu"]);
+
 
     if(document.getElementById("testDivForTable").firstChild){
         document.getElementById("testDivForTable").removeChild(document.getElementById("testDivForTable").firstChild);
     }
 
     const hm = JSON.parse(this.responseText);
+
     const days=["zero","mo","tu","we","th","fr","sa","su"];
     const fullDays=["zero","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
     const table = document.createElement("table"); //<table></table>
@@ -136,14 +143,17 @@ function showDetailedSch(){
 
     for (let i = 0, keys = Object.keys(hm), ii = keys.length; i < ii; i++) {
 
-      const tdAppend = document.getElementById(keys[i]);
-      const p = document.createElement("p");
-      p.innerHTML = keys[i];
-      //console.log(keys[i]);
-      tdAppend.innerHTML = hm[keys[i]];
+        const tdAppend = document.getElementById(keys[i]);
+              const p = document.createElement("p");
+              p.innerHTML = keys[i];
+              //console.log(keys[i]);
+              tdAppend.innerHTML = hm[keys[i]];
+
+      }
+
     }
 
-}
+
 
 function showAddButton(){
 
@@ -157,7 +167,9 @@ function hideAddButton(){
 }
 
 function addTaskToSch(){
-const username = document.getElementById("actualUsername").value;
+    const username = document.getElementById("actualUsername").value;
+    currentDayHourId = this.id;
+
     const params = new URLSearchParams();
     params.append('username', username);
     const xhr = new XMLHttpRequest();
@@ -171,6 +183,7 @@ const username = document.getElementById("actualUsername").value;
 function showAvailableTasks(){
     const tasks = JSON.parse(this.responseText);
     const table = document.getElementById("tasksForSch");
+
 
    while(table.firstChild) {
            table.removeChild(table.firstChild);
@@ -192,9 +205,7 @@ function showAvailableTasks(){
 
         buttonEl.innerHTML = currentElement.name;
         buttonEl.id=tasks[i].id;
-        /*NEED TO ADD EVENT LISTENER TO BUTTON FOR ADDING TASK TO SCH*/
-
-        /*-----------------------------------------------------------*/
+        buttonEl.addEventListener("click",insertTaskToSch);
         trEl.appendChild(tdNameEl);
         tdNameEl.appendChild(buttonEl);
         table.appendChild(trEl);
@@ -207,8 +218,20 @@ function showAvailableTasks(){
     modalDiv.style.display = "block";
 }
 
+function insertTaskToSch(){
+    const params = new URLSearchParams();
+    params.append('schId', currentSchId);
+    params.append('dayHour',currentDayHourId);
+    params.append('taskId',this.id);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', showDetailedSch);
+    xhr.open('POST', 'taskToSch');
+    xhr.send(params);
+
+}
+
 function closeModal(){
-    const modalDiv =document.getElementById("schModal");
+    const modalDiv = document.getElementById("schModal");
     modalDiv.style.display = "none";
 }
 
