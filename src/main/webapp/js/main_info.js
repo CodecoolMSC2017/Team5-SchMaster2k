@@ -1,8 +1,20 @@
 let loadButtonEl;
 
+function loadTaskSchNo(){
+    const text = JSON.parse(this.responseText);
+    document.getElementById("schNumber").innerHTML = 'Number of your schedules: ' + text.schedule;
+    document.getElementById("taskNumber").innerHTML = 'Number of your tasks: ' + text.task;
+}
+
+function getNuOfTaskSch(){
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', loadTaskSchNo);
+    xhr.open('GET', 'protected/taskSchNoServlet');
+    xhr.send();
+}
+
 function mainInfo() {
-    document.getElementById("schNumber").innerHTML = "Schedules: 12345";
-    document.getElementById("taskNumber").innerHTML = "Tasks: 12";
+    getNuOfTaskSch();
 
     loadButtonEl = document.getElementById('mainSchButton');
     loadButtonEl.addEventListener('click', mainSchButton);

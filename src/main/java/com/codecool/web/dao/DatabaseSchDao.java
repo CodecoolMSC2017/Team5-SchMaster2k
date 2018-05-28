@@ -153,4 +153,28 @@ public class DatabaseSchDao extends AbstractDao{
         }
         return taskHours;
     }
+
+    public int getNoOfSch(int id) throws SQLException{
+        String sql = "SELECT COUNT(*) AS schNo FROM schedules WHERE user_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                return rs.getInt("schNo");
+            }
+        }
+        return 0;
+    }
+
+    public int getNoOfTask(int id) throws SQLException{
+        String sql = "SELECT COUNT(*) AS taskNo FROM tasks WHERE user_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                return rs.getInt("taskNo");
+            }
+        }
+        return 0;
+    }
 }

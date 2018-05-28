@@ -38,7 +38,7 @@
             </div>
 
             <div id="mainInfo" class="content">
-                <p>Introduction</p>
+                <p>In this wonderful web-application users can create multiple schedules for themselves in which they can create tasks which can contain text or pictures sharing it with others as they like! Huge breakthrough ideas fellas!</p>
                 <p id="schNumber"></p>
                 <p id="taskNumber"></p>
                 <button id="mainSchButton"  class="button">Schedule</button>
