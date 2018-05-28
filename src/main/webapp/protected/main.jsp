@@ -46,6 +46,10 @@
                 <button id="goBackToMainButton">Go Back</button>
             </div>
 
+            <div id="goBackToSchMenu" class="hidden content">
+                <button id="goBackToSchMenuButton">Go Back</button>
+            </div>
+
             <div id="mainInfo" class="content">
                 <p>In this wonderful web-application users can create multiple schedules for themselves in which they can create tasks which can contain text or pictures sharing it with others as they like! Huge breakthrough ideas fellas!</p>
                 <p id="schNumber"></p>
@@ -62,7 +66,7 @@
             <div id="scheduleInfo" class="hidden content">
                 <h3>Schedule</h3>
                 <div id="testDivForTable">
-                                </div>
+                </div>
             </div>
 
             <div id="tasks" class="hidden content">
