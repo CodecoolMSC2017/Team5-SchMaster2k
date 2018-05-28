@@ -104,7 +104,19 @@ function showDetailedSch(){
             }else{
 
                 td.id=days[c]+r;
+                const addButton = document.createElement("button");
+                addButton.innerHTML = "Add task";
+                addButton.id=days[c]+r;
+                addButton.classList.add("addTaskButton");
+                addButton.classList.add("button");
+                addButton.classList.add("hidden");
+
+                addButton.addEventListener("click",addTaskToSch);
+                td.addEventListener("mouseover",showAddButton);
+                td.addEventListener("mouseleave",hideAddButton);
+                td.appendChild(addButton);
                 tr.appendChild(td);
+
 
             }
         }
@@ -126,6 +138,74 @@ function showDetailedSch(){
 
 
 }
+
+function showAddButton(){
+
+    this.firstChild.classList.remove("hidden");
+
+
+}
+
+function hideAddButton(){
+       this.firstChild.classList.add("hidden");
+}
+
+function addTaskToSch(){
+const username = document.getElementById("actualUsername").value;
+    const params = new URLSearchParams();
+    params.append('username', username);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', showAvailableTasks);
+    xhr.open('POST', 'taskServlet');
+    xhr.send(params);
+
+
+}
+
+function showAvailableTasks(){
+    const tasks = JSON.parse(this.responseText);
+    const table = document.getElementById("tasksForSch");
+
+   while(table.firstChild) {
+           table.removeChild(table.firstChild);
+   }
+
+    const tableHeaderRow = document.createElement("tr");
+    const tdNameHeader = document.createElement("td");
+    tdNameHeader.innerHTML="Name";
+    tableHeaderRow.appendChild(tdNameHeader);
+    table.appendChild(tableHeaderRow);
+
+
+    for(let i=0;i<tasks.length;i++){
+        const currentElement = tasks[i];
+        const trEl = document.createElement("tr");
+        const tdNameEl = document.createElement("td");
+        const buttonEl = document.createElement("button");
+        buttonEl.classList.add("button");
+
+        buttonEl.innerHTML = currentElement.name;
+        buttonEl.id=tasks[i].id;
+        /*NEED TO ADD EVENT LISTENER TO BUTTON FOR ADDING TASK TO SCH*/
+
+        /*-----------------------------------------------------------*/
+        trEl.appendChild(tdNameEl);
+        tdNameEl.appendChild(buttonEl);
+        table.appendChild(trEl);
+
+    }
+
+    const modalDiv =document.getElementById("schModal");
+    const close = document.getElementById("closeModal");
+    close.addEventListener("click",closeModal);
+    modalDiv.style.display = "block";
+}
+
+function closeModal(){
+    const modalDiv =document.getElementById("schModal");
+    modalDiv.style.display = "none";
+}
+
 
 function onLoadSchedule() {
     const el = this;

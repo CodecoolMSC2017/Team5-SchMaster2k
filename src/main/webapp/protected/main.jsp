@@ -31,6 +31,15 @@
 				</div>
 			</div>
 		</header>
+
+		<div id="schModal" class="modal">
+            <div class="modal-content">
+                <span id="closeModal">&times;</span>
+                <table id="tasksForSch">
+                </table>
+
+            </div>
+		</div>
 		<div class="data_frame">
 
             <div id="goBackToMain" class="hidden content">
