@@ -105,7 +105,6 @@ function showDetailedSch(){
             if(c==0){
                 td.innerHTML = r + '-' + ++r;
                 --r;
-                td.innerHTML = r;
                 td.style.backgroundColor = "#4CAF50";
                 td.style.color = "white";
                 td.style.fontWeight = "bold";
