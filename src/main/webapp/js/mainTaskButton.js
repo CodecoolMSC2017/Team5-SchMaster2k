@@ -109,6 +109,8 @@ function showEdit(){
 
 function updateTask(){
     this.innerHTML="edit";
+    this.removeEventListener("click",updateTask);
+    this.addEventListener("click",showEdit);
     const params = new URLSearchParams();
     const updatedName = document.getElementById("taskName").value;
 
@@ -118,6 +120,7 @@ function updateTask(){
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', loadUpdatedTask);
     xhr.open('POST', 'updateTask');
+    this.addEventListener("click",showEdit);
     xhr.send(params);
 
 }

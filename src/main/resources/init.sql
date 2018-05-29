@@ -39,11 +39,13 @@ CREATE TABLE schedules (
 );
 
 INSERT INTO schedules (name, content, user_id) VALUES
-	('Test SCH', null, 3),
-	('Test SCH 2', 'Test content', 3),
-	('Who cares', 'The END is near!', 5),
-	('Weekly shit', 'Something useful', 6)
-;
+	('Test SCH for User3', null, 3),
+	('Test SCH for User1', null, 1),
+	('Test SCH for User2', null, 2),
+	('Test SCH for User4', null, 4),
+	('Test SCH for User5',null, 5),
+	('Test SCH for User6', 'Something useful', 6);
+
 
 
 /* ***** DAYS ***** */
@@ -59,13 +61,51 @@ CREATE TABLE days (
 INSERT INTO days (name, name_id, schedule_id) VALUES
 	('Day 1', 'mo', 1),
 	('Day 2', 'tu', 1),
-	('Friday', 'fr', 2),
-	('Saturday', 'sa', 2),
-	('Sunday', 'su', 2),
-	('Csütörtök', 'th', 3),
-	('Péntek', 'fr', 3),
-	('Die 1', 'tu', 4),
-	('Die Too', 'we', 4)
+	('Day 3', 'we', 1),
+	('Day 4', 'th', 1),
+	('Day 5', 'fr', 1),
+	('Day 6', 'sa', 1),
+	('Day 7', 'su', 1),
+
+	('Day 1', 'mo', 2),
+    ('Day 2', 'tu', 2),
+    ('Day 3', 'we', 2),
+    ('Day 4', 'th', 2),
+    ('Day 5', 'fr', 2),
+    ('Day 6', 'sa', 2),
+    ('Day 7', 'su', 2),
+
+    ('Day 1', 'mo', 3),
+    ('Day 2', 'tu', 3),
+    ('Day 3', 'we', 3),
+    ('Day 4', 'th', 3),
+    ('Day 5', 'fr', 3),
+    ('Day 6', 'sa', 3),
+    ('Day 7', 'su', 3),
+
+    ('Day 1', 'mo', 4),
+    ('Day 2', 'tu', 4),
+    ('Day 3', 'we', 4),
+    ('Day 4', 'th', 4),
+    ('Day 5', 'fr', 4),
+    ('Day 6', 'sa', 4),
+    ('Day 7', 'su', 4),
+
+    ('Day 1', 'mo', 5),
+    ('Day 2', 'tu', 5),
+    ('Day 3', 'we', 5),
+    ('Day 4', 'th', 5),
+    ('Day 5', 'fr', 5),
+    ('Day 6', 'sa', 5),
+    ('Day 7', 'su', 5),
+
+    ('Day 1', 'mo', 6),
+    ('Day 2', 'tu', 6),
+    ('Day 3', 'we', 6),
+    ('Day 4', 'th', 6),
+    ('Day 5', 'fr', 6),
+    ('Day 6', 'sa', 6),
+    ('Day 7', 'su', 6)
 ;
 
 /* ***** TASK ***** */
@@ -104,28 +144,7 @@ CREATE TABLE hours (
     FOREIGN KEY (day_id) REFERENCES days(id)
 );
 
-INSERT INTO hours (name, task_id, day_id) VALUES
-	(9, 1, 1),
-	(10, 1, 1),
-	(11, 1, 1),
-	(13, 2, 1),
-	(14, 2, 1),
-	(10, 3, 2),
-	(11, 3, 2),
-	(12, 3, 2),
-	(13, 4, 2),
-	(14, 5, 2),
-	(15, 5, 2),
 
-	(8, 6, 6),
-	(9, 7, 7),
-
-	(10, 8, 8),
-	(11, 8, 8),
-	(13, 9, 8),
-	(9, 10, 9),
-	(10, 10, 9)
-;
 
 
 /* ***** TASK-DAY-SCHEDULE CONNECTION ***** */
@@ -140,25 +159,4 @@ CREATE TABLE task_day_sch (
     FOREIGN KEY (schedule_id) REFERENCES schedules(id)
 );
 
-INSERT INTO task_day_sch (day_id, task_id, schedule_id) VALUES
-	(1,1,1),
-	(1,2,1),
-	(2,3,1),
-	(2,4,1),
-	(2,5,1),
 
-	(3,1,2),
-	(3,2,2),
-	(3,3,2),
-	(4,4,2),
-	(5,5,2),
-
-
-	(6,6,3),
-	(7,7,3),
-
-
-	(8,8,4),
-	(8,9,4),
-    (9,10,4)
-;

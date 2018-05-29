@@ -177,4 +177,46 @@ public class DatabaseSchDao extends AbstractDao{
         }
         return 0;
     }
+
+    public void insertTaskToSch(int hourName, int dayId, int taskId, int schId) throws SQLException{
+
+        String sql ="BEGIN;"+
+                    "INSERT INTO hours (name, task_id, day_id) VALUES (?, ?, ?);" +
+                    "INSERT INTO task_day_sch (day_id, task_id, schedule_id) VALUES (?, ?, ?);"+
+                    "COMMIT;";
+        System.out.println(hourName);
+        System.out.println(dayId);
+        System.out.println(taskId);
+        System.out.println(schId);
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, hourName);
+            statement.setInt(2, taskId);
+            statement.setInt(3, dayId);
+
+            statement.setInt(4, dayId);
+            statement.setInt(5, taskId);
+            statement.setInt(6, schId);
+            executeInsert(statement);
+        }  catch (SQLException e) {
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        }
+    }
+
+    public int findDayId(String day, int schId) throws SQLException{
+        String sql = "SELECT  id FROM days WHERE name_id = ? AND schedule_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, day);
+            statement.setInt(2, schId);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                return rs.getInt("id");
+            }
+        }
+        return 0;
+    }
+
+
+
 }
