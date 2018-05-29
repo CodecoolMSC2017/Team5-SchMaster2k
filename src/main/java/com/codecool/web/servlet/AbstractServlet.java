@@ -1,6 +1,7 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.dto.MessageDto;
+import com.codecool.web.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletContext;
@@ -33,4 +34,5 @@ abstract class AbstractServlet extends HttpServlet {
         sendMessage(resp, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
         ex.printStackTrace();
     }
+
 }
