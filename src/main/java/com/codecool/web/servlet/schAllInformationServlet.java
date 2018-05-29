@@ -1,6 +1,7 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.dao.DatabaseSchDao;
+import com.codecool.web.dao.DatabaseTaskDao;
 import com.codecool.web.model.User;
 import com.codecool.web.service.SchAllInfoService;
 import org.apache.log4j.Logger;
@@ -24,7 +25,8 @@ public class schAllInformationServlet extends AbstractServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection c = getConnection(getServletContext())) {
             DatabaseSchDao db = new DatabaseSchDao(c);
-            SchAllInfoService service = new SchAllInfoService(db);
+            DatabaseTaskDao taskDb = new DatabaseTaskDao(c);
+            SchAllInfoService service = new SchAllInfoService(db, taskDb);
 
             int userId = Integer.parseInt(req.getParameter("userId"));
             int schId = Integer.parseInt(req.getParameter("schId"));
