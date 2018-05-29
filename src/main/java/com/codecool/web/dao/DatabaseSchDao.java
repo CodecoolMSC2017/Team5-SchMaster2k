@@ -179,23 +179,28 @@ public class DatabaseSchDao extends AbstractDao{
     }
 
     public void insertTaskToSch(int hourName, int dayId, int taskId, int schId) throws SQLException{
-        String sql = "BEGIN;" +
-            "INSERT INTO hours (name, task_id, day_id) VALUES (?, ?, ?,);" +
-            "INSERT INTO task_day_sch (day_id, task_id, schedule_id) VALUES (?, ?, ?);" +
-            "COMMIT;";
+
+        String sql ="BEGIN;"+
+                    "INSERT INTO hours (name, task_id, day_id) VALUES (?, ?, ?);" +
+                    "INSERT INTO task_day_sch (day_id, task_id, schedule_id) VALUES (?, ?, ?);"+
+                    "COMMIT;";
+        System.out.println(hourName);
+        System.out.println(dayId);
+        System.out.println(taskId);
+        System.out.println(schId);
+
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, hourName);
-            statement.setInt(1, taskId);
-            statement.setInt(1, dayId);
-
-            statement.setInt(1, dayId);
             statement.setInt(2, taskId);
-            statement.setInt(3, schId);
+            statement.setInt(3, dayId);
 
+            statement.setInt(4, dayId);
+            statement.setInt(5, taskId);
+            statement.setInt(6, schId);
             executeInsert(statement);
         }  catch (SQLException e) {
-
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         }
     }
 

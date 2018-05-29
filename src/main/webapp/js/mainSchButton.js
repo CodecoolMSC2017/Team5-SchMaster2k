@@ -220,10 +220,14 @@ function showAvailableTasks(){
 }
 
 function insertTaskToSch(){
+    const modalDiv = document.getElementById("schModal");
+    modalDiv.style.display = "none";
     const params = new URLSearchParams();
     params.append('schId', currentSchId);
     params.append('dayHour',currentDayHourId);
     params.append('taskId',this.id);
+    params.append("userId", document.getElementById("actualUserId").value);
+    document.getElementById("schModal").display = "none";
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', showDetailedSch);
     xhr.open('POST', 'taskToSchServlet');
