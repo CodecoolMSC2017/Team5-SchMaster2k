@@ -1,7 +1,9 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.dao.DatabaseSchDao;
+import com.codecool.web.model.User;
 import com.codecool.web.service.SchAllInfoService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +16,9 @@ import java.util.Map;
 
 @WebServlet("/protected/schAllInformation")
 public class schAllInformationServlet extends AbstractServlet {
+
+    private static final Logger logger = Logger.getLogger(schAllInformationServlet.class);
+    private User user;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,6 +36,8 @@ public class schAllInformationServlet extends AbstractServlet {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            handleSqlError(resp, e);
+            logger.error(user.getName() + ": Error.", e);
         }
     }
 }

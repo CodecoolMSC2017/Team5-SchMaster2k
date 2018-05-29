@@ -2,7 +2,10 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.dao.DatabaseUserDao;
 import com.codecool.web.dao.UserDao;
+import com.codecool.web.model.User;
 import com.codecool.web.service.RegistrationService;
+import org.apache.log4j.Logger;
+
 import javax.naming.NameNotFoundException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +17,9 @@ import java.sql.SQLException;
 
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends AbstractServlet {
+
+    private static final Logger logger = Logger.getLogger(RegistrationServlet.class);
+    private User user;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,15 +35,18 @@ public class RegistrationServlet extends AbstractServlet {
 
             if (service.checkReg(name, email)) {
                 req.setAttribute("message", "This name or email already registered");
+                logger.error(user.getName() + ": Name or email already registered.");
             }
             else {
                 service.createReg(name, fname, lname, pass, email);
                 req.setAttribute("message", "Registration successful");
+                logger.info(user.getName() + ": Registered.");
             }
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
         }
         catch (SQLException|NameNotFoundException e) {
             e.printStackTrace();
+            logger.error(user.getName() + ": Error.", e);
         }
     }
 
