@@ -93,12 +93,43 @@ public class DatabaseSchDao extends AbstractDao{
         return new Task(id,name,userId);
     }
 
+    public int getMaxDayId() throws SQLException {
+        String sql = "SELECT MAX(schedule_id) AS schId FROM days";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                return resultSet.getInt("schId");
+            }
+        }
+        return 0;
+
+
+    }
+
+
+
     public void addSchedule(String title, String content, int userId) throws SQLException {
-        String sql = "INSERT INTO schedules (name, content, user_id) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO schedules (name, content, user_id) VALUES (?, ?, ?);" +
+                     "INSERT INTO days (name, name_id, schedule_id) VALUES" +
+                    "('Day 1', 'mo', ?), " +
+                    "('Day 2', 'tu', ?), " +
+                    "('Day 3', 'we', ?), " +
+                    "('Day 4', 'th', ?), " +
+                    "('Day 5', 'fr', ?), " +
+                    "('Day 6', 'sa', ?), " +
+                    "('Day 7', 'su', ?); ";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, title);
             statement.setString(2, content);
             statement.setInt(3, userId);
+            statement.setInt(4, getMaxDayId()+1);
+            statement.setInt(5, getMaxDayId()+1);
+            statement.setInt(6, getMaxDayId()+1);
+            statement.setInt(7, getMaxDayId()+1);
+            statement.setInt(8, getMaxDayId()+1);
+            statement.setInt(9, getMaxDayId()+1);
+            statement.setInt(10, getMaxDayId()+1);
+
             executeInsert(statement);
         }
     }
@@ -200,7 +231,7 @@ public class DatabaseSchDao extends AbstractDao{
             statement.setInt(6, schId);
             executeInsert(statement);
         }  catch (SQLException e) {
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
         }
     }
 

@@ -75,6 +75,7 @@ function getDetailedSch(){
     xhr.addEventListener('load', showDetailedSch);
     xhr.open('GET', 'protected/schAllInformation?' + params);
     xhr.send();
+    xhr.send();
 }
 
 function showDetailedSch(){
