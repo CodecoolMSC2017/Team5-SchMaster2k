@@ -9,6 +9,7 @@ import com.codecool.web.model.Task;
 import com.codecool.web.model.User;
 import com.codecool.web.service.SchAllInfoService;
 import com.codecool.web.service.TaskToSchService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,22 +23,34 @@ import java.util.Map;
 @WebServlet("/taskToSchServlet")
 public class TaskToSchServlet extends AbstractServlet {
 
+    private static final Logger logger = Logger.getLogger(TaskToSchServlet.class);
+    private User user;
+    private String dayHour;
+    private int taskId;
+    private int schId;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
             DatabaseSchDao schDao = new DatabaseSchDao(connection);
             TaskToSchService service = new TaskToSchService(schDao);
             SchAllInfoService schService = new SchAllInfoService(schDao);
+            user = (User) req.getSession().getAttribute("user");
 
-            service.addTaskToSch(req.getParameter("dayHour"), Integer.parseInt(req.getParameter("taskId")), Integer.parseInt(req.getParameter("schId")));
+            dayHour = req.getParameter("dayHour");
+            taskId = Integer.parseInt(req.getParameter("taskId"));
+            schId = Integer.parseInt(req.getParameter("schId"));
+
+            service.addTaskToSch(dayHour, taskId, schId);
             int userId = Integer.parseInt(req.getParameter("userId"));
             Map<String,String> mapOfTasks = schService.getTasksMap(userId, Integer.parseInt(req.getParameter("schId")));
             resp.setContentType("application/json");
             sendMessage(resp, HttpServletResponse.SC_OK, mapOfTasks);
 
-
+            logger.info(user.getName() + ": Add task(" +taskId+ ") in sch(" +schId+ ") at hour(" +dayHour+ ")"  );
         } catch (SQLException ex) {
             handleSqlError(resp, ex);
+            logger.error(user.getName() + "error at:  Add task(" +taskId+ ") in sch(" +schId+ ") at hour(" +dayHour+ ")");
         }
 
     }

@@ -21,7 +21,6 @@ public final class TaskServlet extends AbstractServlet {
 
     private static final Logger logger = Logger.getLogger(TaskServlet.class);
     private User user;
-    private int taskId;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -33,11 +32,11 @@ public final class TaskServlet extends AbstractServlet {
                 String taskName=req.getParameter("taskAddingField");
                 int userId=user.getId();
                 tDao.addTask(taskName,userId);
-                logger.info(user.getName() + ": Task add done. Task id: " + taskId );
+                logger.info(user.getName() + ": Task add done. Task name: " + taskName );
             }
 
             if(req.getParameter("taskIdToDelete")!=null){
-                taskId=Integer.parseInt(req.getParameter("taskIdToDelete"));
+                int taskId=Integer.parseInt(req.getParameter("taskIdToDelete"));
                 tDao.deleteTask(taskId);
                 logger.info(user.getName() + ": Task delete done. Task id: " + taskId);
             }
