@@ -1,5 +1,6 @@
 let currentSchId;
 let currentDayHourId;
+let previousText;
 
 function scheduleDays(info){
     const schTableEl = document.createElement('table');
@@ -75,7 +76,7 @@ function getDetailedSch(){
     xhr.addEventListener('load', showDetailedSch);
     xhr.open('GET', 'protected/schAllInformation?' + params);
     xhr.send();
-    xhr.send();
+
 }
 
 function showDetailedSch(){
@@ -158,14 +159,29 @@ function showDetailedSch(){
 
 
 function showAddButton(){
+    if(this.firstChild.nodeName=="BUTTON"){
+        this.firstChild.classList.remove("hidden");
+    }else{
+        previousText = this.innerHTML;
+        this.innerHTML = "";
+        const editButton = document.createElement("button");
+        editButton.innerHTML = "Edit";
+        editButton.classList.add("button");
+        this.appendChild(editButton);
 
-    this.firstChild.classList.remove("hidden");
+
+    }
 
 
 }
 
 function hideAddButton(){
-       this.firstChild.classList.add("hidden");
+        if(this.firstChild.nodeName=="BUTTON" && this.firstChild.innerHTML != "Edit"){
+               this.firstChild.classList.add("hidden");
+           }else if(this.firstChild.nodeName=="BUTTON" && this.firstChild.innerHTML == "Edit"){
+                this.removeChild(this.firstChild);
+                this.innerHTML = previousText;
+          }
 }
 
 function addTaskToSch(){
