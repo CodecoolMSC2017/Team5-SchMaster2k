@@ -40,29 +40,28 @@ function scheduleView(info){
 function loadSchedule() {
     const scheduleInfo = JSON.parse(this.responseText);
     const divEl = document.createElement("div");
+    divEl.id=scheduleInfo.schedule.id;
+
+    divEl.classList.add('sch');
+    showSchContent(scheduleInfo.schedule.id);
     const liEl = document.getElementById('liEl'+scheduleInfo.schedule.id);
-    if(liEl.firstChild.nextSibling.nextSibling){
-        liEl.removeChild(liEl.firstChild.nextSibling.nextSibling);
-        liEl.removeChild(liEl.firstChild.nextSibling.nextSibling);
-    }else{
-    showContents(["schedulesInfo", "goBackToMain", "scheduleInfo"]);
+    while(liEl.firstChild.nextSibling){
+        liEl.removeChild(liEl.firstChild.nextSibling);
+    }
 
-
-
-
+    showContents(["schedulesInfo", "goBackToMain"]);
 
     const viewButton = document.createElement("button");
     viewButton.innerHTML="View";
+    viewButton.classList.add('button');
     viewButton.addEventListener("click", getDetailedSch);
     viewButton.id=scheduleInfo.schedule.id;
 
     liEl.appendChild(divEl);
-    liEl.appendChild(viewButton);
+    divEl.appendChild(viewButton);
     divEl.appendChild(scheduleView(scheduleInfo));
     divEl.appendChild(scheduleDays(scheduleInfo));
 
-
-    }
 }
 
 
@@ -80,9 +79,13 @@ function getDetailedSch(){
 
 function showDetailedSch(){
 
+    showContents(["scheduleInfo", "goBackToSchMenu"]);
+
+
     if(document.getElementById("testDivForTable").firstChild){
         document.getElementById("testDivForTable").removeChild(document.getElementById("testDivForTable").firstChild);
-    }else{
+    }
+
     const hm = JSON.parse(this.responseText);
 
     const days=["zero","mo","tu","we","th","fr","sa","su"];
@@ -108,7 +111,8 @@ function showDetailedSch(){
             const day=days[c]
             const td = document.createElement("td");
             if(c==0){
-                td.innerHTML = r;
+                td.innerHTML = r + '-' + ++r;
+                --r;
                 td.style.backgroundColor = "#4CAF50";
                 td.style.color = "white";
                 td.style.fontWeight = "bold";
@@ -149,8 +153,6 @@ function showDetailedSch(){
       }
 
     }
-    }
-
 
 
 
@@ -263,13 +265,8 @@ function scheduleList(schedules) {
         buttonNameEl.setAttributeNode(schIdAttr);
         buttonNameEl.addEventListener('click', onLoadSchedule);
 
-        //sch content
-        const pConEl = document.createElement('p');
-        pConEl.textContent = "Sch content: " + sch.content;
-
         const liEl = document.createElement('li');
         liEl.appendChild(buttonNameEl);
-        liEl.appendChild(pConEl);
         liEl.id="liEl"+sch.id;
 
         ulEl.appendChild(liEl);
