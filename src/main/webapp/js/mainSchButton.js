@@ -224,7 +224,7 @@ function insertTaskToSch(){
     params.append('taskId',this.id);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', showDetailedSch);
-    xhr.open('POST', 'taskToSch');
+    xhr.open('POST', 'taskToSchServlet');
     xhr.send(params);
 
 }
