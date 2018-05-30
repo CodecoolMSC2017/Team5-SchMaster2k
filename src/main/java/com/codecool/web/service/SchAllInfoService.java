@@ -37,8 +37,12 @@ public class SchAllInfoService {
             for(Integer i:tasksId){
                 List<Integer> taskHours= db.getTask(key, i);
 
+
                 for (Integer j: taskHours){
-                    result.put(dayName + j, taskDb.getTaskById(i));
+                    if(taskDb.getTaskById(i)!=null){
+
+                        result.put(dayName + j, taskDb.getTaskById(i));
+                    }
                 }
             }
         }
