@@ -69,8 +69,11 @@ function loadSchedule() {
 
 function getDetailedSch(){
     const params = new URLSearchParams();
-    params.append("schId", this.id);
-    currentSchId = this.id;
+    if(this.innerHTML=="View"){
+        currentSchId=this.id;
+    }
+    params.append("schId", currentSchId);
+
     params.append("userId", document.getElementById("actualUserId").value);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', showDetailedSch);
@@ -150,7 +153,7 @@ function showDetailedSch(){
               const p = document.createElement("p");
               p.innerHTML = keys[i];
               //console.log(keys[i]);
-              tdAppend.innerHTML = hm[keys[i]];
+              tdAppend.innerHTML = hm[keys[i]].name;
 
       }
 
@@ -246,7 +249,7 @@ function insertTaskToSch(){
     params.append("userId", document.getElementById("actualUserId").value);
     document.getElementById("schModal").display = "none";
     const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', showDetailedSch);
+    xhr.addEventListener('load', getDetailedSch);
     xhr.open('POST', 'taskToSchServlet');
     xhr.send(params);
 
