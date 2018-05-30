@@ -25,6 +25,7 @@ function showSchContent(id) {
 }
 
 function backToMain(){
+    getNuOfTaskSch();
     showContents(['mainInfo','userInfo']);
 }
 
