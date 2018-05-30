@@ -43,7 +43,7 @@ public class TaskToSchServlet extends AbstractServlet {
 
             service.addTaskToSch(dayHour, taskId, schId);
             int userId = Integer.parseInt(req.getParameter("userId"));
-            Map<String,String> mapOfTasks = schService.getTasksMap(userId, Integer.parseInt(req.getParameter("schId")));
+            Map<String,Task> mapOfTasks = schService.getTasksMap(userId, Integer.parseInt(req.getParameter("schId")));
             resp.setContentType("application/json");
             sendMessage(resp, HttpServletResponse.SC_OK, mapOfTasks);
 

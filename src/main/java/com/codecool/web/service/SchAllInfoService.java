@@ -20,6 +20,11 @@ public class SchAllInfoService {
         this.taskDb = taskDb;
     }
 
+    public SchAllInfoService(DatabaseSchDao db) {
+
+        this.db = db;
+    }
+
     public Map<String, Task> getTasksMap(int userId, int schId) throws SQLException{
 
         Map<Integer,String> dayIdandName = db.getDaysByUserIDandSchID(userId, schId);

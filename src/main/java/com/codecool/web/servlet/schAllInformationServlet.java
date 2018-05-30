@@ -2,6 +2,7 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.dao.DatabaseSchDao;
 import com.codecool.web.dao.DatabaseTaskDao;
+import com.codecool.web.model.Task;
 import com.codecool.web.model.User;
 import com.codecool.web.service.SchAllInfoService;
 import org.apache.log4j.Logger;
@@ -31,7 +32,7 @@ public class schAllInformationServlet extends AbstractServlet {
             int userId = Integer.parseInt(req.getParameter("userId"));
             int schId = Integer.parseInt(req.getParameter("schId"));
 
-            Map<String,String> mapOfTasks = service.getTasksMap(userId, schId);
+            Map<String,Task> mapOfTasks = service.getTasksMap(userId, schId);
             // userID above should be task object (Map<Task, String>)
 
             sendMessage(resp, HttpServletResponse.SC_OK, mapOfTasks);
