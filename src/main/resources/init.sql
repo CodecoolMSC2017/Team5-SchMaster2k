@@ -130,7 +130,6 @@ INSERT INTO tasks (name, user_id) VALUES
 	('Task C', 6)
 ;
 
-
 /* ***** HOURS ***** */
 
 CREATE TABLE hours (
