@@ -1,6 +1,7 @@
 let currentSchId;
 let currentDayHourId;
 let previousText;
+let hashMap;
 
 function scheduleDays(info){
     const schTableEl = document.createElement('table');
@@ -92,7 +93,7 @@ function showDetailedSch(){
     }
 
     const hm = JSON.parse(this.responseText);
-
+    hashMap=hm;
     const days=["zero","mo","tu","we","th","fr","sa","su"];
     const fullDays=["zero","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
     const table = document.createElement("table"); //<table></table>
@@ -133,7 +134,7 @@ function showDetailedSch(){
                 addButton.classList.add("hidden");
 
                 addButton.addEventListener("click",addTaskToSch);
-                td.addEventListener("mouseover",showAddButton(hm));
+                td.addEventListener("mouseover",showAddButton);
                 td.addEventListener("mouseleave",hideAddButton);
                 td.appendChild(addButton);
                 tr.appendChild(td);
@@ -161,7 +162,7 @@ function showDetailedSch(){
 
 
 
-function showAddButton(hm){
+function showAddButton(){
     if(this.firstChild.nodeName=="BUTTON"){
         this.firstChild.classList.remove("hidden");
     }else{
@@ -170,21 +171,22 @@ function showAddButton(hm){
         const deleteButton = document.createElement("button");
         deleteButton.innerHTML = "Delete";
         deleteButton.classList.add("button");
-        deleteButton.addEventListener("click", deleteTaskFromSch(hm))
+        deleteButton.addEventListener("click", deleteTaskFromSch);
         this.appendChild(deleteButton);
 
 
     }
 }
 
-function deleteTaskFromSch(hm){
+function deleteTaskFromSch(){
 
     const params = new URLSearchParams();
     params.append('schId', currentSchId);
     params.append('dayHour',this.parentElement.id);
-    params.appendChild('taskId', hm[this.parentElement.id].id);
+    params.append('taskId', hashMap[this.parentElement.id].id);
+    params.append('userId',document.getElementById("actualUserId").value);
     const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', getDetailedSchW);
+    xhr.addEventListener('load', getDetailedSch);
     xhr.open('POST', 'taskFromSchServlet');
     xhr.send(params);
 
@@ -192,9 +194,9 @@ function deleteTaskFromSch(hm){
 
 
 function hideAddButton(){
-        if(this.firstChild.nodeName=="BUTTON" && this.firstChild.innerHTML != "Edit"){
+        if(this.firstChild.nodeName=="BUTTON" && this.firstChild.innerHTML != "Delete"){
                this.firstChild.classList.add("hidden");
-           }else if(this.firstChild.nodeName=="BUTTON" && this.firstChild.innerHTML == "Edit"){
+           }else if(this.firstChild.nodeName=="BUTTON" && this.firstChild.innerHTML == "Delete"){
                 this.removeChild(this.firstChild);
                 this.innerHTML = previousText;
           }
