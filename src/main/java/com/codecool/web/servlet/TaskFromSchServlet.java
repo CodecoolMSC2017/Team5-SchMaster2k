@@ -18,7 +18,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Map;
 
-@WebServlet("/taskFromSchServlet")
+@WebServlet("/protected/taskFromSchServlet")
 public class TaskFromSchServlet extends AbstractServlet {
 
     private static final Logger logger = Logger.getLogger(TaskFromSchServlet.class);

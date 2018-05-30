@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/taskToSchServlet")
+@WebServlet("/protected/taskToSchServlet")
 public class TaskToSchServlet extends AbstractServlet {
 
     private static final Logger logger = Logger.getLogger(TaskToSchServlet.class);

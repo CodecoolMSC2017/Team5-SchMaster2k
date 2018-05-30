@@ -23,7 +23,7 @@ public final class SessionFilter implements Filter {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         if (user == null) {
-            req.getRequestDispatcher("index.jsp");
+            resp.sendRedirect("../index.jsp");
         } else {
             chain.doFilter(req, resp);
         }

@@ -17,7 +17,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/schServlet")
+@WebServlet("/protected/schServlet")
 public class SchServlet extends AbstractServlet {
     private static final Logger logger = Logger.getLogger(SchServlet.class);
     private User user;

@@ -26,7 +26,7 @@
                     <span id="userFName" style="display: none"></span>
                     <span id="userLName" style="display: none"></span>
                     <span id="userEmail"></span>
-                    <form action="loginServlet" method="GET">
+                    <form action="protected/logoutServlet" method="GET">
                         <input type="submit" class="button" value="Logout">
                     </form>
 				</div>

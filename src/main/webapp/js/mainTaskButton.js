@@ -12,7 +12,7 @@ function mainTaskButton() {
     params.append('username', username);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', showTasks);
-    xhr.open('POST', 'taskServlet');
+    xhr.open('POST', 'protected/taskServlet');
     xhr.send(params);
 }
 
@@ -25,7 +25,7 @@ function addTask(){
     params.append('username', username);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', showTasks);
-    xhr.open('POST', 'taskServlet');
+    xhr.open('POST', 'protected/taskServlet');
     xhr.send(params);
     }else{
         alert("task must have a title");
@@ -86,7 +86,7 @@ function deleteTask(){
     params.append('username', username);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', showTasks);
-    xhr.open('POST', 'taskServlet');
+    xhr.open('POST', 'protected/taskServlet');
     xhr.send(params);
 }
 
@@ -119,7 +119,7 @@ function updateTask(){
     buttonId=this.id;
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', loadUpdatedTask);
-    xhr.open('POST', 'updateTask');
+    xhr.open('POST', 'protected/updateTask');
     this.addEventListener("click",showEdit);
     xhr.send(params);
 

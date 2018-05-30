@@ -18,7 +18,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 
-@WebServlet("/updateTask")
+@WebServlet("/protected/updateTask")
 public final class UpdateTaskServlet extends AbstractServlet {
 
     private static final Logger logger = Logger.getLogger(UpdateTaskServlet.class);

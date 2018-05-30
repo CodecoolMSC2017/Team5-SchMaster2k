@@ -18,7 +18,7 @@ function userInfo(){
         params.append('username', username);
         const xhr = new XMLHttpRequest();
         xhr.addEventListener('load', loadInformations);
-        xhr.open('POST', 'userinfo');
+        xhr.open('POST', 'protected/userinfo');
         xhr.send(params);
 
 }

@@ -16,7 +16,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 
-@WebServlet("/userinfo")
+@WebServlet("/protected/userinfo")
 public final class UserInfoServlet extends AbstractServlet {
 
     private static final Logger logger = Logger.getLogger(UserInfoServlet.class);

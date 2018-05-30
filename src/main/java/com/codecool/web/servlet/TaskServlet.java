@@ -16,7 +16,7 @@ import java.util.List;
 
 
 
-@WebServlet("/taskServlet")
+@WebServlet("/protected/taskServlet")
 public final class TaskServlet extends AbstractServlet {
 
     private static final Logger logger = Logger.getLogger(TaskServlet.class);

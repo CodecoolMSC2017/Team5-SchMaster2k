@@ -198,7 +198,7 @@ function deleteTaskFromSch(){
     params.append('userId',document.getElementById("actualUserId").value);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', getDetailedSch);
-    xhr.open('POST', 'taskFromSchServlet');
+    xhr.open('POST', 'protected/taskFromSchServlet');
     xhr.send(params);
 
   }
@@ -221,7 +221,7 @@ function addTaskToSch(){
     params.append('username', username);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', showAvailableTasks);
-    xhr.open('POST', 'taskServlet');
+    xhr.open('POST', 'protected/taskServlet');
     xhr.send(params);
 
 
@@ -276,7 +276,7 @@ function insertTaskToSch(){
     document.getElementById("schModal").display = "none";
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', getDetailedSch);
-    xhr.open('POST', 'taskToSchServlet');
+    xhr.open('POST', 'protected/taskToSchServlet');
     xhr.send(params);
 
 }
@@ -296,7 +296,7 @@ function onLoadSchedule() {
 
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', loadSchedule);
-    xhr.open('GET', 'schServlet?' + params);
+    xhr.open('GET', 'protected/schServlet?' + params);
     xhr.send();
 }
 
@@ -362,7 +362,7 @@ function addSchedule() {
     params.append('userId', userId);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', mainSchButton);
-    xhr.open('POST', 'schServlet');
+    xhr.open('POST', 'protected/schServlet');
     xhr.send(params);
     }else{
         alert("Title can't be empty");

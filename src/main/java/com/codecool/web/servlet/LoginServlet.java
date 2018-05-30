@@ -23,16 +23,6 @@ public class LoginServlet extends AbstractServlet {
     private static final Logger logger = Logger.getLogger(LoginServlet.class);
     private User user;
 
-    //logout
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        user = (User) req.getSession().getAttribute("user");
-        req.getSession().invalidate();
-        resp.sendRedirect("index.jsp");
-        logger.info(user.getName() + ": Logged out.");
-    }
-
-    //login
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DataSource dataSource = (DataSource) req.getServletContext().getAttribute("dataSource");
@@ -45,7 +35,7 @@ public class LoginServlet extends AbstractServlet {
             String passw = req.getParameter("password");
 
             try {
-                User user = loginService.getUserByName(userName,passw);
+                user = loginService.getUserByName(userName,passw);
                 req.getSession().setAttribute("user", user);
                 req.getRequestDispatcher("protected/main.jsp").forward(req, resp);
                 logger.info(user.getName() + ": Logged in.");
@@ -61,5 +51,10 @@ public class LoginServlet extends AbstractServlet {
             handleSqlError(resp, e);
             logger.error(user.getName() + ": Login SQL Error.", e);
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
     }
 }
