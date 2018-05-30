@@ -43,11 +43,11 @@
 		<div class="data_frame">
 
             <div id="goBackToMain" class="hidden content">
-                <button id="goBackToMainButton">Go Back</button>
+                <button id="goBackToMainButton" class="button">Go Back</button>
             </div>
 
             <div id="goBackToSchMenu" class="hidden content">
-                <button id="goBackToSchMenuButton">Go Back</button>
+                <button id="goBackToSchMenuButton" class="button">Go Back</button>
             </div>
 
             <div id="mainInfo" class="content">
