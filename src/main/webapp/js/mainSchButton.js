@@ -55,7 +55,7 @@ function loadSchedule() {
 
     const viewButton = document.createElement("button");
     viewButton.innerHTML="View";
-    viewButton.classList.add('button');
+
     viewButton.addEventListener("click", getDetailedSch);
     viewButton.id=scheduleInfo.schedule.id;
 
