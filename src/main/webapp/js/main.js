@@ -39,7 +39,7 @@ function onLoad() {
     backButtonEl = document.getElementById('goBackToMainButton');
     backButtonEl2 = document.getElementById('goBackToSchMenuButton');
     backButtonEl.addEventListener('click', backToMain);
-    backButtonEl2.addEventListener('click', backToSchMenu);
+    backButtonEl2.addEventListener('click', mainSchButton);
 }
 
 window.onload = onLoad;

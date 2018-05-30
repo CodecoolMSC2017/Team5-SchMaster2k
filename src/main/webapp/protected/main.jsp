@@ -38,6 +38,8 @@
                 <table id="tasksForSch">
                 </table>
 
+                <button id="deleteTaskFromSch" class = "hidden">Delete</button>
+
             </div>
 		</div>
 		<div class="data_frame">

@@ -1,6 +1,7 @@
 package com.codecool.web.service;
 
 import com.codecool.web.dao.DatabaseSchDao;
+import com.codecool.web.dao.DatabaseTaskDao;
 import com.codecool.web.model.Task;
 
 import java.sql.SQLException;
@@ -11,15 +12,23 @@ import java.util.Map;
 public class SchAllInfoService {
 
     private DatabaseSchDao db;
+    private DatabaseTaskDao taskDb;
+
+    public SchAllInfoService(DatabaseSchDao db, DatabaseTaskDao taskDb) {
+
+        this.db = db;
+        this.taskDb = taskDb;
+    }
 
     public SchAllInfoService(DatabaseSchDao db) {
+
         this.db = db;
     }
 
-    public Map<String, String> getTasksMap(int userId, int schId) throws SQLException{
+    public Map<String, Task> getTasksMap(int userId, int schId) throws SQLException{
 
         Map<Integer,String> dayIdandName = db.getDaysByUserIDandSchID(userId, schId);
-        Map<String, String> result = new HashMap<>();
+        Map<String, Task> result = new HashMap<>();
 
         for(int key:dayIdandName.keySet()){
             List<Integer> tasksId = db.getTasksId(userId, schId, key);
@@ -29,7 +38,7 @@ public class SchAllInfoService {
                 List<Integer> taskHours= db.getTask(key, i);
 
                 for (Integer j: taskHours){
-                    result.put(dayName + j, "String" + i);
+                    result.put(dayName + j, taskDb.getTaskById(i));
                 }
             }
         }
