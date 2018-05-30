@@ -167,10 +167,10 @@ function showAddButton(){
     }else{
         previousText = this.innerHTML;
         this.innerHTML = "";
-        const editButton = document.createElement("button");
-        editButton.innerHTML = "Edit";
-        editButton.classList.add("button");
-        this.appendChild(editButton);
+        const deleteButton = document.createElement("button");
+        deleteButton.innerHTML = "Delete";
+        deleteButton.classList.add("button");
+        this.appendChild(deleteButton);
 
 
     }
