@@ -27,7 +27,6 @@ INSERT INTO users (name, first_name, last_name, password, email, rank) VALUES
 	('Norb', 'Norbert','Hresko', 'a', 'norberthresko@gmail.com', 'User')
 ;
 
-
 /* ***** SCHEDULE ***** */
 
 CREATE TABLE schedules (
@@ -39,14 +38,13 @@ CREATE TABLE schedules (
 );
 
 INSERT INTO schedules (name, content, user_id) VALUES
-	('Test SCH for User3', null, 3),
 	('Test SCH for User1', null, 1),
 	('Test SCH for User2', null, 2),
+	('Test SCH for User3', null, 3),
 	('Test SCH for User4', null, 4),
-	('Test SCH for User5',null, 5),
-	('Test SCH for User6', 'Something useful', 6);
-
-
+	('Test SCH for User5', null, 5),
+	('Test SCH for User6', 'Something useful', 6)
+;
 
 /* ***** DAYS ***** */
 
@@ -132,7 +130,6 @@ INSERT INTO tasks (name, user_id) VALUES
 	('Task C', 6)
 ;
 
-
 /* ***** HOURS ***** */
 
 CREATE TABLE hours (
@@ -143,9 +140,6 @@ CREATE TABLE hours (
     FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE,
     FOREIGN KEY (day_id) REFERENCES days(id) ON DELETE CASCADE
 );
-
-
-
 
 /* ***** TASK-DAY-SCHEDULE CONNECTION ***** */
 
@@ -158,5 +152,3 @@ CREATE TABLE task_day_sch (
     FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE,
     FOREIGN KEY (schedule_id) REFERENCES schedules(id) ON DELETE CASCADE
 );
-
-
