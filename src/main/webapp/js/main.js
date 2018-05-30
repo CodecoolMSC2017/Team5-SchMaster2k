@@ -41,7 +41,7 @@ function onLoad() {
     backButtonEl.classList.add("button");
     backButtonEl2.classList.add("button");
     backButtonEl.addEventListener('click', backToMain);
-    backButtonEl2.addEventListener('click', backToSchMenu);
+    backButtonEl2.addEventListener('click', mainSchButton);
 }
 
 window.onload = onLoad;

@@ -215,7 +215,7 @@ public class DatabaseSchDao extends AbstractDao{
                     "INSERT INTO hours (name, task_id, day_id) VALUES (?, ?, ?);" +
                     "INSERT INTO task_day_sch (day_id, task_id, schedule_id) VALUES (?, ?, ?);"+
                     "COMMIT;";
-    
+
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
