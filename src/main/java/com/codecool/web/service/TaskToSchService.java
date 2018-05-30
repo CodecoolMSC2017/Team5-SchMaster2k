@@ -22,7 +22,10 @@ public class TaskToSchService {
         int hourName = Integer.valueOf(dayHour.substring(2,dayHour.length()));
         db.insertTaskToSch(hourName, getDayId(dayHour, schId), taskId, schId);
 
+    }
 
+    public void removeTaskFromSch(String dayHour, int taskId, int schId) throws SQLException {
+        db.deleteTaskFromSch(getDayId(dayHour, schId), taskId, schId);
 
     }
 }

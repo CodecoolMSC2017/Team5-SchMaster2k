@@ -111,13 +111,13 @@ public class DatabaseSchDao extends AbstractDao{
     public void addSchedule(String title, String content, int userId) throws SQLException {
         String sql = "INSERT INTO schedules (name, content, user_id) VALUES (?, ?, ?);" +
                      "INSERT INTO days (name, name_id, schedule_id) VALUES" +
-                    "('Day 1', 'mo', ?), " +
-                    "('Day 2', 'tu', ?), " +
-                    "('Day 3', 'we', ?), " +
-                    "('Day 4', 'th', ?), " +
-                    "('Day 5', 'fr', ?), " +
-                    "('Day 6', 'sa', ?), " +
-                    "('Day 7', 'su', ?); ";
+                    "('Monday', 'mo', ?), " +
+                    "('Tuesday', 'tu', ?), " +
+                    "('Wednesday', 'we', ?), " +
+                    "('Thursday', 'th', ?), " +
+                    "('Friday', 'fr', ?), " +
+                    "('Saturday', 'sa', ?), " +
+                    "('Sunday', 'su', ?); ";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, title);
             statement.setString(2, content);
@@ -164,6 +164,7 @@ public class DatabaseSchDao extends AbstractDao{
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 tasks.add(resultSet.getInt("task_id"));
+
             }
         }
         return tasks;
@@ -228,6 +229,26 @@ public class DatabaseSchDao extends AbstractDao{
             statement.setInt(6, schId);
             executeInsert(statement);
         }  catch (SQLException e) {
+
+        }
+    }
+
+    public void deleteTaskFromSch(int dayId, int taskId, int schId) throws SQLException {
+
+        String sql = "begin; " +
+            "delete from task_day_sch where task_id = ? and schedule_id = ?; " +
+            "delete from hours where task_id = ? and day_id = ?; " +
+            "commit;";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, taskId);
+            statement.setInt(2, schId);
+
+            statement.setInt(3, taskId);
+            statement.setInt(4, dayId);
+
+        } catch (SQLException e) {
 
         }
     }
