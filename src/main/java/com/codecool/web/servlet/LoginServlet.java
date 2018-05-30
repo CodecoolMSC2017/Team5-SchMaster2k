@@ -43,7 +43,7 @@ public class LoginServlet extends AbstractServlet {
             }catch (InvalidUserException e){
                 req.setAttribute("error", "Wrong password or user name!");
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
-                logger.error("Wrong password or user name.");
+                logger.warn("Wrong password or user name.");
             }
         }
         catch (SQLException e) {

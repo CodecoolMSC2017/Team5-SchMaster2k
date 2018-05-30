@@ -35,7 +35,7 @@ public class RegistrationServlet extends AbstractServlet {
 
             if (service.checkReg(name, email)) {
                 req.setAttribute("message", "This name or email already registered");
-                logger.error(user.getName() + ": Name or email already registered.");
+                logger.warn(user.getName() + ": Name or email already registered.");
             }
             else {
                 service.createReg(name, fname, lname, pass, email);
