@@ -151,12 +151,23 @@ function showDetailedSch(){
     for (let i = 0, keys = Object.keys(hm), ii = keys.length; i < ii; i++) {
 
         const tdAppend = document.getElementById(keys[i]);
-              const p = document.createElement("p");
-              p.innerHTML = keys[i];
+
               //console.log(keys[i]);
               tdAppend.innerHTML = hm[keys[i]].name;
 
+
       }
+
+    for(let k = 1;k<8;k++){
+        for(let l = 0;l<23;l++){
+
+            if(document.getElementById(days[k]+String(l)).innerHTML == document.getElementById(days[k]+String(l+1)).innerHTML){
+               document.getElementById(days[k]+String(l)).style.backgroundColor="#c6f993";
+               document.getElementById(days[k]+String(l+1)).style.backgroundColor="#c6f993";
+
+            }
+        }
+    }
 
     }
 
