@@ -1,6 +1,7 @@
 let currentSchId;
 let currentDayHourId;
 let previousText;
+let hashMap;
 
 function scheduleDays(info){
     const schTableEl = document.createElement('table');
@@ -54,7 +55,7 @@ function loadSchedule() {
 
     const viewButton = document.createElement("button");
     viewButton.innerHTML="View";
-    viewButton.classList.add('button');
+
     viewButton.addEventListener("click", getDetailedSch);
     viewButton.id=scheduleInfo.schedule.id;
 
@@ -92,7 +93,7 @@ function showDetailedSch(){
     }
 
     const hm = JSON.parse(this.responseText);
-
+    hashMap=hm;
     const days=["zero","mo","tu","we","th","fr","sa","su"];
     const fullDays=["zero","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
     const table = document.createElement("table"); //<table></table>
@@ -150,12 +151,23 @@ function showDetailedSch(){
     for (let i = 0, keys = Object.keys(hm), ii = keys.length; i < ii; i++) {
 
         const tdAppend = document.getElementById(keys[i]);
-              const p = document.createElement("p");
-              p.innerHTML = keys[i];
+
               //console.log(keys[i]);
               tdAppend.innerHTML = hm[keys[i]].name;
 
+
       }
+
+    for(let k = 1;k<8;k++){
+        for(let l = 0;l<23;l++){
+
+            if(document.getElementById(days[k]+String(l)).innerHTML == document.getElementById(days[k]+String(l+1)).innerHTML){
+               document.getElementById(days[k]+String(l)).style.backgroundColor="#c6f993";
+               document.getElementById(days[k]+String(l+1)).style.backgroundColor="#c6f993";
+
+            }
+        }
+    }
 
     }
 
@@ -167,21 +179,35 @@ function showAddButton(){
     }else{
         previousText = this.innerHTML;
         this.innerHTML = "";
-        const editButton = document.createElement("button");
-        editButton.innerHTML = "Edit";
-        editButton.classList.add("button");
-        this.appendChild(editButton);
+        const deleteButton = document.createElement("button");
+        deleteButton.innerHTML = "Delete";
+        deleteButton.classList.add("button");
+        deleteButton.addEventListener("click", deleteTaskFromSch);
+        this.appendChild(deleteButton);
 
 
     }
-
-
 }
 
+function deleteTaskFromSch(){
+
+    const params = new URLSearchParams();
+    params.append('schId', currentSchId);
+    params.append('dayHour',this.parentElement.id);
+    params.append('taskId', hashMap[this.parentElement.id].id);
+    params.append('userId',document.getElementById("actualUserId").value);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', getDetailedSch);
+    xhr.open('POST', 'taskFromSchServlet');
+    xhr.send(params);
+
+  }
+
+
 function hideAddButton(){
-        if(this.firstChild.nodeName=="BUTTON" && this.firstChild.innerHTML != "Edit"){
+        if(this.firstChild.nodeName=="BUTTON" && this.firstChild.innerHTML != "Delete"){
                this.firstChild.classList.add("hidden");
-           }else if(this.firstChild.nodeName=="BUTTON" && this.firstChild.innerHTML == "Edit"){
+           }else if(this.firstChild.nodeName=="BUTTON" && this.firstChild.innerHTML == "Delete"){
                 this.removeChild(this.firstChild);
                 this.innerHTML = previousText;
           }

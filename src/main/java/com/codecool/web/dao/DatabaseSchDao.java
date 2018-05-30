@@ -236,7 +236,7 @@ public class DatabaseSchDao extends AbstractDao{
     public void deleteTaskFromSch(int dayId, int taskId, int schId) throws SQLException {
 
         String sql = "begin; " +
-            "delete from task_day_sch where task_id = ? and schedule_id = ?; " +
+            "delete from task_day_sch where task_id = ? and schedule_id = ? and day_id = ?; " +
             "delete from hours where task_id = ? and day_id = ?; " +
             "commit;";
 
@@ -244,9 +244,11 @@ public class DatabaseSchDao extends AbstractDao{
 
             statement.setInt(1, taskId);
             statement.setInt(2, schId);
+            statement.setInt(3, dayId);
 
-            statement.setInt(3, taskId);
-            statement.setInt(4, dayId);
+            statement.setInt(4, taskId);
+            statement.setInt(5, dayId);
+            statement.executeUpdate();
 
         } catch (SQLException e) {
 
