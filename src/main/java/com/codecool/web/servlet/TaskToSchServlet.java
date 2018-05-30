@@ -33,8 +33,9 @@ public class TaskToSchServlet extends AbstractServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
             DatabaseSchDao schDao = new DatabaseSchDao(connection);
+            TaskDao taskDao = new DatabaseTaskDao(connection);
             TaskToSchService service = new TaskToSchService(schDao);
-            SchAllInfoService schService = new SchAllInfoService(schDao);
+            SchAllInfoService schService = new SchAllInfoService(schDao,taskDao);
             user = (User) req.getSession().getAttribute("user");
 
             dayHour = req.getParameter("dayHour");
