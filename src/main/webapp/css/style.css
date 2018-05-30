@@ -59,4 +59,10 @@ table{
     cursor: pointer;
 }
 
+div#guestLink {
+    margin-left: 170px;
+    margin-top: -42px;
+    font-size: 17px;
+}
+
 
