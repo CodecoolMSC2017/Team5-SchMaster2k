@@ -133,7 +133,7 @@ function showDetailedSch(){
                 addButton.classList.add("hidden");
 
                 addButton.addEventListener("click",addTaskToSch);
-                td.addEventListener("mouseover",showAddButton);
+                td.addEventListener("mouseover",showAddButton(hm));
                 td.addEventListener("mouseleave",hideAddButton);
                 td.appendChild(addButton);
                 tr.appendChild(td);
@@ -161,7 +161,7 @@ function showDetailedSch(){
 
 
 
-function showAddButton(){
+function showAddButton(hm){
     if(this.firstChild.nodeName=="BUTTON"){
         this.firstChild.classList.remove("hidden");
     }else{
@@ -170,13 +170,26 @@ function showAddButton(){
         const deleteButton = document.createElement("button");
         deleteButton.innerHTML = "Delete";
         deleteButton.classList.add("button");
+        deleteButton.addEventListener("click", deleteTaskFromSch(hm))
         this.appendChild(deleteButton);
 
 
     }
-
-
 }
+
+function deleteTaskFromSch(hm){
+
+    const params = new URLSearchParams();
+    params.append('schId', currentSchId);
+    params.append('dayHour',this.parentElement.id);
+    params.appendChild('taskId', hm[this.parentElement.id].id);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', getDetailedSchW);
+    xhr.open('POST', 'taskFromSchServlet');
+    xhr.send(params);
+
+  }
+
 
 function hideAddButton(){
         if(this.firstChild.nodeName=="BUTTON" && this.firstChild.innerHTML != "Edit"){
