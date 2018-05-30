@@ -38,9 +38,7 @@ function onLoad() {
     userInfo();
     mainInfo();
     backButtonEl = document.getElementById('goBackToMainButton');
-    backButtonEl2 = document.getElementById('goBackToSchMenu');
-    backButtonEl.classList.add("button");
-    backButtonEl2.classList.add("button");
+    backButtonEl2 = document.getElementById('goBackToSchMenuButton');
     backButtonEl.addEventListener('click', backToMain);
     backButtonEl2.addEventListener('click', mainSchButton);
 }
