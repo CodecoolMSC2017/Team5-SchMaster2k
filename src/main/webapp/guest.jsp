@@ -19,9 +19,11 @@
 		<p id="userId" style="display: none">${userId}</p>
 		<p id="schId" style="display: none">${schId}</p>
 
-        <div id="scheduleInfo" class="content">
-            <h3>Schedule</h3>
-            <div id="testDivForTable">
+        <div class="data_frame">
+            <div id="scheduleInfo" class="content">
+                <h3>Schedule</h3>
+                <div id="testDivForTable">
+                </div>
             </div>
         </div>
 
