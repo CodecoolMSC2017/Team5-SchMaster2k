@@ -156,6 +156,7 @@ function showDetailedSch(arg){
 
               //console.log(keys[i]);
               tdAppend.innerHTML = hm[keys[i]].name;
+              tdAppend.style.backgroundColor = "#93daf9";
 
 
       }
