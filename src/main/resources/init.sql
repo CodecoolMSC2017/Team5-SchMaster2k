@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS shared;
 DROP TABLE IF EXISTS task_day_sch;
 DROP TABLE IF EXISTS hours;
 DROP TABLE IF EXISTS days;
@@ -150,5 +151,15 @@ CREATE TABLE task_day_sch (
     schedule_id INTEGER NOT NULL,
     FOREIGN KEY (day_id) REFERENCES days(id) ON DELETE CASCADE,
     FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE,
+    FOREIGN KEY (schedule_id) REFERENCES schedules(id) ON DELETE CASCADE
+);
+
+/* ***** SHARED SCHEDULE ***** */
+
+CREATE TABLE shared (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    schedule_id INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (schedule_id) REFERENCES schedules(id) ON DELETE CASCADE
 );
