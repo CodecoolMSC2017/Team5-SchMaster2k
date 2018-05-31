@@ -86,9 +86,14 @@ function getDetailedSch(){
 }
 
 function showDetailedSch(arg){
+    const guestBEl = document.getElementById("guestButton");
+    if(guestBEl.innerHTML == "Unshare Link"){
+        guestButton();
+    }else{
+        onUnShareButton();
+    }
 
-    showContents(["scheduleInfo", "goBackToSchMenu"]);
-
+    showContents(["scheduleInfo", "goBackToSchMenu", "guestLink"]);
 
     if(document.getElementById("testDivForTable").firstChild){
         document.getElementById("testDivForTable").removeChild(document.getElementById("testDivForTable").firstChild);
