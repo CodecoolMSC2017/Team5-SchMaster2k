@@ -51,7 +51,7 @@
 
             <div id="goBackToSchMenu" class="hidden content">
                 <button id="goBackToSchMenuButton" class="button">Go Back</button>
-                <button id="guestButton" class="button">Sharable Link</button>
+                <button id="guestButton" class="button">Share Link</button>
             </div>
 
             <div id="guestLink" class="hidden content">
@@ -72,7 +72,6 @@
             </div>
 
             <div id="scheduleInfo" class="hidden content">
-                <h3>Schedule</h3>
                 <div id="testDivForTable">
                 </div>
             </div>
