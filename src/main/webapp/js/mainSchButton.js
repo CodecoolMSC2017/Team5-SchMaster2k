@@ -2,6 +2,8 @@ let currentSchId;
 let currentDayHourId;
 let previousText;
 let hashMap;
+let taskLength;
+
 
 function scheduleDays(info){
     const schTableEl = document.createElement('table');
@@ -234,11 +236,24 @@ function showAvailableTasks(){
            table.removeChild(table.firstChild);
    }
 
+
+   const hourTr = document.createElement("tr");
+   const hourTextTd = document.createElement("td");
+   const textField = document.createElement("input");
+   textField.id="hourText";
+   textField.placeholder="Length of task(Hr)";
+   hourTextTd.appendChild(textField);
+   hourTr.appendChild(hourTextTd);
+   table.appendChild(hourTr);
+
+
     const tableHeaderRow = document.createElement("tr");
     const tdNameHeader = document.createElement("td");
     tdNameHeader.innerHTML="Name";
     tableHeaderRow.appendChild(tdNameHeader);
     table.appendChild(tableHeaderRow);
+
+
 
 
     for(let i=0;i<tasks.length;i++){
@@ -257,6 +272,8 @@ function showAvailableTasks(){
 
     }
 
+
+
     const modalDiv =document.getElementById("schModal");
     const close = document.getElementById("closeModal");
     close.addEventListener("click",closeModal);
@@ -264,18 +281,48 @@ function showAvailableTasks(){
 }
 
 function insertTaskToSch(){
-    const modalDiv = document.getElementById("schModal");
-    modalDiv.style.display = "none";
-    const params = new URLSearchParams();
-    params.append('schId', currentSchId);
-    params.append('dayHour',currentDayHourId);
-    params.append('taskId',this.id);
-    params.append("userId", document.getElementById("actualUserId").value);
-    document.getElementById("schModal").display = "none";
-    const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', getDetailedSch);
-    xhr.open('POST', 'protected/taskToSchServlet');
-    xhr.send(params);
+
+    if(document.getElementById("hourText").value == null || document.getElementById("hourText").value == ""){
+        taskLength = 1;
+    }else{
+        taskLength = parseInt(document.getElementById("hourText").value);
+    }
+
+    const startingHour = parseInt(currentDayHourId.substring(2,currentDayHourId.length));
+    const endHour =startingHour + parseInt(document.getElementById("hourText").value);
+    const day = currentDayHourId.substring(0,2);
+    let canAppend = true;
+
+    if(!(parseInt(document.getElementById("hourText").value)>23-startingHour)){
+
+        for(let i = startingHour; i<endHour;i++){
+                if(document.getElementById(day+String(i)).firstChild.nodeName != "BUTTON" && document.getElementById(day+String(i)).innerHTML!=null){
+                    alert("This task would overlap an other one. Chose an other place, or length for this task");
+                    canAppend=false;
+                    break;
+                }
+        }
+
+        if(canAppend==true){
+            const modalDiv = document.getElementById("schModal");
+            modalDiv.style.display = "none";
+            const params = new URLSearchParams();
+            params.append('schId', currentSchId);
+            params.append('dayHour',currentDayHourId);
+            params.append('taskLength', taskLength);
+            params.append('taskId',this.id);
+            params.append("userId", document.getElementById("actualUserId").value);
+            document.getElementById("schModal").display = "none";
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener('load', getDetailedSch);
+            xhr.open('POST', 'protected/taskToSchServlet');
+            xhr.send(params);
+        }
+
+    }else{
+        alert("That task is too long for a day with a starting hour of " + startingHour);
+    }
+
 
 }
 
