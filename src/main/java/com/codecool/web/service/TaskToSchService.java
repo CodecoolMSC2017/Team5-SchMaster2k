@@ -18,15 +18,18 @@ public class TaskToSchService {
         return dayId;
     }
 
-    public void addTaskToSch(String dayHour, int taskId, int schId, int taskLength) throws SQLException {
-        int hourName = Integer.valueOf(dayHour.substring(2,dayHour.length()));
+    public int addTaskToSch(String dayHour, int taskId, int schId, int taskLength) throws SQLException {
+        int hourName = Integer.valueOf(dayHour.substring(2, dayHour.length()));
+        if (db.isInSch(taskId, schId) == -1) {
+            for (int i = hourName; i < hourName + taskLength; i++) {
+                db.insertTaskToSch(i, getDayId(dayHour, schId), taskId, schId);
 
+            }
+        return 1;
 
-        for(int i = hourName; i<hourName+taskLength; i++){
-            db.insertTaskToSch(i, getDayId(dayHour, schId), taskId, schId);
-
+        }else{
+            return -1;
         }
-
     }
 
     public void removeTaskFromSch(String dayHour, int taskId, int schId) throws SQLException {

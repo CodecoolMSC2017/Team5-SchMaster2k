@@ -85,6 +85,6 @@
                 <input id = "newTaskName" type="text">
                 <button id="addTaskButton" class="button">Add Task</button>
             </div>
-
+        </div>
 	</body>
 </html>

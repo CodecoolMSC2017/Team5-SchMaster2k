@@ -48,11 +48,16 @@ public class TaskToSchServlet extends AbstractServlet {
 
 
 
-            service.addTaskToSch(dayHour, taskId, schId, taskLength);
+            int statusNumber = service.addTaskToSch(dayHour, taskId, schId, taskLength);
             int userId = Integer.parseInt(req.getParameter("userId"));
             Map<String,Task> mapOfTasks = schService.getTasksMap(userId, Integer.parseInt(req.getParameter("schId")));
             resp.setContentType("application/json");
-            sendMessage(resp, HttpServletResponse.SC_OK, mapOfTasks);
+            if(statusNumber==-1){
+                sendMessage(resp, HttpServletResponse.SC_OK, new MessageDto("-1"));
+            }
+            sendMessage(resp, HttpServletResponse.SC_OK, new MessageDto("1"));
+
+
 
             logger.info(user.getName() + ": Add task(" +taskId+ ") in sch(" +schId+ ") at hour(" +dayHour+ ")"  );
         } catch (SQLException ex) {

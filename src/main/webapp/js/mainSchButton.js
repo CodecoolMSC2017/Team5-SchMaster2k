@@ -3,7 +3,7 @@ let currentDayHourId;
 let previousText;
 let hashMap;
 let taskLength;
-
+let insertStatusNumber;
 
 function scheduleDays(info){
     const schTableEl = document.createElement('table');
@@ -71,6 +71,15 @@ function loadSchedule() {
 
 
 function getDetailedSch(){
+    if(this.responseText!=null){
+        const response = JSON.parse(this.responseText);
+        if(response.message == "-1"){
+            insertStatusNumber=-1;
+        }else{
+            insertStatusNumber=1;
+        }
+
+    }
     const params = new URLSearchParams();
     if(this.innerHTML=="View"){
         currentSchId=this.id;
@@ -175,6 +184,11 @@ function showDetailedSch(arg){
 
             }
         }
+    }
+
+    if(insertStatusNumber==-1){
+        alert("You already added that task to this schedule");
+        insertStatusNumber=1;
     }
 }
 
