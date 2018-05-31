@@ -2,6 +2,7 @@ let currentSchId;
 let currentDayHourId;
 let previousText;
 let hashMap;
+let taskLength;
 
 
 function scheduleDays(info){
@@ -282,6 +283,13 @@ function showAvailableTasks(){
 }
 
 function insertTaskToSch(){
+
+    if(document.getElementById("hourText").value == null || document.getElementById("hourText").value == ""){
+        taskLength = 1;
+    }else{
+        taskLength = parseInt(document.getElementById("hourText").value);
+    }
+
     const startingHour = parseInt(currentDayHourId.substring(2,currentDayHourId.length));
     const endHour =startingHour + parseInt(document.getElementById("hourText").value);
     const day = currentDayHourId.substring(0,2);
@@ -291,7 +299,7 @@ function insertTaskToSch(){
 
         for(let i = startingHour; i<endHour;i++){
                 if(document.getElementById(day+String(i)).firstChild.nodeName != "BUTTON" && document.getElementById(day+String(i)).innerHTML!=null){
-                    alert("This task would overlap an other one");
+                    alert("This task would overlap an other one. Chose an other place, or length for this task");
                     canAppend=false;
                     break;
                 }
@@ -303,7 +311,7 @@ function insertTaskToSch(){
             const params = new URLSearchParams();
             params.append('schId', currentSchId);
             params.append('dayHour',currentDayHourId);
-            params.append('taskLength', parseInt(document.getElementById("hourText").value));
+            params.append('taskLength', taskLength);
             params.append('taskId',this.id);
             params.append("userId", document.getElementById("actualUserId").value);
             document.getElementById("schModal").display = "none";

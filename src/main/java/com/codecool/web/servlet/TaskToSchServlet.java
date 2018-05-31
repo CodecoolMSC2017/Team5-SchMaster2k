@@ -42,7 +42,10 @@ public class TaskToSchServlet extends AbstractServlet {
             dayHour = req.getParameter("dayHour");
             taskId = Integer.parseInt(req.getParameter("taskId"));
             schId = Integer.parseInt(req.getParameter("schId"));
+
             taskLength=Integer.parseInt(req.getParameter("taskLength"));
+
+
 
 
             service.addTaskToSch(dayHour, taskId, schId, taskLength);
