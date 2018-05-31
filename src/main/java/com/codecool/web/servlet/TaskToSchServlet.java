@@ -28,6 +28,7 @@ public class TaskToSchServlet extends AbstractServlet {
     private String dayHour;
     private int taskId;
     private int schId;
+    private int taskLength;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -41,8 +42,10 @@ public class TaskToSchServlet extends AbstractServlet {
             dayHour = req.getParameter("dayHour");
             taskId = Integer.parseInt(req.getParameter("taskId"));
             schId = Integer.parseInt(req.getParameter("schId"));
+            taskLength=Integer.parseInt(req.getParameter("taskLength"));
 
-            service.addTaskToSch(dayHour, taskId, schId);
+
+            service.addTaskToSch(dayHour, taskId, schId, taskLength);
             int userId = Integer.parseInt(req.getParameter("userId"));
             Map<String,Task> mapOfTasks = schService.getTasksMap(userId, Integer.parseInt(req.getParameter("schId")));
             resp.setContentType("application/json");

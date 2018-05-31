@@ -18,9 +18,14 @@ public class TaskToSchService {
         return dayId;
     }
 
-    public void addTaskToSch(String dayHour, int taskId, int schId) throws SQLException {
+    public void addTaskToSch(String dayHour, int taskId, int schId, int taskLength) throws SQLException {
         int hourName = Integer.valueOf(dayHour.substring(2,dayHour.length()));
-        db.insertTaskToSch(hourName, getDayId(dayHour, schId), taskId, schId);
+
+
+        for(int i = hourName; i<hourName+taskLength; i++){
+            db.insertTaskToSch(i, getDayId(dayHour, schId), taskId, schId);
+
+        }
 
     }
 
