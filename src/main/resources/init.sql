@@ -163,3 +163,7 @@ CREATE TABLE shared (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (schedule_id) REFERENCES schedules(id) ON DELETE CASCADE
 );
+
+INSERT INTO shared (user_id, schedule_id) VALUES
+	(3, 3)
+;

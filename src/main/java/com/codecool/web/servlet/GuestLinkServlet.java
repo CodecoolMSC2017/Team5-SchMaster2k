@@ -65,6 +65,23 @@ public class GuestLinkServlet extends AbstractServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+        try (Connection c = getConnection(getServletContext())) {
+            DatabaseSchDao db = new DatabaseSchDao(c);
+//            DatabaseTaskDao taskDb = new DatabaseTaskDao(c);
+//            SchAllInfoService service = new SchAllInfoService(db, taskDb);
+
+            int userId = Integer.parseInt(req.getParameter("userId"));
+            int schId = Integer.parseInt(req.getParameter("schId"));
+
+            Map<String,Task> mapOfTasks = service.getTasksMap(userId, schId);
+            sendMessage(resp, HttpServletResponse.SC_OK, mapOfTasks);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            handleSqlError(resp, e);
+            logger.error("Guest Link: Error.", e);
+        }
+
+
     }
 }
