@@ -22,6 +22,18 @@ public class GuestLinkServlet extends AbstractServlet {
     private static final Logger logger = Logger.getLogger(GuestLinkServlet.class);
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        int userId = Integer.parseInt(req.getParameter("id"));
+        int schId = Integer.parseInt(req.getParameter("schid"));
+
+        req.setAttribute("userId", userId);
+        req.setAttribute("schId", schId);
+
+        req.getRequestDispatcher("guest.jsp").forward(req, resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection c = getConnection(getServletContext())) {
             DatabaseSchDao db = new DatabaseSchDao(c);
@@ -43,14 +55,16 @@ public class GuestLinkServlet extends AbstractServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try (Connection c = getConnection(getServletContext())) {
 
-        int userId = Integer.parseInt(req.getParameter("id"));
-        int schId = Integer.parseInt(req.getParameter("schid"));
+        } catch (SQLException e){
 
-        req.setAttribute("userId", userId);
-        req.setAttribute("schId", schId);
+        }
+    }
 
-        req.getRequestDispatcher("guest.jsp").forward(req, resp);
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doDelete(req, resp);
     }
 }

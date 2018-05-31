@@ -1,3 +1,12 @@
+function deleteSharedSch(){
+    const params = new URLSearchParams();
+    params.append("userId", userId);
+    params.append("schId", currentSchId);
+    const xhr = new XMLHttpRequest();
+    xhr.open('DELETE', 'guestLink');
+    xhr.send(params);
+}
+
 function onUnShareButton(){
     showContents(["scheduleInfo", "goBackToSchMenu"]);
     const divEl = document.getElementById('guestLink');
@@ -9,6 +18,15 @@ function onUnShareButton(){
     sButton.innerHTML = "Share Link";
     sButton.removeEventListener("click", onUnShareButton);
     sButton.addEventListener("click", guestButton);
+}
+
+function safeSharedSch(){
+    const params = new URLSearchParams();
+    params.append("userId", userId);
+    params.append("schId", currentSchId);
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', 'guestLink');
+    xhr.send(params);
 }
 
 function guestButton() {
@@ -24,5 +42,6 @@ function guestButton() {
     }
     const pEL = document.createElement('p');
     pEL.innerHTML = "http://localhost:8080/sch_master_2k/guestLink?id=" + userId + "&schid=" + currentSchId;
+    safeSharedSch();
     divEl.appendChild(pEL);
 }
