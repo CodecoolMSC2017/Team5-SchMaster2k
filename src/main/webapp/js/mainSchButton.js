@@ -317,7 +317,7 @@ function insertTaskToSch(){
     const day = currentDayHourId.substring(0,2);
     let canAppend = true;
 
-    if(!(parseInt(document.getElementById("hourText").value)>23-startingHour)){
+    if(!(parseInt(document.getElementById("hourText").value)>24-startingHour)){
 
         for(let i = startingHour; i<endHour;i++){
                 if(document.getElementById(day+String(i)).firstChild.nodeName != "BUTTON" && document.getElementById(day+String(i)).innerHTML!=null){
