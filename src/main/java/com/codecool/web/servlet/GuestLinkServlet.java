@@ -2,8 +2,10 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.dao.DatabaseSchDao;
 import com.codecool.web.dao.DatabaseTaskDao;
+import com.codecool.web.dao.GuestLinkDao;
 import com.codecool.web.model.Task;
 import com.codecool.web.model.User;
+import com.codecool.web.service.GuestLinksService;
 import com.codecool.web.service.SchAllInfoService;
 import org.apache.log4j.Logger;
 
@@ -20,6 +22,7 @@ import java.util.Map;
 public class GuestLinkServlet extends AbstractServlet {
 
     private static final Logger logger = Logger.getLogger(GuestLinkServlet.class);
+    private User user;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -57,9 +60,17 @@ public class GuestLinkServlet extends AbstractServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection c = getConnection(getServletContext())) {
+            GuestLinkDao db = new GuestLinkDao(c);
+            GuestLinksService service = new GuestLinksService(db);
+            int userId = Integer.parseInt(req.getParameter("userId"));
+            int schId = Integer.parseInt(req.getParameter("schId"));
+            user = (User) req.getSession().getAttribute("user");
+            service.insertGuestLink(userId, schId);
+            logger.info(user.getName() + " create shareable Link");
 
         } catch (SQLException e){
-
+            handleSqlError(resp, e);
+            logger.warn("Guest Link PUT", e);
         }
     }
 

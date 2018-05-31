@@ -25,8 +25,8 @@ function safeSharedSch(){
     params.append("userId", userId);
     params.append("schId", currentSchId);
     const xhr = new XMLHttpRequest();
-    xhr.open('PUT', 'guestLink');
-    xhr.send(params);
+    xhr.open('PUT', 'guestLink?' + params);
+    xhr.send();
 }
 
 function guestButton() {
