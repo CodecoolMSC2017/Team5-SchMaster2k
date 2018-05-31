@@ -4,6 +4,8 @@ let previousText;
 let hashMap;
 let taskLength;
 let insertStatusNumber;
+let referenceCellId;
+
 
 function scheduleDays(info){
     const schTableEl = document.createElement('table');
@@ -181,20 +183,40 @@ function showDetailedSch(arg){
         for(let l = 0;l<23;l++){
 
             if(document.getElementById(days[k]+String(l)).innerHTML == document.getElementById(days[k]+String(l+1)).innerHTML){
+
                document.getElementById(days[k]+String(l)).style.backgroundColor="#c6f993";
                document.getElementById(days[k]+String(l)).style.fontWeight = "bold";
+               document.getElementById(days[k]+String(l)).style.borderBottom = "none";
+               document.getElementById(days[k]+String(l)).style.borderTop = "none";
+               document.getElementById(days[k]+String(l+1)).style.borderBottom = "none";
+               document.getElementById(days[k]+String(l+1)).style.borderTop = "none";
                document.getElementById(days[k]+String(l+1)).style.backgroundColor="#c6f993";
                document.getElementById(days[k]+String(l+1)).style.fontWeight = "bold";
+               }
+
+
+
+
 
             }
         }
+
+
+
+
+        if(insertStatusNumber==-1){
+                alert("You already added that task to this schedule");
+                insertStatusNumber=1;
+            }
     }
 
-    if(insertStatusNumber==-1){
-        alert("You already added that task to this schedule");
-        insertStatusNumber=1;
-    }
-}
+
+
+
+
+
+
+
 
 
 function showAddButton(){
