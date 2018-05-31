@@ -1,6 +1,8 @@
 package com.codecool.web.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class GuestLinkDao extends AbstractDao{
 
@@ -8,28 +10,24 @@ public class GuestLinkDao extends AbstractDao{
         super(connection);
     }
 
-    public void fnForInsertRENAME(){
+    public void insertIdsToShareTable(int userId, int schId) throws SQLException{
+        String sql = "INSERT INTO shared(schedule_id, user_id) VALUES (?,?);";
 
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, schId);
+            statement.setInt(2, userId);
+            executeInsert(statement);
+        }
     }
 
-    public void fnForInsertRENAME22(){
-
-    }
-
-    public void deleteGuestLink(int userId, int schId){
+    public void deleteIdsToShareTable(int userId, int schId) throws SQLException {
         String sql = "DELETE FROM shared WHERE user_id = ? AND schedule_id = ?;";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, "user_id");
-            statement.setString(2, "schedule_id");
+            statement.setInt(1, userId);
+            statement.setInt(2, schId);
             statement.executeUpdate();
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
-    public void fnForDeleteRENAME22(){
-
-    }
 }

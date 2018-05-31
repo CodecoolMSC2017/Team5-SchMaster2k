@@ -157,13 +157,9 @@ CREATE TABLE task_day_sch (
 /* ***** SHARED SCHEDULE ***** */
 
 CREATE TABLE shared (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL,
     schedule_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    PRIMARY KEY (schedule_id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (schedule_id) REFERENCES schedules(id) ON DELETE CASCADE
 );
-
-INSERT INTO shared (user_id, schedule_id) VALUES
-	(3, 3)
-;

@@ -12,12 +12,12 @@ public class GuestLinksService {
         this.db = db;
     }
 
-    public void insertGuestLink(int userId, int schId){
-
+    public void insertGuestLink(int userId, int schId) throws SQLException{
+        db.insertIdsToShareTable(userId, schId);
     }
 
-    public void deleteGuestLink(int userId, int schId){
-        db.deleteGuestLink(userId, schId);
+    public void deleteGuestLink(int userId, int schId) throws SQLException {
+        db.deleteIdsToShareTable(userId, schId);
     }
 
 }

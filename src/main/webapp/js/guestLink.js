@@ -3,8 +3,8 @@ function deleteSharedSch(){
     params.append("userId", userId);
     params.append("schId", currentSchId);
     const xhr = new XMLHttpRequest();
-    xhr.open('DELETE', 'guestLink');
-    xhr.send(params);
+    xhr.open('DELETE', 'guestLink?' + params);
+    xhr.send();
 }
 
 function onUnShareButton(){
@@ -13,7 +13,7 @@ function onUnShareButton(){
     while(divEl.firstChild){
         divEl.removeChild(divEl.firstChild);
     }
-
+    deleteSharedSch();
     const sButton = document.getElementById("guestButton");
     sButton.innerHTML = "Share Link";
     sButton.removeEventListener("click", onUnShareButton);
@@ -25,8 +25,8 @@ function safeSharedSch(){
     params.append("userId", userId);
     params.append("schId", currentSchId);
     const xhr = new XMLHttpRequest();
-    xhr.open('PUT', 'guestLink');
-    xhr.send(params);
+    xhr.open('PUT', 'guestLink?' + params);
+    xhr.send();
 }
 
 function guestButton() {
