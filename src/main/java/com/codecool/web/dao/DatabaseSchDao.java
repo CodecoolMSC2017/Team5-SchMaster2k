@@ -210,6 +210,24 @@ public class DatabaseSchDao extends AbstractDao{
         return 0;
     }
 
+    public int isInSch(int taskId, int schId) throws SQLException {
+        String sql = "SELECT COUNT(task_id) AS count FROM task_day_sch WHERE task_id = ? and schedule_id = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, taskId);
+            statement.setInt(2, schId);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                if(rs.getInt("count")==0) {
+                    return -1;
+                }
+            }
+        }
+        return 1;
+
+
+    }
+
     public void insertTaskToSch(int hourName, int dayId, int taskId, int schId) throws SQLException{
 
         String sql ="BEGIN;"+
