@@ -1,4 +1,4 @@
-function onLoad(){
+function createTable(response){
 
     if(document.getElementById("testDivForTable").firstChild){
         document.getElementById("testDivForTable").removeChild(document.getElementById("testDivForTable").firstChild);
@@ -38,20 +38,8 @@ function onLoad(){
             }else{
 
                 td.id=days[c]+r;
-                const addButton = document.createElement("button");
-                addButton.innerHTML = "Add task";
-                addButton.id=days[c]+r;
-                addButton.classList.add("addTaskButton");
-                addButton.classList.add("button");
-                addButton.classList.add("hidden");
 
-                addButton.addEventListener("click",addTaskToSch);
-                td.addEventListener("mouseover",showAddButton);
-                td.addEventListener("mouseleave",hideAddButton);
-                td.appendChild(addButton);
                 tr.appendChild(td);
-
-
             }
         }
         table.appendChild(tr);
@@ -77,6 +65,22 @@ function onLoad(){
             }
         }
     }
+}
+
+function onLoad(){
+
+    const params = new URLSearchParams();
+    const userId = document.getElementById("userId").innerHTML;
+
+    const schId = document.getElementById("schId").innerHTML;
+
+    params.append("userId", userId);
+    params.append("schId", schId);
+
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', createTable);
+    xhr.open('POST', 'guestLink');
+    xhr.send(params);
 }
 
 window.onload = onLoad;
