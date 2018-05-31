@@ -22,25 +22,35 @@ public class GuestLinkServlet extends AbstractServlet {
     private static final Logger logger = Logger.getLogger(GuestLinkServlet.class);
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection c = getConnection(getServletContext())) {
             DatabaseSchDao db = new DatabaseSchDao(c);
             DatabaseTaskDao taskDb = new DatabaseTaskDao(c);
             SchAllInfoService service = new SchAllInfoService(db, taskDb);
 
-            int userId = Integer.parseInt(req.getParameter("id"));
-            int schId = Integer.parseInt(req.getParameter("schid"));
+            int userId = Integer.parseInt(req.getParameter("userId"));
+            int schId = Integer.parseInt(req.getParameter("schId"));
 
             Map<String,Task> mapOfTasks = service.getTasksMap(userId, schId);
-            // userID above should be task object (Map<Task, String>)
 
-            req.setAttribute("mapOfTask", mapOfTasks);
-            req.getRequestDispatcher("guest.jsp").forward(req, resp);
+            sendMessage(resp, HttpServletResponse.SC_OK, mapOfTasks);
 
         } catch (SQLException e) {
             e.printStackTrace();
             handleSqlError(resp, e);
             logger.error("Guest Link: Error.", e);
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        int userId = Integer.parseInt(req.getParameter("id"));
+        int schId = Integer.parseInt(req.getParameter("schid"));
+
+        req.setAttribute("userId", userId);
+        req.setAttribute("schId", schId);
+
+        req.getRequestDispatcher("guest.jsp").forward(req, resp);
     }
 }

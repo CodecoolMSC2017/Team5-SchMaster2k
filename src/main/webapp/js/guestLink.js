@@ -1,5 +1,4 @@
 
-
 function guestButton() {
     showContents(["scheduleInfo", "goBackToSchMenu", "guestLink"]);
     const divEl = document.getElementById('guestLink');

@@ -85,7 +85,7 @@ function getDetailedSch(){
 
 }
 
-function showDetailedSch(){
+function showDetailedSch(arg){
 
     showContents(["scheduleInfo", "goBackToSchMenu"]);
 
@@ -171,9 +171,7 @@ function showDetailedSch(){
             }
         }
     }
-
-    }
-
+}
 
 
 function showAddButton(){

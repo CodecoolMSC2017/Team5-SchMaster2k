@@ -6,7 +6,7 @@
 		<title>Schedule Master 2000</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<script type="text/javascript" src="js/guest.js"></script>
+		<script type="text/javascript" src="js/guestLink.js"></script>
 		<script type="text/javascript" src="js/user_info.js"></script>
 		<script type="text/javascript" src="js/main_info.js"></script>
 		<script type="text/javascript" src="js/mainSchButton.js"></script>
