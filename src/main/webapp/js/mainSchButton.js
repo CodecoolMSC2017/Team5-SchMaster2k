@@ -166,6 +166,7 @@ function showDetailedSch(arg){
               //console.log(keys[i]);
               tdAppend.innerHTML = hm[keys[i]].name;
               tdAppend.style.backgroundColor = "#93daf9";
+              tdAppend.style.fontWeight = "bold";
 
 
       }
@@ -175,7 +176,9 @@ function showDetailedSch(arg){
 
             if(document.getElementById(days[k]+String(l)).innerHTML == document.getElementById(days[k]+String(l+1)).innerHTML){
                document.getElementById(days[k]+String(l)).style.backgroundColor="#c6f993";
+               document.getElementById(days[k]+String(l)).style.fontWeight = "bold";
                document.getElementById(days[k]+String(l+1)).style.backgroundColor="#c6f993";
+               document.getElementById(days[k]+String(l+1)).style.fontWeight = "bold";
 
             }
         }
