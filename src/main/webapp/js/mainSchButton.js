@@ -95,9 +95,14 @@ function getDetailedSch(){
 }
 
 function showDetailedSch(arg){
+    const guestBEl = document.getElementById("guestButton");
+    if(guestBEl.innerHTML == "Unshare Link"){
+        guestButton();
+    }else{
+        onUnShareButton();
+    }
 
-    showContents(["scheduleInfo", "goBackToSchMenu"]);
-
+    showContents(["scheduleInfo", "goBackToSchMenu", "guestLink"]);
 
     if(document.getElementById("testDivForTable").firstChild){
         document.getElementById("testDivForTable").removeChild(document.getElementById("testDivForTable").firstChild);
@@ -154,6 +159,7 @@ function showDetailedSch(arg){
             }
         }
         table.appendChild(tr);
+        table.style.marginTop="100px";
     }
     const div = document.getElementById("testDivForTable");
 
@@ -166,6 +172,7 @@ function showDetailedSch(arg){
               //console.log(keys[i]);
               tdAppend.innerHTML = hm[keys[i]].name;
               tdAppend.style.backgroundColor = "#93daf9";
+              tdAppend.style.fontWeight = "bold";
 
 
       }
@@ -175,7 +182,9 @@ function showDetailedSch(arg){
 
             if(document.getElementById(days[k]+String(l)).innerHTML == document.getElementById(days[k]+String(l+1)).innerHTML){
                document.getElementById(days[k]+String(l)).style.backgroundColor="#c6f993";
+               document.getElementById(days[k]+String(l)).style.fontWeight = "bold";
                document.getElementById(days[k]+String(l+1)).style.backgroundColor="#c6f993";
+               document.getElementById(days[k]+String(l+1)).style.fontWeight = "bold";
 
             }
         }
