@@ -60,7 +60,7 @@ function createTable(response){
 
     for(let k = 1;k<8;k++){
         for(let l = 0;l<23;l++){
-            if(document.getElementById(days[k]+String(l)).innerHTML == document.getElementById(days[k]+String(l+1)).innerHTML){
+            if(document.getElementById(days[k]+String(l)).innerHTML == document.getElementById(days[k]+String(l+1)).innerHTML && document.getElementById(days[k]+String(l)).innerHTML != ''){
                document.getElementById(days[k]+String(l)).style.backgroundColor="#c6f993";
                document.getElementById(days[k]+String(l)).style.fontWeight = "bold";
                document.getElementById(days[k]+String(l)).style.borderBottom = "none";
