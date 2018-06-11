@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.Map;
 
 @WebServlet("/guestLink")
@@ -26,14 +27,30 @@ public class GuestLinkServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try (Connection c = getConnection(getServletContext())) {
+            GuestLinkDao db = new GuestLinkDao(c);
+            GuestLinksService service = new GuestLinksService(db);
+            String encodedUserId = req.getParameter("id");
+            String encodedSchId = req.getParameter("schid");
 
-        int userId = Integer.parseInt(req.getParameter("id"));
-        int schId = Integer.parseInt(req.getParameter("schid"));
+            Base64.Decoder decoder = Base64.getDecoder();
+            byte[] decodedUserId = decoder.decode(encodedUserId);
+            String userId = new String(decodedUserId);
+            byte[] decodedSchId = decoder.decode(encodedSchId);
+            String schId = new String(decodedSchId);
 
-        req.setAttribute("userId", userId);
-        req.setAttribute("schId", schId);
-
-        req.getRequestDispatcher("guest.jsp").forward(req, resp);
+            if (service.isShareLinkExist(Integer.parseInt(userId), Integer.parseInt(schId))){
+                req.setAttribute("userId", userId);
+                req.setAttribute("schId", schId);
+                req.getRequestDispatcher("guest.jsp").forward(req, resp);
+            }else {
+                req.setAttribute("message", "Sorry this sch is not shared");
+                req.getRequestDispatcher("guest.jsp").forward(req, resp);
+            }
+        }catch (SQLException e) {
+            handleSqlError(resp, e);
+            logger.error("Guest Link: GET.");
+        }
     }
 
     @Override

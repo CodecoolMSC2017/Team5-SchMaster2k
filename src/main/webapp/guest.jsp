@@ -15,7 +15,7 @@
 				<div class="title">Schedule<br>Master 2000</div>
 			</div>
 		</header>
-
+        <p>${message}<p>
 		<p id="userId" style="display: none">${userId}</p>
 		<p id="schId" style="display: none">${schId}</p>
 
