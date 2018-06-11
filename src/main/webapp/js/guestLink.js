@@ -40,8 +40,12 @@ function guestButton() {
     while(divEl.firstChild){
         divEl.removeChild(divEl.firstChild);
     }
+
+    const encryptedUserId = btoa(userId);
+    const encryptedCurrentSchId = btoa(currentSchId);
+
     const pEL = document.createElement('p');
-    pEL.innerHTML = "http://localhost:8080/sch_master_2k/guestLink?id=" + userId + "&schid=" + currentSchId;
+    pEL.innerHTML = "http://localhost:8080/sch_master_2k/guestLink?id=" + encryptedUserId + "&schid=" + encryptedCurrentSchId;
     safeSharedSch();
     divEl.appendChild(pEL);
 }

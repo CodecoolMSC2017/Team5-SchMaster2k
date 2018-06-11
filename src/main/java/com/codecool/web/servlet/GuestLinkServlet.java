@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.Map;
 
 @WebServlet("/guestLink")
@@ -29,9 +30,16 @@ public class GuestLinkServlet extends AbstractServlet {
         try (Connection c = getConnection(getServletContext())) {
             GuestLinkDao db = new GuestLinkDao(c);
             GuestLinksService service = new GuestLinksService(db);
-            int userId = Integer.parseInt(req.getParameter("id"));
-            int schId = Integer.parseInt(req.getParameter("schid"));
-            if (service.isShareLinkExist(userId, schId)){
+            String encodedUserId = req.getParameter("id");
+            String encodedSchId = req.getParameter("schid");
+
+            Base64.Decoder decoder = Base64.getDecoder();
+            byte[] decodedUserId = decoder.decode(encodedUserId);
+            String userId = new String(decodedUserId);
+            byte[] decodedSchId = decoder.decode(encodedSchId);
+            String schId = new String(decodedSchId);
+
+            if (service.isShareLinkExist(Integer.parseInt(userId), Integer.parseInt(schId))){
                 req.setAttribute("userId", userId);
                 req.setAttribute("schId", schId);
                 req.getRequestDispatcher("guest.jsp").forward(req, resp);
