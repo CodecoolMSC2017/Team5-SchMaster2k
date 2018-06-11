@@ -43,7 +43,6 @@ function createTable(response){
             }
         }
         table.appendChild(tr);
-        table.style.marginTop="100px";
     }
     const div = document.getElementById("testDivForTable");
 
