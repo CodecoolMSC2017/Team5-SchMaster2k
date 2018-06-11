@@ -9,6 +9,8 @@ public interface UserDao {
 
     List<User> getAllUsers() throws SQLException;
 
+    User loginGoogleUser(String email) throws SQLException;
+
     List<String> getAllUsersName() throws SQLException;
 
     List<String> getAllUsersEmail() throws SQLException;

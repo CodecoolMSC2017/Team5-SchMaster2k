@@ -11,8 +11,11 @@
 		<script type="text/javascript" src="js/main_info.js"></script>
 		<script type="text/javascript" src="js/mainSchButton.js"></script>
 		<script type="text/javascript" src="js/mainTaskButton.js"></script>
-
 		<script type="text/javascript" src="js/main.js"></script>
+        <meta name="google-signin-client_id" content="135003808984-mkmk73ruqma1gqlphqu70dnhmhopvimo.apps.googleusercontent.com">
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	</head>
 	<body>
 		<header>
