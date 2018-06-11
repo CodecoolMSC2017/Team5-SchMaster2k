@@ -12,7 +12,7 @@ CREATE TABLE users (
     name TEXT UNIQUE NOT NULL,
     first_name TEXT NULL,
     last_name TEXT NULL,
-    password TEXT NOT NULL,
+    password TEXT ,
     email TEXT UNIQUE NOT NULL,
     rank TEXT NOT NULL,
 	CONSTRAINT email_not_empty CHECK (email <> ''),

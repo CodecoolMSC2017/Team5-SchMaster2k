@@ -110,15 +110,16 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
 
 
     @Override
-    public void addUser(String email, String password, String name, String fname, String lname,String rank) throws SQLException {
+    public void addUser(String email, String name, String fname, String lname) throws SQLException {
 
-        String sql = "INSERT INTO users (email, password, name, fname, lname, rank) " +
-            "VALUES(?, null, null, ?, ?, User);";
+        String sql = "INSERT INTO users (email, password, name, first_name, last_name, rank) " +
+            "VALUES(?, null, ?, ?, ?, 'User');";
         try (PreparedStatement statement = connection.prepareStatement(sql)){
-            connection.setAutoCommit(false);
+
             statement.setString(1, email);
-            statement.setString(2, fname);
-            statement.setString(13, lname);
+            statement.setString(2, name);
+            statement.setString(3, fname);
+            statement.setString(4, lname);
             executeInsert(statement);
         }
 

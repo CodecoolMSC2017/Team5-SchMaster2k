@@ -32,27 +32,25 @@ public class GoogleLoginServlet extends AbstractServlet {
             LoginService loginService = new LoginService(userDao);
 
             String email = req.getParameter("name_or_email");
-            String name = req.getParameter("fullName");
-            String firstName = req.getParameter("fullname").split(" ")[0];
-            String lastName = req.getParameter("fullname").split(" ")[1];
-
+            String name = req.getParameter("full_name");
+            String firstName = req.getParameter("full_name").split(" ")[0];
+            String lastName = req.getParameter("full_name").split(" ")[1];
+            System.out.println("asdasdasa");
 
             try {
-                user = loginService.loginGoogleUser(email,name,firstName,lastName);
+                user = loginService.loginGoogleUser(email, name, firstName, lastName);
                 req.getSession().setAttribute("user", user);
                 req.getRequestDispatcher("protected/main.jsp").forward(req, resp);
                 logger.info(user.getName() + ": Logged in.");
 
-            }catch (InvalidUserException e){
-                req.setAttribute("error", "Wrong password or user name!");
-                req.getRequestDispatcher("index.jsp").forward(req, resp);
-                logger.warn("Wrong password or user name.");
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                handleSqlError(resp, e);
+                logger.error(user.getName() + ": Login SQL Error.", e);
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            handleSqlError(resp, e);
-            logger.error(user.getName() + ": Login SQL Error.", e);
         }
     }
 

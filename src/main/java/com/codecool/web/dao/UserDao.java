@@ -19,7 +19,7 @@ public interface UserDao {
 
     User getUserByName(String name) throws SQLException;
 
-    void addUser(String email, String password, String name, String fname, String lname,String rank) throws SQLException;
+    void addUser(String email, String name, String fname, String lname) throws SQLException;
 
     void updateUser(int id, String name, String role)throws SQLException;
 

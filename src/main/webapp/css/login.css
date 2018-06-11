@@ -134,4 +134,8 @@ body {
 	padding: 10px 12px;
 }
 
+.hidden{
+    display:none;
+}
+
 /* ********** LOGIN & REG END ********** */

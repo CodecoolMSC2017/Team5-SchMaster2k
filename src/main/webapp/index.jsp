@@ -4,7 +4,7 @@
 <html lang="en">
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/login.css">
-        <meta name="google-signin-client_id" content="135003808984-hnqdi8p354tcf71vf9fr0npibap8k2o3.apps.googleusercontent.com">
+        <meta name="google-signin-client_id" content="135003808984-mkmk73ruqma1gqlphqu70dnhmhopvimo.apps.googleusercontent.com">
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="js/googleSignIn.js"></script>
@@ -21,7 +21,7 @@
 						<input type="text" name="name_or_email" placeholder="User name or E-mail" value="">
 						<input type="password" name="password" placeholder="Password" value="">
 						<input type="submit" class="button" value="Login">
-						<div class="g-signin2" data-onsuccess="onSignIn"></div>
+						<div i class="g-signin2" data-onsuccess="onSignIn"></div>
 						<br>
 				    </form>
 				    <div class="error">${error}</div>
