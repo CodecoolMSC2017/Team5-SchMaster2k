@@ -157,7 +157,6 @@ function showDetailedSch(arg){
                 td.appendChild(addButton);
                 tr.appendChild(td);
 
-
             }
         }
         table.appendChild(tr);
@@ -165,7 +164,7 @@ function showDetailedSch(arg){
     }
     const div = document.getElementById("testDivForTable");
 
-        div.appendChild(table);
+    div.appendChild(table);
 
     for (let i = 0, keys = Object.keys(hm), ii = keys.length; i < ii; i++) {
 
@@ -175,15 +174,11 @@ function showDetailedSch(arg){
               tdAppend.innerHTML = hm[keys[i]].name;
               tdAppend.style.backgroundColor = "#93daf9";
               tdAppend.style.fontWeight = "bold";
-
-
-      }
+    }
 
     for(let k = 1;k<8;k++){
         for(let l = 0;l<23;l++){
-
             if(document.getElementById(days[k]+String(l)).innerHTML == document.getElementById(days[k]+String(l+1)).innerHTML){
-
                document.getElementById(days[k]+String(l)).style.backgroundColor="#c6f993";
                document.getElementById(days[k]+String(l)).style.fontWeight = "bold";
                document.getElementById(days[k]+String(l)).style.borderBottom = "none";
@@ -192,31 +187,15 @@ function showDetailedSch(arg){
                document.getElementById(days[k]+String(l+1)).style.borderTop = "none";
                document.getElementById(days[k]+String(l+1)).style.backgroundColor="#c6f993";
                document.getElementById(days[k]+String(l+1)).style.fontWeight = "bold";
-               }
-
-
-
-
-
             }
         }
-
-
-
-
-        if(insertStatusNumber==-1){
-                alert("You already added that task to this schedule");
-                insertStatusNumber=1;
-            }
     }
 
-
-
-
-
-
-
-
+    if(insertStatusNumber==-1){
+            alert("You already added that task to this schedule");
+            insertStatusNumber=1;
+    }
+}
 
 
 function showAddButton(){
@@ -230,8 +209,6 @@ function showAddButton(){
         deleteButton.classList.add("button");
         deleteButton.addEventListener("click", deleteTaskFromSch);
         this.appendChild(deleteButton);
-
-
     }
 }
 
