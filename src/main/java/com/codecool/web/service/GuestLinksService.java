@@ -20,4 +20,7 @@ public class GuestLinksService {
         db.deleteIdsToShareTable(userId, schId);
     }
 
+    public boolean isShareLinkExist(int userId, int schId) throws SQLException{
+        return db.checkSharedLink(userId, schId);
+    }
 }
