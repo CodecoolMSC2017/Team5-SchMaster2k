@@ -26,14 +26,23 @@ public class GuestLinkServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        int userId = Integer.parseInt(req.getParameter("id"));
-        int schId = Integer.parseInt(req.getParameter("schid"));
-
-        req.setAttribute("userId", userId);
-        req.setAttribute("schId", schId);
-
-        req.getRequestDispatcher("guest.jsp").forward(req, resp);
+        try (Connection c = getConnection(getServletContext())) {
+            GuestLinkDao db = new GuestLinkDao(c);
+            GuestLinksService service = new GuestLinksService(db);
+            int userId = Integer.parseInt(req.getParameter("id"));
+            int schId = Integer.parseInt(req.getParameter("schid"));
+            if (service.isShareLinkExist(userId, schId)){
+                req.setAttribute("userId", userId);
+                req.setAttribute("schId", schId);
+                req.getRequestDispatcher("guest.jsp").forward(req, resp);
+            }else {
+                req.setAttribute("message", "Sorry this sch is not shared");
+                req.getRequestDispatcher("guest.jsp").forward(req, resp);
+            }
+        }catch (SQLException e) {
+            handleSqlError(resp, e);
+            logger.error("Guest Link: GET.");
+        }
     }
 
     @Override
