@@ -22,7 +22,7 @@ CREATE TABLE users (
 INSERT INTO users (name, first_name, last_name, password, email, rank) VALUES
 	('Robi', 'Robert', 'Kohanyi', 'a', 'robert.kohanyi@codecool.com', 'Admin'),
 	('Pako', 'Pal', 'Monoczki', 'a', 'pal.monoczki@codecool.com', 'Admin'),
-	('Ben', null, null, 'a', 'o.g.bence@totalcar.hu', 'User'),
+	('Ben', null, null, 'a', 'o.g.bence@totalcar.hu', 'Admin'),
 	('Tib', null, null, 'a', 'domokos.tibor.82@gmail.com', 'User'),
 	('Krisz', null, null, 'a', 'kollarkr@gmail.com', 'User'),
 	('Norb', 'Norbert','Hresko', 'a', 'norberthresko@gmail.com', 'User')

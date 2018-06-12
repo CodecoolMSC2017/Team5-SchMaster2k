@@ -11,6 +11,7 @@
 		<script type="text/javascript" src="js/main_info.js"></script>
 		<script type="text/javascript" src="js/mainSchButton.js"></script>
 		<script type="text/javascript" src="js/mainTaskButton.js"></script>
+		<script type="text/javascript" src="js/users.js"></script>
 
 		<script type="text/javascript" src="js/main.js"></script>
 	</head>
@@ -64,6 +65,9 @@
                 <p id="taskNumber"></p>
                 <button id="mainSchButton"  class="button">Schedule</button>
                 <button id="mainTaskButton"  class="button">Task</button>
+                <c:if test = "${sessionScope.user.getRank() == 'Admin'}">
+                    <button id="usersButton"  class="button">Users</button>
+                </c:if>
             </div>
 
             <div id="schedulesInfo" class="hidden content">
@@ -74,6 +78,11 @@
             <div id="scheduleInfo" class="hidden content">
                 <div id="testDivForTable">
                 </div>
+            </div>
+
+            <div id="users" class="hidden content">
+                <h1>Users</h1>
+                <div id="usersList"></div>
             </div>
 
             <div id="tasks" class="hidden content">

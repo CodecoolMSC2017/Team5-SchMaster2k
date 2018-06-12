@@ -21,4 +21,7 @@ function mainInfo() {
 
     loadButtonEl = document.getElementById('mainTaskButton');
     loadButtonEl.addEventListener('click', mainTaskButton);
+
+    const usersButtonEl = document.getElementById('usersButton');
+    usersButtonEl.addEventListener('click', usersButton);
 }
