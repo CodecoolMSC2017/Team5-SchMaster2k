@@ -286,6 +286,16 @@ public class DatabaseSchDao extends AbstractDao{
         return 0;
     }
 
+    public void deleteSch(int schId) throws SQLException {
 
+        String sql = "delete from schedules where id = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, schId);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+
+        }
+    }
 
 }

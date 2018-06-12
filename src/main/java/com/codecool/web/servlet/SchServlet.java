@@ -48,17 +48,37 @@ public class SchServlet extends AbstractServlet {
             int id = Integer.parseInt(req.getParameter("userId"));
             DatabaseSchDao db = new DatabaseSchDao(c);
             SchService service = new SchService(db);
-            user = (User)req.getSession().getAttribute("user");
+            user = (User) req.getSession().getAttribute("user");
 
             int userId = Integer.parseInt(req.getParameter("userId"));
             if (req.getParameter("schTitle") != null) {
                 String schTitle = req.getParameter("schTitle");
                 String schContent = req.getParameter("schContent");
                 db.addSchedule(schTitle, schContent, userId);
-                logger.info(user.getName() + ": Add sch, sch name: " +schTitle);
+                logger.info(user.getName() + ": Add sch, sch name: " + schTitle);
             } else {
                 logger.warn(user.getName() + ": Missing sch title");
             }
+
+            List<Schedule> schedules = db.getAllSchByUserId(userId);
+            resp.setContentType("application/json");
+            sendMessage(resp, HttpServletResponse.SC_OK, schedules);
+
+        } catch (SQLException e) {
+            handleSqlError(resp, e);
+            logger.error(user.getName() + ": sch adding error");
+        }
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doDelete(req, resp);
+        try (Connection c = getConnection(req.getServletContext())) {
+            int schId = Integer.parseInt(req.getParameter("schId"));
+            DatabaseSchDao db = new DatabaseSchDao(c);
+            SchService service = new SchService(db);
+            service.deleteSchedule(schId);
+            int userId = Integer.parseInt(req.getParameter("userId"));
 
             List<Schedule> schedules = db.getAllSchByUserId(userId);
             resp.setContentType("application/json");

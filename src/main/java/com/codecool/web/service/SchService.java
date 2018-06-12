@@ -30,4 +30,8 @@ public class SchService{
     public SchTaskNoDTO getNoOfSchTask(int id) throws SQLException{
         return new SchTaskNoDTO(db.getNoOfSch(id), db.getNoOfTask(id));
     }
+
+    public void deleteSchedule(int schId) throws SQLException {
+        db.deleteSch(schId);
+    }
 }
