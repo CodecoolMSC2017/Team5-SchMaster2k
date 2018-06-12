@@ -27,9 +27,7 @@ function onSignIn(){
 
 }
 
-function logoutFromGoogle(){
-    document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=localhost:8080/SchMaster2k/";
-}
+
 
 function showSchContent(id) {
     const contentEls = document.getElementsByClassName('sch');

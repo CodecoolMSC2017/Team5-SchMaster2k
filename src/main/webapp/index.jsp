@@ -8,6 +8,7 @@
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="js/googleSignIn.js"></script>
+        <link rel="icon" href="images/logo.png" type="image/x-icon"/>
 
 		<title>Schedule Master 2000 - LOGIN</title>
 	</head>

@@ -12,7 +12,7 @@
 		<script type="text/javascript" src="js/mainSchButton.js"></script>
 		<script type="text/javascript" src="js/mainTaskButton.js"></script>
 		<script type="text/javascript" src="js/users.js"></script>
-
+        <link rel="icon" href="images/logo.png" type="image/x-icon"/>
 		<script type="text/javascript" src="js/main.js"></script>
 
 	</head>
@@ -29,8 +29,9 @@
                     <span id="userLName" style="display: none"></span>
                     <span id="userEmail"></span>
                     <form action="protected/logoutServlet" method="GET">
-                        <input type="submit" id="logoutButton" class="button" value="Logout">
+                        <input type="submit" class="button" value="Logout">
                     </form>
+
                     <iframe id="logoutframe" src="https://accounts.google.com/logout" style="display: none"></iframe>
 				</div>
 			</div>
