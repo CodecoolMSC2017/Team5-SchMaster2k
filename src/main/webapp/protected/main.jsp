@@ -12,7 +12,7 @@
 		<script type="text/javascript" src="js/mainSchButton.js"></script>
 		<script type="text/javascript" src="js/mainTaskButton.js"></script>
 		<script type="text/javascript" src="js/users.js"></script>
-
+        <link rel="icon" href="images/logo.png" type="image/x-icon"/>
 		<script type="text/javascript" src="js/main.js"></script>
 
 	</head>
@@ -31,6 +31,8 @@
                     <form action="protected/logoutServlet" method="GET">
                         <input type="submit" class="button" value="Logout">
                     </form>
+
+                    <iframe id="logoutframe" src="https://accounts.google.com/logout" style="display: none"></iframe>
 				</div>
 			</div>
 		</header>

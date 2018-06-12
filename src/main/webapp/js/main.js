@@ -27,6 +27,8 @@ function onSignIn(){
 
 }
 
+
+
 function showSchContent(id) {
     const contentEls = document.getElementsByClassName('sch');
     for (let i = 0; i < contentEls.length; i++) {
@@ -52,12 +54,14 @@ function backToSchMenu() {
 function onLoad() {
     userInfo();
     mainInfo();
+    const logoutButtonEl = document.getElementById("logoutButton");
     backButtonEl = document.getElementById('goBackToMainButton');
     backButtonEl2 = document.getElementById('goBackToSchMenuButton');
     backButtonEl3 = document.getElementById('guestButton');
     backButtonEl.addEventListener('click', backToMain);
     backButtonEl2.addEventListener('click', mainSchButton);
     backButtonEl3.addEventListener('click', guestButton);
+    logoutButtonEl.addEventListener('click', logoutFromGoogle);
 }
 
 window.onload = onLoad;

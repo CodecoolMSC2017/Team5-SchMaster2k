@@ -18,6 +18,7 @@ public class LogoutServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         user = (User) req.getSession().getAttribute("user");
+
         logger.info(user.getName() + ": Logged out.");
         req.getSession().invalidate();
         resp.sendRedirect("index.jsp");

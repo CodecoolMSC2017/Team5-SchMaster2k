@@ -8,6 +8,7 @@
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="js/googleSignIn.js"></script>
+        <link rel="icon" href="images/logo.png" type="image/x-icon"/>
 
 		<title>Schedule Master 2000 - LOGIN</title>
 	</head>
@@ -21,9 +22,11 @@
 						<input type="text" name="name_or_email" placeholder="User name or E-mail" value="">
 						<input type="password" name="password" placeholder="Password" value="">
 						<input type="submit" class="button" value="Login">
-						<div i class="g-signin2" data-onsuccess="onSignIn"></div>
+						<div id="googleLoginDiv" class="g-signin2" data-onsuccess="onSignIn"></div>
+
 						<br>
 				    </form>
+
 				    <div class="error">${error}</div>
 				</div>
 			</div>
