@@ -89,4 +89,73 @@ div#guestLink {
     color: white;
 }
 
+/*List style */
+#users_table ol {
+    counter-reset: li; /* Initiate a counter */
+    list-style: none; /* Remove default numbering */
+    *list-style: decimal; /* Keep using default numbering for IE6/7 */
+    font: 15px 'trebuchet MS', 'lucida sans';
+    padding: 0;
+    margin-bottom: 1em;
+    margin-right: 3em;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+#users_table li{
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em .8em;
+    *padding: .4em;
+    margin: .5em 0 .5em 2.5em;
+    background: #ddd;
+    color: #444;
+    text-decoration: none;
+    transition: all .3s ease-out;
+}
+
+#users_table li:hover{
+    background: #eee;
+}
+
+#users_table li:before{
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    left: -2.5em;
+    top: 50%;
+    margin-top: -1em;
+    background: #4CAF50;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    text-align: center;
+    font-weight: bold;
+}
+
+#users_table li:after{
+    position: absolute;
+    content: '';
+    border: .5em solid transparent;
+    left: -1em;
+    top: 50%;
+    margin-top: -.5em;
+    transition: all .3s ease-out;
+}
+
+#users_table li:hover:after{
+    left: -.5em;
+    border-left-color: #4CAF50;
+}
+
+.list-div-center{
+    display: flex;
+    justify-content: center;
+    color: #4CAF50;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size:120%;
+    font-weight:bold;
+}
+
+
+
 
