@@ -27,8 +27,9 @@
                     <span id="userLName" style="display: none"></span>
                     <span id="userEmail"></span>
                     <form action="protected/logoutServlet" method="GET">
-                        <input type="submit" class="button" value="Logout">
+                        <input type="submit" id="logoutButton" class="button" value="Logout">
                     </form>
+                    <iframe id="logoutframe" src="https://accounts.google.com/logout" style="display: none"></iframe>
 				</div>
 			</div>
 		</header>

@@ -98,6 +98,9 @@ body {
 .login .button {
 	font-size: 1.2em;
 }
+
+
+
 .registration {
 	margin: 0 auto;
 	margin-top: 10px;
@@ -136,6 +139,10 @@ body {
 
 .hidden{
     display:none;
+}
+
+.g-signin2{
+    width:100px;
 }
 
 /* ********** LOGIN & REG END ********** */

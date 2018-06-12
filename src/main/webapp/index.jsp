@@ -21,9 +21,11 @@
 						<input type="text" name="name_or_email" placeholder="User name or E-mail" value="">
 						<input type="password" name="password" placeholder="Password" value="">
 						<input type="submit" class="button" value="Login">
-						<div i class="g-signin2" data-onsuccess="onSignIn"></div>
+						<div id="googleLoginDiv" class="g-signin2" data-onsuccess="onSignIn"></div>
+
 						<br>
 				    </form>
+
 				    <div class="error">${error}</div>
 				</div>
 			</div>
