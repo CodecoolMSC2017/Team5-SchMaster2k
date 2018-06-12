@@ -45,17 +45,29 @@ public class SchServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection c = getConnection(req.getServletContext())) {
-            int id = Integer.parseInt(req.getParameter("userId"));
+
             DatabaseSchDao db = new DatabaseSchDao(c);
             SchService service = new SchService(db);
-            user = (User)req.getSession().getAttribute("user");
+            user = (User) req.getSession().getAttribute("user");
 
             int userId = Integer.parseInt(req.getParameter("userId"));
             if (req.getParameter("schTitle") != null) {
                 String schTitle = req.getParameter("schTitle");
                 String schContent = req.getParameter("schContent");
                 db.addSchedule(schTitle, schContent, userId);
-                logger.info(user.getName() + ": Add sch, sch name: " +schTitle);
+                logger.info(user.getName() + ": Add sch, sch name: " + schTitle);
+            }else if(req.getParameter("delete")!=null){
+
+                int schId = Integer.parseInt(req.getParameter("schId"));
+
+                service.deleteSchedule(schId);
+
+
+                List<Schedule> schedules = db.getAllSchByUserId(user.getId());
+                resp.setContentType("application/json");
+                sendMessage(resp, HttpServletResponse.SC_OK, schedules);
+
+
             } else {
                 logger.warn(user.getName() + ": Missing sch title");
             }
@@ -69,4 +81,6 @@ public class SchServlet extends AbstractServlet {
             logger.error(user.getName() + ": sch adding error");
         }
     }
+
+
 }

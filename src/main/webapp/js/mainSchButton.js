@@ -63,14 +63,32 @@ function loadSchedule() {
     viewButton.addEventListener("click", getDetailedSch);
     viewButton.id=scheduleInfo.schedule.id;
 
+    const deleteButton = document.createElement("button");
+    deleteButton.innerHTML="Delete";
+
+    deleteButton.addEventListener("click", deleteSch);
+    deleteButton.id=scheduleInfo.schedule.id;
+
     liEl.appendChild(divEl);
     divEl.appendChild(viewButton);
+    divEl.appendChild(deleteButton);
     divEl.appendChild(scheduleView(scheduleInfo));
     divEl.appendChild(scheduleDays(scheduleInfo));
 
 }
 
+function deleteSch() {
+    const params = new URLSearchParams();
+    params.append("schId", this.id);
+    params.append("delete",this.id);
+    params.append("userId",document.getElementById("actualUserId").value);
+    console.log(this.id);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', loadSchedules);
+    xhr.open('POST', 'protected/schServlet');
+    xhr.send(params);
 
+}
 
 function getDetailedSch(){
     if(this.responseText!=null){
