@@ -21,7 +21,11 @@ function mainInfo() {
 
     loadButtonEl = document.getElementById('mainTaskButton');
     loadButtonEl.addEventListener('click', mainTaskButton);
+    if(document.getElementById("actualUserRank".value == "Admin")){
 
     const usersButtonEl = document.getElementById('usersButton');
     usersButtonEl.addEventListener('click', usersButton);
+
+    }
+
 }

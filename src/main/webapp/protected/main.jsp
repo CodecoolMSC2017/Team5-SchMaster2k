@@ -24,6 +24,7 @@
 				<div class="user_info profile" id="userInfo">
                     <input type="hidden" id="actualUsername" value="${sessionScope.user.getName()}">
                     <input type="hidden" id="actualUserId" value="${sessionScope.user.getId()}">
+                    <input type="hidden" id="actualUserRank" value="${sessionScope.user.getRank()}">
                     <span id="userName"></span><br>
                     <span id="userFName" style="display: none"></span>
                     <span id="userLName" style="display: none"></span>
