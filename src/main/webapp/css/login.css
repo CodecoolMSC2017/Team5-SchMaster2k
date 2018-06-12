@@ -139,3 +139,30 @@ body {
 }
 
 /* ********** LOGIN & REG END ********** */
+
+/* ********** GOOGLE LOGIN BEGIN ********** */
+.abcRioButton {
+	float: right;
+	margin-top: -8px;
+	margin-right: 2px;
+	height: 24px;
+	width: 150px;
+	line-height: 24px;
+}
+.abcRioButton:hover {
+	color: #3e8e41
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.abcRioButtonLightBlue {
+	background-color: #4caf50;
+	color: #FFFFFF;
+}
+.abcRioButtonIcon {
+	padding: 3px 5px;
+}
+.abcRioButtonContents {
+	line-height: 24px;
+	font-weight: bold;
+}
+/* ********** GOOGLE LOGIN ENG ********** */
