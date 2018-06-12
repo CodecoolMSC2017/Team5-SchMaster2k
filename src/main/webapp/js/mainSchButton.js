@@ -80,11 +80,13 @@ function loadSchedule() {
 function deleteSch() {
     const params = new URLSearchParams();
     params.append("schId", this.id);
-
+    params.append("delete",this.id);
+    params.append("userId",document.getElementById("actualUserId").value);
+    console.log(this.id);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', loadSchedules);
-    xhr.open('DELETE', 'protected/schServlet?'+params);
-    xhr.send();
+    xhr.open('POST', 'protected/schServlet');
+    xhr.send(params);
 
 }
 
