@@ -1,3 +1,9 @@
+function showUserProfile(){
+    const id = this.getAttribute("userId");
+    console.log("Ittvagyook " + id);
+
+}
+
 function addUsersHeaderToTable(){
     const trEl = document.createElement('tr');
 
@@ -31,7 +37,12 @@ function addUserToList(users){
 
      for(let i=0; i<users.length; i++){
         const user = users[i];
+
         const trEl = document.createElement('tr');
+        const idAtrEl = document.createAttribute('userId');
+        idAtrEl.value = user.id;
+        trEl.setAttributeNode(idAtrEl);
+        trEl.addEventListener('click', showUserProfile)
 
         const tdIdEl = document.createElement('td');
         tdIdEl.innerHTML = user.id;
