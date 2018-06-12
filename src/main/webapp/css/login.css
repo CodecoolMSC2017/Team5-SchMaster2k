@@ -148,27 +148,28 @@ body {
 /* ********** LOGIN & REG END ********** */
 
 /* ********** GOOGLE LOGIN BEGIN ********** */
-.abcRioButton {
+#googleLoginDiv .abcRioButton {
 	float: right;
 	margin-top: -8px;
 	margin-right: 2px;
+	background-color: #4CAF50;
 	height: 24px;
 	width: 150px;
 	line-height: 24px;
 }
-.abcRioButton:hover {
-	color: #3e8e41
+#googleLoginDiv .abcRioButton:hover {
+	background-color: #3e8e41;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-.abcRioButtonLightBlue {
+#googleLoginDiv .abcRioButtonLightBlue {
 	background-color: #4caf50;
 	color: #FFFFFF;
 }
-.abcRioButtonIcon {
+#googleLoginDiv .abcRioButtonIcon {
 	padding: 3px 5px;
 }
-.abcRioButtonContents {
+#googleLoginDiv .abcRioButtonContents {
 	line-height: 24px;
 	font-weight: bold;
 }
