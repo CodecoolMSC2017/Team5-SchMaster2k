@@ -1,14 +1,66 @@
-function addUserToList(users){
-    const ulEl = document.createElement('ul');
+function addUsersHeaderToTable(){
+    const trEl = document.createElement('tr');
 
-    for(let i=0; users.length > i; i++){
+    const thIdEl = document.createElement('th');
+    thIdEl.innerHTML = 'User ID';
+    trEl.appendChild(thIdEl);
+    const thNameEl = document.createElement('th');
+    thNameEl.innerHTML = 'User Name';
+    trEl.appendChild(thNameEl);
+    const thFirstNameEl = document.createElement('th');
+    thFirstNameEl.innerHTML = 'First Name';
+    trEl.appendChild(thFirstNameEl);
+    const thLastNameEl = document.createElement('th');
+    thLastNameEl.innerHTML = 'Last Name';
+    trEl.appendChild(thLastNameEl);
+    const thEmailEl = document.createElement('th');
+    thEmailEl.innerHTML = 'Email';
+    trEl.appendChild(thEmailEl);
+    const thRankEl = document.createElement('th');
+    thRankEl.innerHTML = 'Rank';
+    trEl.appendChild(thRankEl);
+
+    return trEl;
+}
+
+function addUserToList(users){
+     const tableEl = document.createElement('table');
+     tableEl.id = 'users_table';
+
+     tableEl.appendChild(addUsersHeaderToTable());
+
+     for(let i=0; i<users.length; i++){
         const user = users[i];
-        console.log(user.name);
-        const liEl = document.createElement('li');
-        liEl.innerHTML = user.name;
-        ulEl.appendChild(liEl);
-    }
-    return ulEl;
+        const trEl = document.createElement('tr');
+
+        const tdIdEl = document.createElement('td');
+        tdIdEl.innerHTML = user.id;
+        trEl.appendChild(tdIdEl);
+
+        const tdNameEl = document.createElement('td');
+        tdNameEl.innerHTML = user.name;
+        trEl.appendChild(tdNameEl);
+
+        const tdFirstNameEl = document.createElement('td');
+        tdFirstNameEl.innerHTML = user.fName;
+        trEl.appendChild(tdFirstNameEl);
+
+        const tdLastNameEl = document.createElement('td');
+        tdLastNameEl.innerHTML = user.lName;
+        trEl.appendChild(tdLastNameEl);
+
+        const tdEmailEl = document.createElement('td');
+        tdEmailEl.innerHTML = user.email;
+        trEl.appendChild(tdEmailEl);
+
+        const tdRankEl = document.createElement('td');
+        tdRankEl.innerHTML = user.rank;
+        trEl.appendChild(tdRankEl);
+
+        tableEl.appendChild(trEl);
+     }
+
+     return tableEl;
 }
 
 function loadAllUsers(){
