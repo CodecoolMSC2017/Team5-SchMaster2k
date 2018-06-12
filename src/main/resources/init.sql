@@ -35,7 +35,7 @@ CREATE TABLE schedules (
     name TEXT NOT NULL,
     content TEXT NULL,
     user_id INTEGER NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 INSERT INTO schedules (name, content, user_id) VALUES
@@ -113,7 +113,7 @@ CREATE TABLE tasks (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     user_id INTEGER NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 INSERT INTO tasks (name, user_id) VALUES

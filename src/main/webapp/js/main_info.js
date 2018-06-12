@@ -21,12 +21,9 @@ function mainInfo() {
 
     loadButtonEl = document.getElementById('mainTaskButton');
     loadButtonEl.addEventListener('click', mainTaskButton);
-    const usersButtonEl = document.getElementById('usersButton');
+
     if(document.getElementById("actualUserRank").value == "Admin"){
-
-
-    usersButtonEl.addEventListener('click', usersButton);
-
+        const usersButtonEl = document.getElementById('usersButton');
+        usersButtonEl.addEventListener('click', usersButton);
     }
-
 }

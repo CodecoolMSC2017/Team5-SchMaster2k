@@ -150,18 +150,18 @@ body {
 	float: right;
 	margin-top: -8px;
 	margin-right: 2px;
-	background-color: #4CAF50;
+	background-color: #6dc4d6;
 	height: 24px;
 	width: 150px;
 	line-height: 24px;
 }
 #googleLoginDiv .abcRioButton:hover {
-	background-color: #3e8e41;
+	background-color: #6dc4d6;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 #googleLoginDiv .abcRioButtonLightBlue {
-	background-color: #4caf50;
+	background-color: #6dc4d6;
 	color: #FFFFFF;
 }
 #googleLoginDiv .abcRioButtonIcon {

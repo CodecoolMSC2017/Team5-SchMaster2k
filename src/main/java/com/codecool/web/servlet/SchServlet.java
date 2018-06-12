@@ -50,7 +50,7 @@ public class SchServlet extends AbstractServlet {
             SchService service = new SchService(db);
             user = (User) req.getSession().getAttribute("user");
 
-            int userId = Integer.parseInt(req.getParameter("userId"));
+            int userId = user.getId();
             if (req.getParameter("schTitle") != null) {
                 String schTitle = req.getParameter("schTitle");
                 String schContent = req.getParameter("schContent");

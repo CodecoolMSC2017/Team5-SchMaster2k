@@ -94,7 +94,7 @@ public class DatabaseSchDao extends AbstractDao{
     }
 
     public int getMaxDayId() throws SQLException {
-        String sql = "SELECT MAX(schedule_id) AS schId FROM days";
+        String sql = "SELECT MAX(id) AS schId FROM schedules";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -105,12 +105,26 @@ public class DatabaseSchDao extends AbstractDao{
 
 
     }
+    public void addScheduleHelper(String title, String content, int userId) throws SQLException {
+        String sql = "INSERT INTO schedules (name, content, user_id) VALUES (?, ?, ?);";
+
+
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, title);
+            statement.setString(2, content);
+            statement.setInt(3, userId);
+
+
+            executeInsert(statement);
+        }
+    }
 
 
 
     public void addSchedule(String title, String content, int userId) throws SQLException {
-        String sql = "INSERT INTO schedules (name, content, user_id) VALUES (?, ?, ?);" +
-                     "INSERT INTO days (name, name_id, schedule_id) VALUES" +
+        addScheduleHelper(title,content,userId);
+        String sql =  "INSERT INTO days (name, name_id, schedule_id) VALUES" +
                     "('Monday', 'mo', ?), " +
                     "('Tuesday', 'tu', ?), " +
                     "('Wednesday', 'we', ?), " +
@@ -118,17 +132,17 @@ public class DatabaseSchDao extends AbstractDao{
                     "('Friday', 'fr', ?), " +
                     "('Saturday', 'sa', ?), " +
                     "('Sunday', 'su', ?); ";
+
+
+
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, title);
-            statement.setString(2, content);
-            statement.setInt(3, userId);
-            statement.setInt(4, getMaxDayId()+1);
-            statement.setInt(5, getMaxDayId()+1);
-            statement.setInt(6, getMaxDayId()+1);
-            statement.setInt(7, getMaxDayId()+1);
-            statement.setInt(8, getMaxDayId()+1);
-            statement.setInt(9, getMaxDayId()+1);
-            statement.setInt(10, getMaxDayId()+1);
+            statement.setInt(1, getMaxDayId());
+            statement.setInt(2, getMaxDayId());
+            statement.setInt(3, getMaxDayId());
+            statement.setInt(4, getMaxDayId());
+            statement.setInt(5, getMaxDayId());
+            statement.setInt(6, getMaxDayId());
+            statement.setInt(7, getMaxDayId());
 
             executeInsert(statement);
         }
