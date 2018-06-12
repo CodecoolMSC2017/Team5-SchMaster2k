@@ -93,18 +93,33 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
 
         return userByName;
     }
+    @Override
+    public User loginGoogleUser(String email) throws SQLException {
+        String sql = "SELECT * FROM users WHERE email = ?;";
+        User userByEmail = null;
+        try (PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1,email);
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                userByEmail = createUser(resultSet);
+            }
+        }
+
+        return userByEmail;
+    }
 
 
     @Override
-    public void addUser(String email, String password, String name, String fname, String lname,String rank) throws SQLException {
+    public void addUser(String email, String name, String fname, String lname) throws SQLException {
 
-        String sql = "INSERT INTO users (email, password, name, fname, lname, rank) " +
-            "VALUES(?, null, null, ?, ?, User);";
+        String sql = "INSERT INTO users (email, password, name, first_name, last_name, rank) " +
+            "VALUES(?, null, ?, ?, ?, 'User');";
         try (PreparedStatement statement = connection.prepareStatement(sql)){
-            connection.setAutoCommit(false);
+
             statement.setString(1, email);
-            statement.setString(2, fname);
-            statement.setString(13, lname);
+            statement.setString(2, name);
+            statement.setString(3, fname);
+            statement.setString(4, lname);
             executeInsert(statement);
         }
 

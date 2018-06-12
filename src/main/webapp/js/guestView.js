@@ -46,7 +46,7 @@ function createTable(response){
     }
     const div = document.getElementById("testDivForTable");
 
-        div.appendChild(table);
+    div.appendChild(table);
 
     for (let i = 0, keys = Object.keys(hm), ii = keys.length; i < ii; i++) {
 
@@ -54,14 +54,21 @@ function createTable(response){
 
               //console.log(keys[i]);
               tdAppend.innerHTML = hm[keys[i]].name;
-      }
+              tdAppend.style.backgroundColor = "#93daf9";
+              tdAppend.style.fontWeight = "bold";
+    }
 
     for(let k = 1;k<8;k++){
         for(let l = 0;l<23;l++){
-
-            if(document.getElementById(days[k]+String(l)).innerHTML == document.getElementById(days[k]+String(l+1)).innerHTML){
+            if(document.getElementById(days[k]+String(l)).innerHTML == document.getElementById(days[k]+String(l+1)).innerHTML && document.getElementById(days[k]+String(l)).innerHTML != ''){
                document.getElementById(days[k]+String(l)).style.backgroundColor="#c6f993";
+               document.getElementById(days[k]+String(l)).style.fontWeight = "bold";
+               document.getElementById(days[k]+String(l)).style.borderBottom = "none";
+               document.getElementById(days[k]+String(l)).style.borderTop = "none";
+               document.getElementById(days[k]+String(l+1)).style.borderBottom = "none";
+               document.getElementById(days[k]+String(l+1)).style.borderTop = "none";
                document.getElementById(days[k]+String(l+1)).style.backgroundColor="#c6f993";
+               document.getElementById(days[k]+String(l+1)).style.fontWeight = "bold";
             }
         }
     }

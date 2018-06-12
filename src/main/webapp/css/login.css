@@ -4,6 +4,8 @@ body {
 	background: url(../images/background_bw.jpg);
 	font-size: 12px;
 }
+
+
 .button {
     display: inline-block;
     margin: 4px 2px;
@@ -130,6 +132,10 @@ body {
 }
 .registration_frame .button {
 	padding: 10px 12px;
+}
+
+.hidden{
+    display:none;
 }
 
 /* ********** LOGIN & REG END ********** */

@@ -12,6 +12,21 @@ function showContents(ids) {
     }
 }
 
+function onSignIn(){
+    const googleUser = gapi.auth2.getAuthInstance().currentUser.get();
+    const profile = googleUser.getBasicProfile();
+
+
+    const params = new URLSearchParams();
+    params.append("name_or_email", profile.getEmail());
+    params.append("password", "password");
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'loginServlet' + params);
+    xhr.send(params);
+
+
+}
+
 function showSchContent(id) {
     const contentEls = document.getElementsByClassName('sch');
     for (let i = 0; i < contentEls.length; i++) {

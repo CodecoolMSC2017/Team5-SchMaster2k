@@ -29,6 +29,16 @@ public class LoginService {
 
     }
 
+    public User loginGoogleUser(String email,String name, String firstName, String lastName) throws SQLException{
+        User user = userDao.loginGoogleUser(email);
+        if(user!=null){
+            return user;
+        }else{
+            userDao.addUser(email,name,firstName,lastName);
+            return userDao.loginGoogleUser(email);
+        }
+    }
+
 
 
 }
