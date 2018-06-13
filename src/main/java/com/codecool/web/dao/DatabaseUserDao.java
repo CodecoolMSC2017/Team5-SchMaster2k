@@ -107,13 +107,33 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
 
         return userByEmail;
     }
+    @Override
+    public void changeStatus(String email,String status) throws SQLException {
+        if(status.equals("logout")){
+            String sql = "UPDATE users SET isOnline = false WHERE email = ?;";
+            User userByEmail = null;
+            try (PreparedStatement statement = connection.prepareStatement(sql)){
+                statement.setString(1,email);
+                statement.executeUpdate();
+            }
+        }else if(status.equals("login")) {
+            String sql = "UPDATE users SET isOnline = true WHERE email = ?;";
+            User userByEmail = null;
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, email);
+                statement.executeUpdate();
+            }
+        }
+
+
+    }
 
 
     @Override
     public void addUser(String email, String name, String fname, String lname) throws SQLException {
 
-        String sql = "INSERT INTO users (email, password, name, first_name, last_name, rank) " +
-            "VALUES(?, null, ?, ?, ?, 'User');";
+        String sql = "INSERT INTO users (email, password, name, first_name, last_name, rank,isOnline) " +
+            "VALUES(?, null, ?, ?, ?, 'User',false);";
         try (PreparedStatement statement = connection.prepareStatement(sql)){
 
             statement.setString(1, email);
