@@ -21,7 +21,7 @@
 			<div class="header_frame">
 				<div class="logo"></div>
 				<div class="title">Schedule<br>Master 2000</div>
-				<div class="user_info profile" id="userInfo">
+				<div align="right" class="user_info profile" id="userInfo">
                     <input type="hidden" id="actualUsername" value="${sessionScope.user.getName()}">
                     <input type="hidden" id="actualUserId" value="${sessionScope.user.getId()}">
                     <input type="hidden" id="actualUserRank" value="${sessionScope.user.getRank()}">
