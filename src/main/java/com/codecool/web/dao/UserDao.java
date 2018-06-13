@@ -27,5 +27,7 @@ public interface UserDao {
 
     void insertReg(String name, String fname, String lname, String pass, String email) throws SQLException;
 
+    void changeStatus(String email,String status) throws SQLException;
+
 
 }

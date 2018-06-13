@@ -16,6 +16,7 @@ function onSignIn(){
     nameInput.value=profile.getName();
     form.appendChild(emailInput);
     form.appendChild(nameInput);
+
     document.getElementsByTagName("body")[0].appendChild(form);
 
 
