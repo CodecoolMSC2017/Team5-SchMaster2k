@@ -33,7 +33,6 @@ public class schAllInformationServlet extends AbstractServlet {
             int schId = Integer.parseInt(req.getParameter("schId"));
 
             Map<String,Task> mapOfTasks = service.getTasksMap(userId, schId);
-            // userID above should be task object (Map<Task, String>)
 
             sendMessage(resp, HttpServletResponse.SC_OK, mapOfTasks);
 

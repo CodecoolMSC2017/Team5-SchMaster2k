@@ -2,6 +2,7 @@ package com.codecool.web.service;
 
 import com.codecool.web.dao.DatabaseSchDao;
 import com.codecool.web.dto.SchTaskNoDTO;
+import com.codecool.web.listener.OnlineUsersCounter;
 import com.codecool.web.model.Day;
 import com.codecool.web.model.Schedule;
 
@@ -28,7 +29,7 @@ public class SchService{
         return db.getScheduleDaysByID(id);
     }
     public SchTaskNoDTO getNoOfSchTask(int id) throws SQLException{
-        return new SchTaskNoDTO(db.getNoOfSch(id), db.getNoOfTask(id));
+        return new SchTaskNoDTO(db.getNoOfSch(id), db.getNoOfTask(id), OnlineUsersCounter.getNumberOfUsersOnline());
     }
 
     public void deleteSchedule(int schId) throws SQLException {

@@ -1,5 +1,22 @@
-function createTaskList(taskList){
+
+function onClickLiSch(){
+    const userId = this.getAttribute('userId-info');
+    const schId = this.getAttribute('schId-info');
+
+    currentSchId = schId;
+
+    const params = new URLSearchParams();
+    params.append("userId", userId);
+    params.append("schId", schId);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', showDetailedSch);
+    xhr.open('GET', 'protected/schAllInformation?' + params);
+    xhr.send();
+}
+
+function createTaskList(schAndTask){
     const ulEl = document.createElement('ol');
+    const taskList = schAndTask.taskList;
 
     for(let i=0; i<taskList.length; i++){
         const task = taskList[i];
@@ -10,15 +27,25 @@ function createTaskList(taskList){
     return ulEl;
 }
 
-function createSchList(schList){
+function createSchList(schAndTask){
     const ulEl = document.createElement('ol');
+    const schList = schAndTask.schList;
 
     for(let i=0; i<schList.length; i++){
         const sch = schList[i];
         const liEl = document.createElement('li');
         liEl.textContent = sch.name;
-        ulEl.appendChild(liEl);
 
+        const userIdAtrEl = document.createAttribute('userId-info');
+        userIdAtrEl.value = schAndTask.userId;
+        liEl.setAttributeNode(userIdAtrEl);
+
+        const schIdAtrEl = document.createAttribute('schId-info');
+        schIdAtrEl.value = sch.id;
+        liEl.setAttributeNode(schIdAtrEl);
+
+        liEl.addEventListener("click", onClickLiSch);
+        ulEl.appendChild(liEl);
     }
     return ulEl;
 }
@@ -26,11 +53,7 @@ function createSchList(schList){
 function getAllSchAndTaskPerUser(){
     const schAndTask = JSON.parse(this.responseText);
     const id = schAndTask.userId;
-    const schList = schAndTask.schList;
-    const taskList = schAndTask.taskList;
 
-    console.log(schList);
-    console.log(schAndTask);
     const schDivEl = document.getElementById('sch' + id);
     const taskDivEl = document.getElementById('task' + id);
 
@@ -43,10 +66,14 @@ function getAllSchAndTaskPerUser(){
 
     schDivEl.innerHTML = 'Schedules';
     schDivEl.style.cssFloat = 'left';
-    schDivEl.appendChild(createSchList(schList));
+    schDivEl.appendChild(createSchList(schAndTask));
     taskDivEl.innerHTML = 'Tasks';
     taskDivEl.style.cssFloat = 'right';
-    taskDivEl.appendChild(createTaskList(taskList));
+    taskDivEl.appendChild(createTaskList(schAndTask));
+}
+
+function hideUserInfo(){
+    showContents(['mainInfo','userInfo', 'users']);
 }
 
 function showUserProfile(){
@@ -96,6 +123,7 @@ function addUserToList(users){
         const user = users[i];
 
         const trEl = document.createElement('tr');
+        trEl.title = "Click to View";
         const divTrEl = document.createElement('tr');
 
         const divTdEl = document.createElement('td');
@@ -104,7 +132,8 @@ function addUserToList(users){
         const idAtrEl = document.createAttribute('userId');
         idAtrEl.value = user.id;
         trEl.setAttributeNode(idAtrEl);
-        trEl.addEventListener('click', showUserProfile)
+        trEl.addEventListener('click', showUserProfile);
+        trEl.addEventListener('dblclick', hideUserInfo);
 
         const tdIdEl = document.createElement('td');
         tdIdEl.innerHTML = user.id;
@@ -133,6 +162,7 @@ function addUserToList(users){
         const divSchandTaskEl = document.createElement('div');
 
         const divSchEl = document.createElement('div');
+        divSchEl.title = "Click to View Schedule";
         divSchEl.id = 'sch' + user.id;
         divSchEl.classList.add('users_sch_task');
         divSchandTaskEl.appendChild(divSchEl);
