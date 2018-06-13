@@ -2,12 +2,14 @@ package com.codecool.web.dto;
 
 public class SchTaskNoDTO {
 
-    int schedule;
-    int task;
+    private int schedule;
+    private int task;
+    private int onlineNumber;
 
-    public SchTaskNoDTO(int schedule, int task) {
+    public SchTaskNoDTO(int schedule, int task, int onlineNumber) {
         this.schedule = schedule;
         this.task = task;
+        this.onlineNumber = onlineNumber;
     }
 
     public int getSchedule() {
@@ -16,5 +18,9 @@ public class SchTaskNoDTO {
 
     public int getTask() {
         return task;
+    }
+
+    public int getOnlineNumber() {
+        return onlineNumber;
     }
 }

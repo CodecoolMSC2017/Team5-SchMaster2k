@@ -67,6 +67,7 @@
                 <p>In this wonderful web-application users can create multiple schedules for themselves in which they can create tasks which can contain text or pictures sharing it with others as they like! Huge breakthrough ideas fellas!</p>
                 <p id="schNumber"></p>
                 <p id="taskNumber"></p>
+                <p id="onlineNumber"></p>
                 <button id="mainSchButton"  class="button">Schedule</button>
                 <button id="mainTaskButton"  class="button">Task</button>
                 <c:if test = "${sessionScope.user.getRank() == 'Admin'}">

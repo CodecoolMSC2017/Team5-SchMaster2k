@@ -4,6 +4,9 @@ function loadTaskSchNo(){
     const text = JSON.parse(this.responseText);
     document.getElementById("schNumber").innerHTML = 'Number of your schedules: ' + text.schedule;
     document.getElementById("taskNumber").innerHTML = 'Number of your tasks: ' + text.task;
+    if(document.getElementById("actualUserRank").value == "Admin"){
+        document.getElementById("onlineNumber").innerHTML = 'Online members: ' + text.onlineNumber;
+    }
 }
 
 function getNuOfTaskSch(){
