@@ -5,6 +5,7 @@ let hashMap;
 let taskLength;
 let insertStatusNumber;
 let referenceCellId;
+let wentFromAdmin;
 
 
 function scheduleDays(info){
@@ -105,8 +106,10 @@ function getDetailedSch(){
         currentSchId=this.id;
     }
     params.append("schId", currentSchId);
-
     params.append("userId", document.getElementById("actualUserId").value);
+
+    showContents(["scheduleInfo", "goBackToSchMenu", "guestLink"]);
+
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', showDetailedSch);
     xhr.open('GET', 'protected/schAllInformation?' + params);
@@ -119,10 +122,10 @@ function showDetailedSch(arg){
     if(guestBEl.innerHTML == "Unshare Link"){
         guestButton();
     }else{
+        if(wentFromAdmin==false){
         onUnShareButton();
+        }
     }
-
-    showContents(["scheduleInfo", "goBackToSchMenu", "guestLink"]);
 
     if(document.getElementById("testDivForTable").firstChild){
         document.getElementById("testDivForTable").removeChild(document.getElementById("testDivForTable").firstChild);
@@ -460,6 +463,7 @@ function addSchedule() {
 
 function mainSchButton() {
     const Id = userId;
+    wentFromAdmin=false;
 
     const params = new URLSearchParams();
     params.append('id', userId);

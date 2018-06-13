@@ -95,17 +95,17 @@
 
             </div>
 
-            <div id="scheduleInfo" class="hidden content">
-                <div id="testDivForTable">
-                </div>
-            </div>
-
             <div id="users" class="hidden content">
                 <h1>Users</h1>
                 <div id="usersList"></div>
                  <a id="bottom" href="#top">Scroll Up</a>
             </div>
 
+            <div id="scheduleInfo" class="hidden content">
+                <div id="testDivForTable">
+                </div>
+            </div>
+            
             <div id="tasks" class="hidden content">
                 <table id="taskTable" >
                     <tr>

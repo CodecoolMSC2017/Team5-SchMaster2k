@@ -61,7 +61,8 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
         String pwd = resultSet.getString("password");
         String fName = resultSet.getString("first_name");
         String lName = resultSet.getString("last_name");
-        return new User(id,name,fName,lName,email,rank,pwd);
+        boolean isOnline = resultSet.getBoolean("isOnline");
+        return new User(id,name,fName,lName,email,rank,pwd,isOnline);
     }
 
     @Override
