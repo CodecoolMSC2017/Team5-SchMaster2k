@@ -8,6 +8,9 @@ function onClickLiSch(){
     const params = new URLSearchParams();
     params.append("userId", userId);
     params.append("schId", schId);
+
+    showContents(["scheduleInfo", "mainInfo","userInfo", "users", userId]);
+    wentFromAdmin=true;
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', showDetailedSch);
     xhr.open('GET', 'protected/schAllInformation?' + params);

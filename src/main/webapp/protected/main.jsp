@@ -65,14 +65,13 @@
 
             <div id="mainInfo" class="content">
 
-                <base href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/">
                 <div id="slider">
                     <figure>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/austin-fireworks.jpg" alt>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/taj-mahal_copy.jpg" alt>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/ibiza.jpg" alt>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/ankor-wat.jpg" alt>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/austin-fireworks.jpg" alt>
+                        <img src="./images/slider_1.jpg" alt>
+                        <img src="./images/slider_2.jpg" alt>
+                        <img src="./images/slider_3.jpg" alt>
+                        <img src="./images/slider_4.jpg" alt>
+                        <img src="./images/slider_1.jpg" alt>
                     </figure>
                 </div>
 
@@ -92,16 +91,16 @@
 
             </div>
 
-            <div id="scheduleInfo" class="hidden content">
-                <div id="testDivForTable">
-                </div>
-            </div>
-
             <div id="users" class="hidden content">
                 <h1>Users</h1>
                 <div id="usersList"></div>
             </div>
 
+            <div id="scheduleInfo" class="hidden content">
+                <div id="testDivForTable">
+                </div>
+            </div>
+            
             <div id="tasks" class="hidden content">
                 <table id="taskTable" >
                     <tr>

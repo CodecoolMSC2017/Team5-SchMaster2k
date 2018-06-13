@@ -34,8 +34,9 @@ function guestButton() {
     unSButton.innerHTML = "Unshare Link";
     unSButton.removeEventListener("click", guestButton);
     unSButton.addEventListener("click", onUnShareButton);
-
+    if(wentFromAdmin==false){
     showContents(["scheduleInfo", "goBackToSchMenu", "guestLink"]);
+    }
     const divEl = document.getElementById('guestLink');
     while(divEl.firstChild){
         divEl.removeChild(divEl.firstChild);
