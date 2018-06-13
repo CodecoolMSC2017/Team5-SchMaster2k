@@ -72,6 +72,10 @@ function getAllSchAndTaskPerUser(){
     taskDivEl.appendChild(createTaskList(schAndTask));
 }
 
+function hideUserInfo(){
+    showContents(['mainInfo','userInfo', 'users']);
+}
+
 function showUserProfile(){
     const userId = this.getAttribute("userId");
     showContents(['mainInfo','userInfo', 'users', userId]);
@@ -128,7 +132,8 @@ function addUserToList(users){
         const idAtrEl = document.createAttribute('userId');
         idAtrEl.value = user.id;
         trEl.setAttributeNode(idAtrEl);
-        trEl.addEventListener('click', showUserProfile)
+        trEl.addEventListener('click', showUserProfile);
+        trEl.addEventListener('dblclick', hideUserInfo);
 
         const tdIdEl = document.createElement('td');
         tdIdEl.innerHTML = user.id;
