@@ -64,8 +64,6 @@
             </div>
 
             <div id="mainInfo" class="content">
-
-                <base href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/">
                 <div id="slider">
                     <figure>
                         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/austin-fireworks.jpg" alt>
