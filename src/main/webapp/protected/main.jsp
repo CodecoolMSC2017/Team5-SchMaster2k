@@ -14,9 +14,11 @@
 		<script type="text/javascript" src="js/users.js"></script>
         <link rel="icon" href="images/logo.png" type="image/x-icon"/>
 		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/smooth_scroll.js"></script>
 
 	</head>
 	<body>
+
 		<header>
 			<div class="header_frame">
 				<div class="logo"></div>
@@ -49,6 +51,8 @@
             </div>
 		</div>
 		<div class="data_frame">
+
+            <a id="top" href="#bottom">Scroll down</a>
 
             <div id="goBackToMain" class="hidden content">
                 <button id="goBackToMainButton" class="button">Go Back</button>
@@ -99,6 +103,7 @@
             <div id="users" class="hidden content">
                 <h1>Users</h1>
                 <div id="usersList"></div>
+                 <a id="bottom" href="#top">Scroll Up</a>
             </div>
 
             <div id="tasks" class="hidden content">
@@ -110,6 +115,7 @@
                 <input id = "newTaskName" type="text">
                 <button id="addTaskButton" class="button">Add Task</button>
             </div>
+
         </div>
 	</body>
 </html>
