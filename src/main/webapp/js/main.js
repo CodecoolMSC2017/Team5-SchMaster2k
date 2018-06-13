@@ -57,7 +57,6 @@ function onLoad() {
     mainInfo();
 
 
-
     backButtonEl = document.getElementById('goBackToMainButton');
     backButtonEl2 = document.getElementById('goBackToSchMenuButton');
     backButtonEl3 = document.getElementById('guestButton');
