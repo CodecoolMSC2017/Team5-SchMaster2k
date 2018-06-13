@@ -41,6 +41,17 @@ function createTaskList(schAndTask){
         const task = taskList[i];
         const liEl = document.createElement('li');
         liEl.textContent = task.name;
+
+        const idAtrEl = document.createAttribute('userId');
+        idAtrEl.value = schAndTask.userId;
+        liEl.setAttributeNode(idAtrEl);
+
+        const taskIdAtrEl = document.createAttribute('taskId');
+        taskIdAtrEl.value = task.id;
+        liEl.setAttributeNode(taskIdAtrEl);
+
+        liEl.title = "Click to delete";
+        liEl.addEventListener("click", deleteTaskById);
         ulEl.appendChild(liEl);
     }
     return ulEl;
@@ -93,6 +104,18 @@ function getAllSchAndTaskPerUser(){
 
 function hideUserInfo(){
     showContents(['mainInfo','userInfo', 'users']);
+}
+
+function showUserProfileAfterTaskDel(userId){
+    showContents(['mainInfo','userInfo', 'users', userId]);
+    console.log("User id:" + userId);
+
+    const params = new URLSearchParams();
+    params.append("userId", userId);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', getAllSchAndTaskPerUser);
+    xhr.open('POST', 'protected/allUserInfoServlet');
+    xhr.send(params);
 }
 
 function showUserProfile(){

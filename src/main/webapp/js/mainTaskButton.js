@@ -90,9 +90,20 @@ function deleteTask(){
     xhr.send(params);
 }
 
+function deleteTaskById(){
+    const taskId=this.getAttribute('taskId');
+    const userId=this.getAttribute('userId');
 
+    usersButton();
+    showUserProfileAfterTaskDel(userId);
 
-
+    const params = new URLSearchParams();
+    params.append('taskId', taskId);
+    params.append('userId', userId);
+    const xhr = new XMLHttpRequest();
+    xhr.open('DELETE', 'protected/taskServlet?' + params);
+    xhr.send();
+}
 
 function showEdit(){
     const tdTextBox = document.getElementById("name"+this.id);

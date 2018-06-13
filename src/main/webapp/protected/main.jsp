@@ -41,6 +41,26 @@
 			</div>
 		</header>
 
+		<div id="admin-messages" class="admin_messages">
+            <section id="main-right-hot">
+              <h2>Dummy items</h2>
+              <ul>
+                  <li>Lorem ipsum</li>
+                  <li>dolor sit</li>
+                  <li>...</li>
+              </ul>
+            </section>
+
+            <section id="main-right-new">
+              <h2>New dummy items</h2>
+              <ul>
+                  <li>Lorem ipsum</li>
+                  <li>dolor sit</li>
+                  <li>...</li>
+              </ul>
+            </section>
+        </div>
+
 		<div id="schModal" class="modal">
             <div class="modal-content">
                 <span id="closeModal">&times;</span>
@@ -51,6 +71,7 @@
 
             </div>
 		</div>
+
 		<div class="data_frame">
 
             <a id="top" href="#bottom">Scroll down</a>
@@ -93,7 +114,6 @@
 
             <div id="schedulesInfo" class="hidden content">
                 <h2>Schedules</h2>
-
             </div>
 
             <div id="users" class="hidden content">
@@ -116,7 +136,7 @@
                 <input id = "newTaskName" type="text">
                 <button id="addTaskButton" class="button">Add Task</button>
             </div>
-
         </div>
+
 	</body>
 </html>
