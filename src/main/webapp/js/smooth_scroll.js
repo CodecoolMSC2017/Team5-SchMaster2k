@@ -4,3 +4,11 @@ $(function() {
     $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
   });
 });
+
+/*
+
+VALAMIÉRT VERY NEM JÓ.
+KELL RÁ EGY MEGOLDÁS, MOST!
+TE, IGEN TE! NINCS ÖTLETED?!
+
+*/
