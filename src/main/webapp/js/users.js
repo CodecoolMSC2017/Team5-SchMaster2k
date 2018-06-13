@@ -1,6 +1,23 @@
+let currentUserName;
+
+function onGetUserNameResp(){
+    const resp = JSON.parse(this.responseText);
+    currentUserName = resp.name;
+}
+
+function getUserName(userId){
+    const params = new URLSearchParams();
+    params.append("userId", userId);
+
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onGetUserNameResp);
+    xhr.open('GET', 'protected/userinfo?' + params);
+    xhr.send();
+}
 
 function onClickLiSch(){
     const userId = this.getAttribute('userId-info');
+    currentUserName = getUserName(userId);
     const schId = this.getAttribute('schId-info');
 
     currentSchId = schId;
@@ -10,9 +27,8 @@ function onClickLiSch(){
     params.append("schId", schId);
 
     showContents(["scheduleInfo", "mainInfo","userInfo", "users", userId]);
-    wentFromAdmin=true;
     const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', showDetailedSch);
+    xhr.addEventListener('load', showDetailedSchAdmin);
     xhr.open('GET', 'protected/schAllInformation?' + params);
     xhr.send();
 }
@@ -112,6 +128,9 @@ function addUsersHeaderToTable(){
     const thRankEl = document.createElement('th');
     thRankEl.innerHTML = 'Rank';
     trEl.appendChild(thRankEl);
+    const thOnlineEl = document.createElement('th');
+    thOnlineEl.innerHTML = 'Status';
+    trEl.appendChild(thOnlineEl);
 
     return trEl;
 }
@@ -162,6 +181,16 @@ function addUserToList(users){
         tdRankEl.innerHTML = user.rank;
         trEl.appendChild(tdRankEl);
 
+        const tdIsOnlineEl = document.createElement('td');
+        if(user.online){
+            tdIsOnlineEl.innerHTML = "Online";
+            tdIsOnlineEl.style.color = "green";
+        }else{
+            tdIsOnlineEl.innerHTML = "Offline";
+            tdIsOnlineEl.style.color = "red";
+        }
+        trEl.appendChild(tdIsOnlineEl);
+
         const divSchandTaskEl = document.createElement('div');
 
         const divSchEl = document.createElement('div');
@@ -181,11 +210,10 @@ function addUserToList(users){
         divTrEl.classList.add("hidden");
         divTrEl.classList.add("content");
         divTrEl.classList.add("no-td-style");
-        divTdEl.colSpan = 6;
+        divTdEl.colSpan = 7;
         divTdEl.appendChild(divSchandTaskEl);
         tableEl.appendChild(divTrEl);
      }
-
      return tableEl;
 }
 

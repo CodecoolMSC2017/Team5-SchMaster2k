@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +36,19 @@ public final class UserInfoServlet extends AbstractServlet {
         } catch (SQLException ex) {
             handleSqlError(resp, ex);
             logger.error(user.getName() + ": UserInfo req error." );
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try (Connection connection = getConnection(req.getServletContext())) {
+            UserDao uDao = new DatabaseUserDao(connection);
+            int userId = Integer.parseInt(req.getParameter("userId"));
+
+            resp.setContentType("application/json");
+            sendMessage(resp, HttpServletResponse.SC_OK, uDao.getUserById(userId));
+        } catch (SQLException ex) {
+            handleSqlError(resp, ex);
         }
     }
 }

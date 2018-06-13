@@ -17,8 +17,9 @@ public class LoginService {
 
     public User getUserByName(String name, String password) throws SQLException, InvalidUserException {
         User user = userDao.getUserByName(name);
-        userDao.changeStatus(user.getEmail(),"login");
+
         if (user != null) {
+            userDao.changeStatus(user.getEmail(),"login");
             if (user.getPassword().equals(password) &&user.getName().equals(name)) {
                 return user;
             } else {

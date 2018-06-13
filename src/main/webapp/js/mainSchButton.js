@@ -5,7 +5,6 @@ let hashMap;
 let taskLength;
 let insertStatusNumber;
 let referenceCellId;
-let wentFromAdmin;
 
 
 function scheduleDays(info){
@@ -122,12 +121,10 @@ function showDetailedSch(arg){
     if(guestBEl.innerHTML == "Unshare Link"){
         guestButton();
     }else{
-        if(wentFromAdmin==false){
         onUnShareButton();
-        }
     }
 
-    if(document.getElementById("testDivForTable").firstChild){
+    while(document.getElementById("testDivForTable").firstChild){
         document.getElementById("testDivForTable").removeChild(document.getElementById("testDivForTable").firstChild);
     }
 
@@ -463,7 +460,6 @@ function addSchedule() {
 
 function mainSchButton() {
     const Id = userId;
-    wentFromAdmin=false;
 
     const params = new URLSearchParams();
     params.append('id', userId);

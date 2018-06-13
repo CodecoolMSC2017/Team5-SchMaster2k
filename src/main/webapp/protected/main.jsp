@@ -11,6 +11,7 @@
 		<script type="text/javascript" src="js/main_info.js"></script>
 		<script type="text/javascript" src="js/mainSchButton.js"></script>
 		<script type="text/javascript" src="js/mainTaskButton.js"></script>
+		<script type="text/javascript" src="js/usersSchView.js"></script>
 		<script type="text/javascript" src="js/users.js"></script>
         <link rel="icon" href="images/logo.png" type="image/x-icon"/>
 		<script type="text/javascript" src="js/main.js"></script>
