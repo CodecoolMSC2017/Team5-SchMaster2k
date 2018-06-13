@@ -15,17 +15,18 @@ CREATE TABLE users (
     password TEXT ,
     email TEXT UNIQUE NOT NULL,
     rank TEXT NOT NULL,
+    isOnline boolean,
 	CONSTRAINT email_not_empty CHECK (email <> ''),
 	CONSTRAINT password_not_empty CHECK (password <> '')
 );
 
-INSERT INTO users (name, first_name, last_name, password, email, rank) VALUES
-	('Robi', 'Robert', 'Kohanyi', 'a', 'robert.kohanyi@codecool.com', 'Admin'),
-	('Pako', 'Pal', 'Monoczki', 'a', 'pal.monoczki@codecool.com', 'Admin'),
-	('Ben', null, null, 'a', 'o.g.bence@totalcar.hu', 'Admin'),
-	('Tib', null, null, 'a', 'domokos.tibor.82@gmail.com', 'User'),
-	('Krisz', null, null, 'a', 'kollarkr@gmail.com', 'User'),
-	('Norb', 'Norbert','Hresko', 'a', 'norberthresko@gmail.com', 'User')
+INSERT INTO users (name, first_name, last_name, password, email, rank, isOnline) VALUES
+	('Robi', 'Robert', 'Kohanyi', 'a', 'robert.kohanyi@codecool.com', 'Admin',false),
+	('Pako', 'Pal', 'Monoczki', 'a', 'pal.monoczki@codecool.com', 'Admin',false),
+	('Ben', null, null, 'a', 'o.g.bence@totalcar.hu', 'Admin',false),
+	('Tib', null, null, 'a', 'domokos.tibor.82@gmail.com', 'User',false),
+	('Krisz', null, null, 'a', 'kollarkr@gmail.com', 'User',false),
+	('Norb', 'Norbert','Hresko', 'a', 'norberthresko@gmail.com', 'User',false)
 ;
 
 /* ***** SCHEDULE ***** */

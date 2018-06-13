@@ -1,4 +1,5 @@
 let backButtonEl;
+let slideIndex = 1;
 
 function showContents(ids) {
     const contentEls = document.getElementsByClassName('content');
@@ -55,6 +56,8 @@ function onLoad() {
     userInfo();
     mainInfo();
 
+   
+
     backButtonEl = document.getElementById('goBackToMainButton');
     backButtonEl2 = document.getElementById('goBackToSchMenuButton');
     backButtonEl3 = document.getElementById('guestButton');
@@ -63,5 +66,8 @@ function onLoad() {
     backButtonEl3.addEventListener('click', guestButton);
 
 }
+
+
+
 
 window.onload = onLoad;
