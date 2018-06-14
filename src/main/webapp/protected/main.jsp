@@ -42,6 +42,11 @@
 			</div>
 		</header>
 
+        <footer>
+            <div class="footer_frame">
+                <p>All rights reserved<p>
+            </div>
+        </footer>
 
 		<div class="admin_messages">
             <h2>Admin messages</h2>
@@ -133,13 +138,6 @@
                 <button id="addTaskButton" class="button">Add Task</button>
             </div>
         </div>
-
-
-        <footer>
-            <div class="footer_frame">
-                <p>Valami vmi vmi vm iv mi vmi<p>
-            </div>
-        </footer>
 
 	</body>
 </html>
