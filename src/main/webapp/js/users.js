@@ -34,10 +34,11 @@ function onClickLiSch(){
 }
 function confirmDel() {
 
-    if (confirm("Are you sure you want to delete this task?")) {
+    const message = prompt("Please add reason for the delete", "Due rough language");
+    if (message != null) {
         const taskId=this.getAttribute('taskId');
         const userId=this.getAttribute('userId');
-        deleteTaskById(userId, taskId);
+        deleteTaskById(userId, taskId, message);
     }
 }
 
