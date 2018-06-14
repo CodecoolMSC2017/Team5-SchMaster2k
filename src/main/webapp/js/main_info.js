@@ -32,10 +32,13 @@ function loadAdminMessagesForUser(){
 
 function loadTaskSchNo(){
     const text = JSON.parse(this.responseText);
-    document.getElementById("schNumber").innerHTML = 'Number of your schedules: ' + text.schedule;
-    document.getElementById("taskNumber").innerHTML = 'Number of your tasks: ' + text.task;
+    document.getElementById("schNumber").innerHTML = '<i class="fa fa-calendar fa-1x"></i> Number of your schedules: ' + text.schedule;
+    document.getElementById("schNumber").style.textAlign = "center";
+    document.getElementById("taskNumber").innerHTML = '<i class="fa fa-check-square-o fa-1x"></i> Number of your tasks: ' + text.task;
+    document.getElementById("taskNumber").style.textAlign = "center";
     if(document.getElementById("actualUserRank").value == "Admin"){
-        document.getElementById("onlineNumber").innerHTML = 'Online members: ' + text.onlineNumber;
+        document.getElementById("onlineNumber").innerHTML = '<i class="fa fa-users fa-1x"></i> Online members: ' + text.onlineNumber;
+        document.getElementById("onlineNumber").style.textAlign = "center";
     }
 }
 

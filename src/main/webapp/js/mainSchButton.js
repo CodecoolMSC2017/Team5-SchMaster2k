@@ -178,7 +178,7 @@ function showDetailedSch(arg){
             }
         }
         table.appendChild(tr);
-        table.style.marginTop="100px";
+        table.style.marginTop="10px";
     }
     const div = document.getElementById("testDivForTable");
 
