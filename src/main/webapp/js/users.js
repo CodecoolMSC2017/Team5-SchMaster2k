@@ -1,4 +1,5 @@
 let currentUserName;
+let deletedSchUserId;
 
 function onGetUserNameResp(){
     const resp = JSON.parse(this.responseText);
@@ -19,7 +20,7 @@ function onClickLiSch(){
     const userId = this.getAttribute('userId-info');
     currentUserName = getUserName(userId);
     const schId = this.getAttribute('schId-info');
-
+    deletedSchUserId = userId;
     currentSchId = schId;
 
     const params = new URLSearchParams();

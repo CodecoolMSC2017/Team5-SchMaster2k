@@ -1,6 +1,8 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.dao.DatabaseSchDao;
+import com.codecool.web.dao.DatabaseTaskDao;
+
 import com.codecool.web.dto.ScheduleInformationDto;
 import com.codecool.web.model.Day;
 import com.codecool.web.model.Schedule;
@@ -82,5 +84,22 @@ public class SchServlet extends AbstractServlet {
         }
     }
 
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try (Connection connection = getConnection(req.getServletContext())) {
+            user = (User) req.getSession().getAttribute("user");
+            DatabaseSchDao db = new DatabaseSchDao(connection);
+            int userId = Integer.parseInt(req.getParameter("userId"));
+            int schId = Integer.parseInt(req.getParameter("schId"));
+            String message = req.getParameter("message");
+            db.deleteSchByAdmin(schId, message, user.getName(), userId);
 
+            logger.info(user.getName() + ": Schedule Delet done by admin for (userID): " + userId);
+            resp.setStatus(HttpServletResponse.SC_OK);
+
+        } catch (SQLException ex) {
+            handleSqlError(resp, ex);
+            logger.error(user.getName() + ": Error.", ex);
+        }
+    }
 }

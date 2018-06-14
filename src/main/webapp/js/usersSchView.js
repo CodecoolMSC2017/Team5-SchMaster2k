@@ -47,7 +47,12 @@ function showDetailedSchAdmin(){
     const div = document.getElementById("testDivForTable");
     const h1NameEl = document.createElement('h1');
     h1NameEl.innerHTML = currentUserName + "'s table";
+    const delButton = document.createElement('button');
+    delButton.innerHTML = 'Delete';
+    delButton.addEventListener('click', confirmDeleteScheduleByAdmin)
+    delButton.classList.add("button");
     div.appendChild(h1NameEl);
+    div.appendChild(delButton);
     div.appendChild(table);
 
     for (let i = 0, keys = Object.keys(hm), ii = keys.length; i < ii; i++) {

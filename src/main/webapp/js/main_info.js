@@ -6,7 +6,7 @@ function createMessageList(message){
     for(let i=0; i < message.length; i++){
         const oneMessage = message[i];
         const liEl = document.createElement('li');
-        liEl.innerHTML = "<Strong>Your task:</Strong> " + oneMessage[0]+ "<br>" + "<Strong>Deleted by Admin:</Strong> " + oneMessage[2]+ "<br>" +
+        liEl.innerHTML = "<Strong>Your content:</Strong> " + oneMessage[0]+ "<br>" + "<Strong>Deleted by Admin:</Strong> " + oneMessage[2]+ "<br>" +
         "<Strong>On:</Strong> " + oneMessage[1]+ "<br>" + "<Strong>Cause:</Strong> " + oneMessage[3];
         ulEl.appendChild(liEl);
     }

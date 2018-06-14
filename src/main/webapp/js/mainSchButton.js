@@ -82,12 +82,30 @@ function deleteSch() {
     params.append("schId", this.id);
     params.append("delete",this.id);
     params.append("userId",document.getElementById("actualUserId").value);
-    console.log(this.id);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', loadSchedules);
     xhr.open('POST', 'protected/schServlet');
     xhr.send(params);
+}
 
+function deleteScheduleByAdmin(message){
+    usersButton();
+    const params = new URLSearchParams();
+    params.append("schId", currentSchId);
+    params.append("userId", deletedSchUserId);
+    params.append("message", message);
+    const xhr = new XMLHttpRequest();
+    xhr.open('DELETE', 'protected/schServlet?' + params);
+    xhr.send();
+
+}
+
+function confirmDeleteScheduleByAdmin(){
+
+    const message = prompt("Please add reason for the delete", "Due rough language");
+    if (message != null) {
+        deleteScheduleByAdmin(message);
+    }
 }
 
 function getDetailedSch(){

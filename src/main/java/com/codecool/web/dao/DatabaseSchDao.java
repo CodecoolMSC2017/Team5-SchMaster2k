@@ -312,6 +312,25 @@ public class DatabaseSchDao extends AbstractDao{
         }
     }
 
+    public void deleteSchByAdmin(int schId, String message, String adminName, int userId) throws SQLException {
+
+        String insSql = "INSERT INTO delLog(del_time, user_id, task_name, admin_name, message)" +
+            " VALUES (CURRENT_TIMESTAMP,?,(SELECT name FROM schedules WHERE id = ?),?,?)";
+        try (PreparedStatement insStatement = connection.prepareStatement(insSql)) {
+            insStatement.setInt(1, userId);
+            insStatement.setInt(2, schId);
+            insStatement.setString(3, adminName);
+            insStatement.setString(4, message);
+            executeInsert(insStatement);
+
+            String sql = "DELETE FROM schedules WHERE id = ?;";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, schId);
+                statement.executeUpdate();
+            }
+        }
+    }
+
     public int getNoOnlineUsers() throws SQLException{
         String sql = "SELECT COUNT(*) AS OnlineNo FROM users WHERE isOnline = true";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {

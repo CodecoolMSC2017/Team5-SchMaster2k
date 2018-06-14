@@ -165,8 +165,10 @@ footer {
     /* margin-left: 15px; */
     padding: 10px;
     width: 150px;
-    height: auto;
+    height: 436px;
     background-color: rgba(255,255,255,0.7);
     margin-top: 117px;
     position: fixed;
+    overflow: auto;
+
 }
