@@ -6,6 +6,8 @@
 		<title>Schedule Master 2000</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+        <link rel="icon" href="images/logo.png" type="image/x-icon"/>
 		<script type="text/javascript" src="js/guestLink.js"></script>
 		<script type="text/javascript" src="js/user_info.js"></script>
 		<script type="text/javascript" src="js/main_info.js"></script>
@@ -13,7 +15,6 @@
 		<script type="text/javascript" src="js/mainTaskButton.js"></script>
 		<script type="text/javascript" src="js/usersSchView.js"></script>
 		<script type="text/javascript" src="js/users.js"></script>
-        <link rel="icon" href="images/logo.png" type="image/x-icon"/>
 		<script type="text/javascript" src="js/main.js"></script>
 		<script type="text/javascript" src="js/smooth_scroll.js"></script>
 
@@ -41,11 +42,6 @@
 			</div>
 		</header>
 
-        <footer>
-            <div class="footer_frame">
-                <p>Valami vmi vmi vm iv mi vmi<p>
-            </div>
-        </footer>
 
 		<div id="admin-messages" class="admin_messages">
             <section id="main-right-hot">
@@ -107,10 +103,15 @@
                     </figure>
                 </div>
 
+
                 <p>In this wonderful web-application users can create multiple schedules for themselves in which they can create tasks which can contain text or pictures sharing it with others as they like! Huge breakthrough ideas fellas!</p>
-                <p id="schNumber"></p>
-                <p id="taskNumber"></p>
-                <p id="onlineNumber"></p>
+                <table width="100%">
+                    <tr>
+                        <td><p id="schNumber"></p></td>
+                        <td><p id="taskNumber"></p></td>
+                        <td><p id="onlineNumber"></p></td>
+                    </tr>
+                </table>
                 <button id="mainSchButton"  class="button">Schedule</button>
                 <button id="mainTaskButton"  class="button">Task</button>
                 <c:if test = "${sessionScope.user.getRank() == 'Admin'}">
@@ -143,6 +144,13 @@
                 <button id="addTaskButton" class="button">Add Task</button>
             </div>
         </div>
+
+
+        <footer>
+            <div class="footer_frame">
+                <p>Valami vmi vmi vm iv mi vmi<p>
+            </div>
+        </footer>
 
 	</body>
 </html>
