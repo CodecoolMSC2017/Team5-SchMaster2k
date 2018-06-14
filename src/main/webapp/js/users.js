@@ -32,6 +32,14 @@ function onClickLiSch(){
     xhr.open('GET', 'protected/schAllInformation?' + params);
     xhr.send();
 }
+function confirmDel() {
+
+    if (confirm("Are you sure you want to delete this task?")) {
+        const taskId=this.getAttribute('taskId');
+        const userId=this.getAttribute('userId');
+        deleteTaskById(userId, taskId);
+    }
+}
 
 function createTaskList(schAndTask){
     const ulEl = document.createElement('ol');
@@ -51,7 +59,7 @@ function createTaskList(schAndTask){
         liEl.setAttributeNode(taskIdAtrEl);
 
         liEl.title = "Click to delete";
-        liEl.addEventListener("click", deleteTaskById);
+        liEl.addEventListener("click", confirmDel);
         ulEl.appendChild(liEl);
     }
     return ulEl;

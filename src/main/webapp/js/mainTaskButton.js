@@ -90,9 +90,7 @@ function deleteTask(){
     xhr.send(params);
 }
 
-function deleteTaskById(){
-    const taskId=this.getAttribute('taskId');
-    const userId=this.getAttribute('userId');
+function deleteTaskById(userId, taskId){
 
     usersButton();
     showUserProfileAfterTaskDel(userId);
