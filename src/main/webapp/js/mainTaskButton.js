@@ -90,9 +90,7 @@ function deleteTask(){
     xhr.send(params);
 }
 
-function deleteTaskById(){
-    const taskId=this.getAttribute('taskId');
-    const userId=this.getAttribute('userId');
+function deleteTaskById(userId, taskId, message){
 
     usersButton();
     showUserProfileAfterTaskDel(userId);
@@ -100,6 +98,7 @@ function deleteTaskById(){
     const params = new URLSearchParams();
     params.append('taskId', taskId);
     params.append('userId', userId);
+    params.append('message', message);
     const xhr = new XMLHttpRequest();
     xhr.open('DELETE', 'protected/taskServlet?' + params);
     xhr.send();

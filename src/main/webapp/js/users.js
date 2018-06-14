@@ -32,6 +32,15 @@ function onClickLiSch(){
     xhr.open('GET', 'protected/schAllInformation?' + params);
     xhr.send();
 }
+function confirmDel() {
+
+    const message = prompt("Please add reason for the delete", "Due rough language");
+    if (message != null) {
+        const taskId=this.getAttribute('taskId');
+        const userId=this.getAttribute('userId');
+        deleteTaskById(userId, taskId, message);
+    }
+}
 
 function createTaskList(schAndTask){
     const ulEl = document.createElement('ol');
@@ -51,7 +60,7 @@ function createTaskList(schAndTask){
         liEl.setAttributeNode(taskIdAtrEl);
 
         liEl.title = "Click to delete";
-        liEl.addEventListener("click", deleteTaskById);
+        liEl.addEventListener("click", confirmDel);
         ulEl.appendChild(liEl);
     }
     return ulEl;

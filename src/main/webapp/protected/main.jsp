@@ -43,24 +43,13 @@
 		</header>
 
 
-		<div id="admin-messages" class="admin_messages">
-            <section id="main-right-hot">
-              <h2>Dummy items</h2>
+		<div class="admin_messages">
+            <h2>Admin messages</h2>
+            <section id="admin-messages">
               <ul>
-                  <li>Lorem ipsum</li>
-                  <li>dolor sit</li>
-                  <li>...</li>
+                  <li>No new messages</li>
               </ul>
             </section>
-            <section id="main-right-new">
-              <h2>New dummy items</h2>
-              <ul>
-                  <li>Lorem ipsum</li>
-                  <li>dolor sit</li>
-                  <li>...</li>
-              </ul>
-            </section>
-            <button id="refresh-button" class="button">Refresh</button>
         </div>
 
 		<div id="schModal" class="modal">

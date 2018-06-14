@@ -312,4 +312,14 @@ public class DatabaseSchDao extends AbstractDao{
         }
     }
 
+    public int getNoOnlineUsers() throws SQLException{
+        String sql = "SELECT COUNT(*) AS OnlineNo FROM users WHERE isOnline = true";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                return rs.getInt("OnlineNo");
+            }
+        }
+        return 0;
+    }
 }

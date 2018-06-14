@@ -29,7 +29,7 @@ public class SchService{
         return db.getScheduleDaysByID(id);
     }
     public SchTaskNoDTO getNoOfSchTask(int id) throws SQLException{
-        return new SchTaskNoDTO(db.getNoOfSch(id), db.getNoOfTask(id), OnlineUsersCounter.getNumberOfUsersOnline());
+        return new SchTaskNoDTO(db.getNoOfSch(id), db.getNoOfTask(id), db.getNoOnlineUsers());
     }
 
     public void deleteSchedule(int schId) throws SQLException {
