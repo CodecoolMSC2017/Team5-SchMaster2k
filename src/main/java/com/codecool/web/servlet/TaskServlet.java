@@ -30,7 +30,7 @@ public final class TaskServlet extends AbstractServlet {
             TaskDao tDao = new DatabaseTaskDao(connection);
             int userId = Integer.parseInt(req.getParameter("userId"));
             int taskId = Integer.parseInt(req.getParameter("taskId"));
-            tDao.deleteTask(taskId);
+            tDao.deleteTaskInsertlog(taskId, "default", user.getName(), userId);
 
             logger.info(user.getName() + ": Task Delet done by admin for (userID): " + userId);
             resp.setStatus(HttpServletResponse.SC_OK);

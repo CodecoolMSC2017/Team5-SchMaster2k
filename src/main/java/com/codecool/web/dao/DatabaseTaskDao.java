@@ -79,13 +79,38 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
 
     @Override
     public void deleteTask(int taskId) throws SQLException {
-        String sql = "DELETE FROM tasks WHERE id = ?;" +
-                     "DELETE FROM hours WHERE task_id = ?;";
+        String sql = "begin;" +
+            "DELETE FROM tasks WHERE id = ?;" +
+            "DELETE FROM hours WHERE task_id = ?;" +
+            "commit;";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, taskId);
             statement.setInt(2, taskId);
             statement.executeUpdate();
+        }
+    }
+
+    public void deleteTaskInsertlog(int taskId, String message, String adminName, int userId) throws SQLException {
+        String insSql = "INSERT INTO delLog(del_time, user_id, task_name, admin_name, message)" +
+            " VALUES (CURRENT_TIMESTAMP,?,(SELECT name FROM tasks WHERE id = ?),?,?)";
+        try (PreparedStatement insStatement = connection.prepareStatement(insSql)) {
+            insStatement.setInt(1, userId);
+            insStatement.setInt(2, taskId);
+            insStatement.setString(3, adminName);
+            insStatement.setString(4, message);
+            executeInsert(insStatement);
+
+            String sql = "begin;" +
+                "DELETE FROM tasks WHERE id = ?;" +
+                "DELETE FROM hours WHERE task_id = ?;" +
+                "commit;";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, taskId);
+                statement.setInt(2, taskId);
+                statement.executeUpdate();
+
+            }
         }
     }
 

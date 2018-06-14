@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS delLog;
 DROP TABLE IF EXISTS shared;
 DROP TABLE IF EXISTS task_day_sch;
 DROP TABLE IF EXISTS hours;
@@ -164,3 +165,13 @@ CREATE TABLE shared (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (schedule_id) REFERENCES schedules(id) ON DELETE CASCADE
 );
+
+/* ***** deleted schs,tasks Log SCHEDULE ***** */
+CREATE TABLE delLog (
+    del_time TIMESTAMP,
+    user_id INTEGER,
+    task_name TEXT,
+    admin_name TEXT,
+    message TEXT
+);
+
