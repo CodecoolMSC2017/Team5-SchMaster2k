@@ -41,6 +41,12 @@
 			</div>
 		</header>
 
+        <footer>
+            <div class="footer_frame">
+                <p>Valami vmi vmi vm iv mi vmi<p>
+            </div>
+        </footer>
+
 		<div id="admin-messages" class="admin_messages">
             <section id="main-right-hot">
               <h2>Dummy items</h2>
@@ -50,7 +56,6 @@
                   <li>...</li>
               </ul>
             </section>
-
             <section id="main-right-new">
               <h2>New dummy items</h2>
               <ul>
@@ -59,6 +64,7 @@
                   <li>...</li>
               </ul>
             </section>
+            <button id="refresh-button" class="button">Refresh</button>
         </div>
 
 		<div id="schModal" class="modal">
