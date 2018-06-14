@@ -96,10 +96,14 @@ header .header_frame .user_info #userEmail{
 /* ********** Footer ********** */
 
 footer {
-	height: 90px;
+    width: 100%;
+	height: 50px;
 	background-color: #CCC;
-	line-height: 70px;
+	line-height: 50px;
 	color: #373737;
+	position: fixed;
+    bottom: 0;
+    z-index: 1000;
 }
 .footer_frame {
 	margin: 0 auto;
@@ -112,6 +116,7 @@ footer {
 .data_frame {
 	margin: 0 auto;
 	padding: 10px;
+	padding-bottom: 60px;
 	width: 800px;
 	height: auto;
 	background-color: rgba(255,255,255,0.7);
