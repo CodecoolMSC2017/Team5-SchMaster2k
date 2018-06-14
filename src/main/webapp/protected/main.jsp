@@ -43,9 +43,7 @@
 		</header>
 
         <footer>
-            <div class="footer_frame">
-                <p>All rights reserved<p>
-            </div>
+                All rights reserved
         </footer>
 
 		<div class="admin_messages">
