@@ -68,8 +68,6 @@
 
 		<div class="data_frame">
 
-            <a id="top" href="#bottom">Scroll down</a>
-
             <div id="goBackToMain" class="hidden content">
                 <button id="goBackToMainButton" class="button">Go Back</button>
             </div>
@@ -133,7 +131,6 @@
                     </tr>
                 <table>
                 <input id = "newTaskName" type="text">
-                <button id="addTaskButton" class="button">Add Task</button>
             </div>
         </div>
 
